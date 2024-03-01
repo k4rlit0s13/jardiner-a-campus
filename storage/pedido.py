@@ -1,0 +1,10 @@
+pedido=[
+    {
+        "codigo_pedido":0,
+        "fecha_pedido":"2024/03/01",
+        "fecha_esperada":"2024/03/01",
+        "estado":"",
+        "comentario":"",
+        "codigo_cliente":0,
+}
+]
