@@ -1,3 +1,3 @@
 import modules.getClients as cliente
 
-print(cliente.getAllPaisRegionCiudad ("Spain", "Fuenlabrada", "Madrid"))
+print(cliente.obtener_informacion_clientes ())

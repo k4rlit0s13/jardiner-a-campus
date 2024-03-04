@@ -1,6 +1,6 @@
 import storage.cliente as cli
 
-def search():
+def search ():
     clienteNames= list()
     for val in cli.clientes:
         codigoName=dict({
@@ -11,7 +11,7 @@ def search():
         return clienteNames
     
 
-def getOneClienteCodigo(codigo):
+def getOneClienteCodigo (codigo):
     clienteNames= list()
     for val in cli.clientes:
         if (val.get("codigo_cliente")==codigo):
@@ -21,7 +21,7 @@ def getOneClienteCodigo(codigo):
             }
 
 
-def  getAllClientCreditCiudad(limiteCredit,ciudad):
+def  getAllClientCreditCiudad (limiteCredit,ciudad):
     clienteCredit=list()
     for val in cli.clientes:
         if(val.get("limite_credito")>=limiteCredit and val.get("ciudad")==ciudad):
@@ -37,5 +37,17 @@ def getAllPaisRegionCiudad (pais,region=None,ciudad=None):
             (val.get('ciudad')==ciudad or val.get('ciudad')==None)    
         ):
             clientZone.append(val)
-    return clientZone        
+    return clientZone         
 
+
+
+#filtro par obtener nombre con la direccion numero 2 de los clientes
+def obtener_informacion_clientes():
+    clientes_info = []
+    for cliente in cli.clientes:
+        info = {
+            "nombre_cliente": cliente.get("nombre_cliente"),
+            "linea_direccion2": cliente.get("linea_direccion2")
+        }
+        clientes_info.append(info)
+    return clientes_info
