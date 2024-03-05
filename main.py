@@ -1,3 +1,3 @@
 import modules.getClients as cliente
 
-print(cliente.GetAllCodePar ())
+print(cliente.GetAllsimilarNames ('Antonio'))

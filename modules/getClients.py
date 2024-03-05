@@ -68,3 +68,15 @@ def GetAllCodePar ():
 
 
 #filtro que permita buscar clientes cuyos nombres coincidan parcialmente con un término de búsqueda proporcionado
+def GetAllsimilarNames(nombre_busqueda):
+    clientes_info = []
+    for cliente in cli.clientes:
+        nombre_cliente = cliente.get("nombre_contacto")
+        codigo_cliente = cliente.get("codigo_cliente")
+        if nombre_busqueda.lower() in nombre_cliente.lower():  # Verificar si el término de búsqueda está contenido en el nombre del cliente
+            info = {
+                "nombre_contacto": nombre_cliente,
+                "codigo_cliente": codigo_cliente
+            }
+            clientes_info.append(info)
+    return clientes_info
