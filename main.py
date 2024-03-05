@@ -1,3 +1,3 @@
 import modules.getClients as cliente
 
-print(cliente.GetAllClientCountry ('Spain'))
+print(cliente.GetAllClientTel(2))

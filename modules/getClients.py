@@ -95,3 +95,17 @@ def GetAllClientCountry(pais):
         }
             clientes_info.append(info)
     return clientes_info
+
+
+#filtro que muestre los clientes con el primer digito de telefono igual
+def GetAllClientTel(numero_telefono):
+    clientes_info = []
+    for cliente in cli.clientes:
+        telefono_cliente = cliente.get("telefono", "")
+        if str(telefono_cliente).startswith(str(numero_telefono)): #str para para convertir un objeto en su representación de cadena
+            info = {
+                "nombre_cliente": cliente.get("nombre_cliente"),
+                "telefono": telefono_cliente
+            }
+            clientes_info.append(info)
+    return clientes_info
