@@ -1,3 +1,3 @@
 import modules.getClients as cliente
 
-print(cliente.GetAllsimilarNames ('Antonio'))
+print(cliente.GetAllClientCountry ('Spain'))

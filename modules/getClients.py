@@ -41,6 +41,8 @@ def getAllPaisRegionCiudad (pais,region=None,ciudad=None):
 
 
 
+
+
 #filtro para obtener nombre con la direccion numero 2 de los clientes
 def obtener_informacion_clientes():
     clientes_info = []
@@ -78,5 +80,18 @@ def GetAllsimilarNames(nombre_busqueda):
                 "nombre_contacto": nombre_cliente,
                 "codigo_cliente": codigo_cliente
             }
+            clientes_info.append(info)
+    return clientes_info
+
+
+#filtro que muestre clientes por país según el seleccionado
+def GetAllClientCountry(pais):
+    clientes_info = []
+    for cliente in cli.clientes:
+        if cliente.get("pais") == pais:
+            info = {
+            "nombre_cliente": cliente.get("nombre_cliente"),
+            "pais":cliente.get("pais")
+        }
             clientes_info.append(info)
     return clientes_info
