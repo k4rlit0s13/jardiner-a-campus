@@ -11,3 +11,15 @@ def getAllCodeOfficeCity7():
                 "ciudad":val.get("ciudad")
         })
     return AllCodeOfficeCity7
+
+#filtro que devuelva un listado con la ciudad y el telefono de las oficinas de españa
+def getAllCityPhone():
+    AllCityPhone=[]
+    for val in of.oficina:
+        if (val.get("pais"))=="España":
+            AllCityPhone.append(
+            {
+                "ciudad":val.get("ciudad"),
+                "telefono":val.get("telefono")
+        })
+    return AllCityPhone

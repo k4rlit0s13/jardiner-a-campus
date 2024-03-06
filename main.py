@@ -10,4 +10,4 @@ import modules.getPago as pago
 
 #print(pago.getAll2008Clients())
 
-print(oficina.getAllCodeOfficeCity7())
+print(oficina.getAllCityPhone())
