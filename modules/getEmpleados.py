@@ -23,10 +23,10 @@ def getAllNameSurnamesJefeemail():
                 {
                     "Nombre": val.get ("nombre"),
                     "Apellidos":(f"{val.get('apellido1')} {val.get('apellido2')}"), #hay que meter 2 datos en uno solo, usamo comentario con activador de funcion f
-                    "Puesto":val.get("puesto"),
                     "Jefe": val.get("codigo_jefe"),
                     "Email jefe":val.get("email")
                 }
             )
     return NameSurnamesJefeemail
 
+#filtro para devolver un listado con el nombre, apellidos
