@@ -3,4 +3,6 @@ import modules.getOficina as oficina
 import modules.getEmpleados as empleado
 
 
-print(empleado.getAllNameSurnamesJefeemail())
+#print(cliente.GetAllNamesSpain())
+
+print(cliente.GetAllNamesSpain())
