@@ -4,9 +4,10 @@ import storage.pedido as pe
 
 def obtener_estados_pedidos():
     estados = set()  # Utilizamos un conjunto para asegurarnos de obtener estados únicos
-    for pedido in pe.pedido:  
-        estado = pedido.get("estado")
-        if estado not in estados:
+    for val in pe.pedido:  
+        estado = val.get("estado")
+        if val.get not in estados:
             estados.add(estado)
     return estados
 
+#filtro para 
