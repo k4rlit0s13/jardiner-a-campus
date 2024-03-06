@@ -23,10 +23,22 @@ def getAllNameSurnamesJefeemail():
                 {
                     "Nombre": val.get ("nombre"),
                     "Apellidos":(f"{val.get('apellido1')} {val.get('apellido2')}"), #hay que meter 2 datos en uno solo, usamo comentario con activador de funcion f
-                    "Jefe": val.get("codigo_jefe"),
+                    "codigo del Jefe": val.get("codigo_jefe"),
                     "Email jefe":val.get("email")
                 }
             )
     return NameSurnamesJefeemail
 
-#filtro para devolver un listado con el nombre, apellidos
+#filtro para devolver un listado con el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
+def getAllNamesSurnamesJob(puesto):
+    NamesSurnamesJob=[]
+    for val in em.empleados:
+        if(val.get("puesto")!= puesto):
+            NamesSurnamesJob.append(
+            {"Nombre":val.get("nombre"),
+             "Apellidos":(f'{val.get("apellido1")}{val.get("apellido2")}'),
+             "Cargo":val.get("puesto")
+             }
+          )
+    return NamesSurnamesJob
+

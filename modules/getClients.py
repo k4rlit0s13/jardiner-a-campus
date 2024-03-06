@@ -109,3 +109,14 @@ def GetAllClientTel(numero_telefono):
             }
             clientes_info.append(info)
     return clientes_info
+
+#filtro que devuelve un listado con el nombre de todos los clientes españoles 
+def GetAllNamesSpain():
+    clientesEspañoles=[]
+    for cliente in cli.clientes:
+        if (cliente.get("pais")=='Spain'):
+            clientesEspañoles.append(
+            {
+             "Nombre":cliente.get("nombre_cliente")
+            })
+    return  clientesEspañoles
