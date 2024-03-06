@@ -7,7 +7,7 @@ def search ():
         "codigo_cliente": val.get("codigo_cliente"),
         "nombre_cliente": val.get ("nombre_cliente")
      })
-        clienteNames.append(codigoNames)
+        clienteNames.append(codigoName)
         return clienteNames
     
 
