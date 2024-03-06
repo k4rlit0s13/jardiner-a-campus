@@ -10,4 +10,3 @@ def obtener_estados_pedidos():
             estados.add(estado)
     return estados
 
-#filtro para 

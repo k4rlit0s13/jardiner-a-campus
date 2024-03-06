@@ -120,3 +120,7 @@ def GetAllNamesSpain():
              "Nombre":cliente.get("nombre_cliente")
             })
     return  clientesEspañoles
+
+
+
+
