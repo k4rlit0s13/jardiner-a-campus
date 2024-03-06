@@ -8,6 +8,6 @@ import modules.getPago as pago
 
 #print(pedido.obtener_estados_pedidos())
 
-print(pago.getAll2008Clients())
-
 #print(pago.getAll2008Clients())
+
+print(oficina.getAllCodeOfficeCity7())
