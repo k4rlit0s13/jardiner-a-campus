@@ -24,3 +24,13 @@ def getAllPaymentsPaypal2008():
                 })
     AllPaymentsPaypal2008_ordenado = sorted(AllPaymentsPaypal2008, key=lambda x: x["total"], reverse=True)
     return AllPaymentsPaypal2008_ordenado
+
+
+#filtro que devuelve un listado con todas las formas de pago que aparecen en la tabla pago. tenga en cuenta que no deben parecer formas de pago repetidas
+
+def getAllFormToPay():
+    allFormToPay=set()
+    for pago in pa.pago:
+        forma_pago=pago.get("forma_pago")
+        allFormToPay.add(pago.get("forma_pago"))
+    return allFormToPay

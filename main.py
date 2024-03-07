@@ -22,4 +22,4 @@ import modules.getPago as pago
 
 #print(tabulate(pedido.getAllOrdersRefused2009(), tablefmt="grid"))
 
-print(tabulate(pago.getAllPaymentsPaypal2008(), tablefmt="grid"))
+print(tabulate(pago.getAllFormToPay(), tablefmt="grid"))
