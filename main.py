@@ -10,4 +10,6 @@ import modules.getPago as pago
 
 #print(pago.getAll2008Clients())
 
-print(oficina.getAllCityPhone())
+#print(oficina.getAllCityPhone())
+
+print(pedido.obtener_pedidos_entrega_tardia())
