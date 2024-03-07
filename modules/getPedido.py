@@ -35,6 +35,9 @@ def obtener_estados_pedidos():
 #                             "Fecha_de_entrega": fecha_entrega
 #                         })
 #     return pedidos_entrega_tardia
+
+from datetime import datetime
+
 def obtener_pedidos_entrega_tardia():
    pedidos_entrega_tardia=[{
         "Código_de_pedido": pedido.get("codigo_pedido"),
@@ -46,3 +49,28 @@ def obtener_pedidos_entrega_tardia():
             and pedido.get("fecha_entrega") and pedido.get("fecha_esperada")
             and pedido.get("fecha_entrega") > pedido.get("fecha_esperada")]
    return pedidos_entrega_tardia 
+
+#filtro que devuelva el codigo del pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos 2 dias antes de la fecha esperada, usando la función adddate,datediff, sera posible es consulta utilizando el operador de suma o resta, comandos equivalentes para python
+def getAllOrderClientDates2DaysAgo():
+    pedidos_entrega_anticipada=[]
+    for pedido in pe.pedido:
+
+        fecha_entrega_base=(pedido.get("fecha_entrega"))
+        fecha_esperada_base=(pedido.get("fecha_esperada"))
+
+        if fecha_entrega_base is not None and fecha_esperada_base is not None:
+            fecha_entrega = datetime.strptime(fecha_entrega_base, "%Y-%m-%d")
+            fecha_esperada = datetime.strptime(fecha_esperada_base, "%Y-%m-%d")
+            
+            diferencia_dias=(fecha_esperada-fecha_entrega).days
+
+            if diferencia_dias>=2:
+                pedidos_entrega_anticipada.append(
+                {
+                    "código_pedido":pedido.get("codigo_pedido"),
+                    "código_cliente":pedido.get("código_cliente"),
+                    "fecha_esperada":pedido.get("fecha_esperada"),
+                    "fecha_entrega":pedido.get("fecha_entrega")                
+                }
+                )
+    return pedidos_entrega_anticipada 
