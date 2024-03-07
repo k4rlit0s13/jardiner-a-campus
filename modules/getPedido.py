@@ -74,3 +74,18 @@ def getAllOrderClientDates2DaysAgo():
                 }
                 )
     return pedidos_entrega_anticipada 
+
+#filtro que devuelva los pedidos rechazados en 2009
+def getAllOrdersRefused2009():
+    AllOrdersRefused2009=[]
+    for pedido in pe.pedido:
+        pedidos_2009=(pedido.get("fecha_pedido"))
+
+        if pedidos_2009.startswith("2009") and pedido.get("estado")=="Rechazado":
+            AllOrdersRefused2009.append(
+                {
+                    "codigo_pedido":pedido.get("codigo_pedido"),
+                    "estado":pedido.get("estado"),
+                    "fecha_pedido":pedido.get("fecha_pedido"),
+                })
+    return AllOrdersRefused2009

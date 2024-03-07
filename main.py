@@ -18,4 +18,6 @@ import modules.getPago as pago
 
 #print(tabulate(pedido.obtener_pedidos_entrega_tardia(), tablefmt="grid"))
 
-print(tabulate(pedido.getAllOrderClientDates2DaysAgo(), tablefmt="grid"))
+#print(tabulate(pedido.getAllOrderClientDates2DaysAgo(), tablefmt="grid"))
+
+print(tabulate(pedido.getAllOrdersRefused2009(), tablefmt="grid"))
