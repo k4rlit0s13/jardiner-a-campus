@@ -1,13 +1,15 @@
 import storage.cliente as cli
+from tabulate import tabulate
 
-def search ():
-    clienteNames= list()
+
+def search():
+    clienteNames=[]
     for val in cli.clientes:
-        codigoName=dict({
+        codigoName=({
         "codigo_cliente": val.get("codigo_cliente"),
         "nombre_cliente": val.get ("nombre_cliente")
      })
-        clienteNames.append(codigoName)
+        clienteNames.append(val)
         return clienteNames
     
 
@@ -123,4 +125,35 @@ def GetAllNamesSpain():
 
 
 
+# https://manytools.org/hacker-tools/ascii-banner/
+
+def menu():
+    print("""
+██████╗ ███████╗██████╗  ██████╗ ██████╗ ████████╗███████╗                        
+██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝                        
+██████╔╝█████╗  ██████╔╝██║   ██║██████╔╝   ██║   █████╗                          
+██╔══██╗██╔══╝  ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝                          
+██║  ██║███████╗██║     ╚██████╔╝██║  ██║   ██║   ███████╗                        
+╚═╝  ╚═╝╚══════╝╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝                        
+                                                                                  
+██████╗ ███████╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗███████╗
+██╔══██╗██╔════╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝██╔════╝
+██║  ██║█████╗      ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗  ███████╗
+██║  ██║██╔══╝      ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  ╚════██║
+██████╔╝███████╗    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗███████║
+╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝
+                                                                                  
+
+          1. Obtener todos los clientes (codigo y nombre)         
+          2. Obtener un cliente por el codigo (codigo y nombre)
+          3. Obtener toda la informacion de un cliente segun su limite de credito y ciudad 
+          
+          """)
+    opcion=int(input("\nseleccione una de las opciones"))
+    
+    if(opcion==1):
+        print(tabulate(getOneClienteCodigo(), headers="keys",tablefmt="github"))
+    elif(opcion==2):
+        codigoCliente:int(input"\nIngrese el codigo del cliente: ")
+        print()
 
