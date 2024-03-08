@@ -59,7 +59,7 @@ if (__name__=="__main__"):
     4.Pedidos
 """)
     
-    opcion=int(input("\nseleccione una de las opciones"))
+    opcion=int(input("\nEscibe el número de una de las opciones: "))
     
     if(opcion==1):
         cliente.menu()

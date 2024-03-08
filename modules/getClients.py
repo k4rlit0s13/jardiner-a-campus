@@ -2,6 +2,9 @@ import storage.cliente as cli
 from tabulate import tabulate
 
 
+
+
+
 def search():
     clienteNames=[]
     for val in cli.clientes:
@@ -13,15 +16,40 @@ def search():
         return clienteNames
     
 
+
+
+
+#filtro para obtener lista del codigo y nombre de cliente
+def getAllCodesClients ():
+    clienteNames= []
+    for cliente in cli.clientes:
+            clienteNames.append({
+                "codigo del cliente": cliente.get("codigo_cliente"),
+                "nombre del cliente": cliente.get("nombre_cliente")
+            })
+    return clienteNames
+
+
+
+
+
+#filtro para obtener lista del codigo y nombre de cliente a partir de un numero de codigo escrito
 def getOneClienteCodigo (codigo):
     clienteNames= list()
-    for val in cli.clientes:
-        if (val.get("codigo_cliente")==codigo):
-            return{
-                "codigo_cliente": val.get("codigo_cliente"),
-                "nombre_cliente": val.get("nombre_cliente")
-            }
+    for codigoN in cli.clientes:
+        if (codigoN.get("codigo_cliente")==codigo):
+            clienteNames.append({
+                "codigo del cliente": codigoN.get("codigo_cliente"),
+                "nombre del cliente": codigoN.get("nombre_cliente")
+            })
+    return clienteNames
 
+
+
+
+
+
+#fuiltro para devolver todos los datos segun un limite de credito y la ciudad
 
 def  getAllClientCreditCiudad (limiteCredit,ciudad):
     clienteCredit=list()
@@ -29,6 +57,36 @@ def  getAllClientCreditCiudad (limiteCredit,ciudad):
         if(val.get("limite_credito")>=limiteCredit and val.get("ciudad")==ciudad):
             clienteCredit.append(val)
     return clienteCredit
+
+
+
+
+
+
+#filtro que devuelva la info de los clientes del limite y la ciudad
+def  getAllClientCreditCiudad2 (limiteCredit,ciudad):
+    clienteCredit=[]
+    for datos in cli.clientes:
+        if(datos.get("limite_credito")>=limiteCredit and datos.get("ciudad")==ciudad):
+            clienteCredit.append({
+
+                "Código": datos.get("codigo_cliente"),
+                "Cliente": datos.get("nombre_cliente"),
+                "Director": f"{datos.get('nombre_contacto')} {datos.get('apellido_contacto')}", #OJO CUIDADO, cuando aparece un  f"" lo que esté adentro si es una toma de info es mejor que dentro vaya en '' así: f"dato.get('')"
+                "Telefono": datos.get("telefono"),
+                "Fax": datos.get("fax"),
+                "Direcciones": f"{datos.get('linea_direccion1')} {datos.get('linea_direccion2')}",
+                "Origen":f"{datos.get('ciudad')} {datos.get('region')} {datos.get('pais')}",
+                "Código del asesor": datos.get("codigo_empleado_rep_ventas"),
+                "Crédito": datos.get("limite_credito")
+            })
+    return clienteCredit
+
+
+
+
+
+
 
 def getAllPaisRegionCiudad (pais,region=None,ciudad=None):
     clientZone = list()
@@ -129,6 +187,7 @@ def GetAllNamesSpain():
 
 def menu():
     print("""
+          
 ██████╗ ███████╗██████╗  ██████╗ ██████╗ ████████╗███████╗                        
 ██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝                        
 ██████╔╝█████╗  ██████╔╝██║   ██║██████╔╝   ██║   █████╗                          
@@ -144,16 +203,24 @@ def menu():
 ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝
                                                                                   
 
-          1. Obtener todos los clientes (codigo y nombre)         
-          2. Obtener un cliente por el codigo (codigo y nombre)
-          3. Obtener toda la informacion de un cliente segun su limite de credito y ciudad 
+    1. Obtener todos los clientes (código y nombre)         
+    2. Obtener un cliente por el codigo (código y nombre)
+    3. Obtener toda la información de un cliente segun su limite de credito y ciudad ( ejemplo:1500.0, San Francisco )
           
           """)
-    opcion=int(input("\nseleccione una de las opciones"))
+    
+
+    opcion=int(input("\nSeleccione una de las opciones: "))
     
     if(opcion==1):
-        print(tabulate(getOneClienteCodigo(), headers="keys",tablefmt="github"))
+        print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
+
     elif(opcion==2):
-        codigoCliente:int(input"\nIngrese el codigo del cliente: ")
-        print()
+        codigoCliente=int(input("\nIngrese el codigo del cliente: "))
+        print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
+
+    elif(opcion==3):
+        limite=float(input("Ingrese el límite de crédito de los clientes que deseas visualizar: "))
+        ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
+        print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
 
