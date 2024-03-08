@@ -170,6 +170,7 @@ def GetAllClientTel(numero_telefono):
             clientes_info.append(info)
     return clientes_info
 
+
 #filtro que devuelve un listado con el nombre de todos los clientes españoles 
 def GetAllNamesSpain():
     clientesEspañoles=[]
@@ -206,7 +207,8 @@ def menu():
     1. Obtener todos los clientes (código y nombre)         
     2. Obtener un cliente por el codigo (código y nombre)
     3. Obtener toda la información de un cliente segun su limite de credito y ciudad ( ejemplo:1500.0, San Francisco )
-          
+    4. Obtener todos los nombrs de clientes según el país
+    5. Obtener lista con los nombres de los clientes que contengan un código de número par
           """)
     
 
@@ -224,3 +226,12 @@ def menu():
         ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
         print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
 
+    elif(opcion==4):
+        pais=input("Ingrese el pais de crédito de los clientes que deseas visualizar: ")
+        print(tabulate(GetAllClientCountry(pais), headers="keys",tablefmt="github"))
+    
+    elif(opcion==5):
+        print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
+
+
+   
