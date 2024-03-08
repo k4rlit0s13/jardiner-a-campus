@@ -75,6 +75,8 @@ def getAllOrderClientDates2DaysAgo():
                 )
     return pedidos_entrega_anticipada 
 
+
+
 #filtro que devuelva los pedidos rechazados en 2009
 def getAllOrdersRefused2009():
     AllOrdersRefused2009=[]
@@ -89,3 +91,20 @@ def getAllOrdersRefused2009():
                     "fecha_pedido":pedido.get("fecha_pedido"),
                 })
     return AllOrdersRefused2009
+
+
+
+#filtro que devuelva todos los pedidos que han sido entregados en el mes de enero de cualquier año\
+def getAllOrder01():
+    AllOrder01=[]
+    for pedido in pe.pedido:
+        entrega=pedido.get("fecha_entrega")
+        if entrega:
+            year,month,_=entrega.split("-")
+            if month=="01":  # Enero en las fechas dadas
+                AllOrder01.append({
+                "codigo_pedido":pedido.get("codigo_pedido"),
+                "fecha_entrega":pedido.get("fecha_entrega"),
+                "codigo_cliente":pedido.get("codigo_cliente")
+            })
+    return AllOrder01
