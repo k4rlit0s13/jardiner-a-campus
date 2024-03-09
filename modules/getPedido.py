@@ -1,4 +1,8 @@
 import storage.pedido as pe
+from tabulate import tabulate
+
+
+
 
 #filtro para devolver un listado con los distintos estados por los que puede pasar un pedido
 

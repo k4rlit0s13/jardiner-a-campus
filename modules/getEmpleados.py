@@ -1,4 +1,26 @@
 import storage.empleado as em
+from tabulate import tabulate
+
+#filtro para obtener todos los nombres de los empleados
+def getAllNames():
+    NamesNames2EmailJefe=[]
+    for val in em.empleados:
+        NamesNames2EmailJefe.append(
+                {
+                    "nombre": val.get ("nombre"),
+                    "apellidos":(f'{val.get("apellido1")} {val.get("apellido2")}'), #hay que meter 2 datos en uno solo, usamo comentario con activador de funcion f
+                    "email": val.get("email"),
+                    "jefe": val.get("codigo_jefe")
+                }
+            )
+    return NamesNames2EmailJefe
+
+
+
+
+
+
+
 
 #algoritmo para devolver un listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
 def getAllNamesNames2EmailJefe (codigo):
@@ -30,10 +52,10 @@ def getAllNameSurnamesJefeemail():
     return NameSurnamesJefeemail
 
 #filtro para devolver un listado con el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
-def getAllNamesSurnamesJob(puesto):
+def getAllNamesSurnamesJob():
     NamesSurnamesJob=[]
     for val in em.empleados:
-        if(val.get("puesto")!= puesto):
+        if(val.get("puesto")!= "Representante Ventas"):
             NamesSurnamesJob.append(
             {"Nombre":val.get("nombre"),
              "Apellidos":(f'{val.get("apellido1")}{val.get("apellido2")}'),
@@ -52,9 +74,16 @@ def menu():
 ███████╗██║ ╚═╝ ██║██║     ███████╗███████╗██║  ██║██████╔╝╚██████╔╝███████║
 ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝
                                                                             
-        1.
-        2.
-        3.
+        1. Obtener todos los empleados
+        2. 
+        3. Obtener el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
         4.
-
 """)
+    
+    opcion=int(input("\nSeleccione una de las opciones: "))
+    
+    if(opcion==1):
+        print(tabulate(getAllNames(), headers="keys",tablefmt="grid"))
+    
+    elif(opcion==3):
+        print(tabulate(getAllNamesSurnamesJob(), headers="keys",tablefmt="grid"))
