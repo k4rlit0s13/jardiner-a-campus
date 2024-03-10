@@ -21,8 +21,7 @@ def getAllOffice():
 def getAllCodeOfficeCity7():
     AllCodeOfficeCity7=[]
     for val in of.oficina:
-        if (val.get("pais"))=="España":
-            AllCodeOfficeCity7.append(
+        AllCodeOfficeCity7.append(
             {
                 "codigo_oficina":val.get("codigo_oficina"),
                 "ciudad":val.get("ciudad")
@@ -30,7 +29,7 @@ def getAllCodeOfficeCity7():
     return AllCodeOfficeCity7
 
 #filtro que devuelva un listado con la ciudad y el telefono de las oficinas de españa
-def getAllCityPhone():
+def getAllCityPhoneSpain():
     AllCityPhone=[]
     for val in of.oficina:
         if (val.get("pais"))=="España":
@@ -40,6 +39,23 @@ def getAllCityPhone():
                 "telefono":val.get("telefono")
         })
     return AllCityPhone
+
+# obtener los telefonos de las oficinas
+def getAllCityPhones():
+    AllCityPhone=[]
+    for val in of.oficina:
+        AllCityPhone.append(
+             {
+        "codigo_oficina":val.get("codigo_oficina"),
+        "ciudad":val.get("ciudad"),
+        "telefono":val.get("telefono")
+        })
+    return AllCityPhone
+
+
+
+
+
 
 
 def menu():
@@ -52,11 +68,21 @@ def menu():
 ╚██████╔╝██║     ██║╚██████╗██║██║ ╚████║██║  ██║███████║
  ╚═════╝ ╚═╝     ╚═╝ ╚═════╝╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝
  
-       1.Obtener todas las oficinas 
-       2.
-       3.
-       4.
+       1. Obtener todas las oficinas 
+       2. Obtener la ciudad y el telefono de las oficinas de españa
+       3. Obtener el código de oficina y la ciudad donde hay oficinas
+       4. Obtener los telefonos de las oficinas
 """)
         opcion=int(input("\nSeleccione una de las opciones: "))
+
         if(opcion==1):
             print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))
+
+        if(opcion==2):
+            print(tabulate(getAllCityPhoneSpain(), headers="keys",tablefmt="grid"))
+
+        if(opcion==3):
+            print(tabulate(getAllCodeOfficeCity7(), headers="keys",tablefmt="grid"))
+
+        if(opcion==4):
+            print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))

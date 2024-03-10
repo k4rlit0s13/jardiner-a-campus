@@ -17,13 +17,8 @@ def getAllNames():
 
 
 
-
-
-
-
-
 #algoritmo para devolver un listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
-def getAllNamesNames2EmailJefe (codigo):
+def getAllNamesNames2EmailJefe7 (codigo):
     getAllNamesNames2EmailJefe=[]
     for val in em.empleados:
         if(val.get("codigo_jefe")==codigo):
@@ -41,7 +36,8 @@ def getAllNamesNames2EmailJefe (codigo):
 def getAllNameSurnamesJefeemail():
     NameSurnamesJefeemail=[]
     for val in em.empleados:
-            NameSurnamesJefeemail.append(
+            if val.get("codigo_empleado")==1:
+                NameSurnamesJefeemail.append(
                 {
                     "Nombre": val.get ("nombre"),
                     "Apellidos":(f"{val.get('apellido1')} {val.get('apellido2')}"), #hay que meter 2 datos en uno solo, usamo comentario con activador de funcion f
@@ -75,15 +71,23 @@ def menu():
 ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝
                                                                             
         1. Obtener todos los empleados
-        2. 
+        2. Obtener listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
         3. Obtener el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
-        4.
+        4. Obtener el nombre del puesto, nombre, apellidos e email del feje de la empresa
 """)
     
     opcion=int(input("\nSeleccione una de las opciones: "))
     
     if(opcion==1):
         print(tabulate(getAllNames(), headers="keys",tablefmt="grid"))
+
+    elif(opcion==2):
+        codigo=int(input("Ingresa del numero del jefe: "))
+        print(tabulate(getAllNamesNames2EmailJefe7(codigo), headers="keys",tablefmt="grid"))
     
     elif(opcion==3):
         print(tabulate(getAllNamesSurnamesJob(), headers="keys",tablefmt="grid"))
+
+    elif(opcion==4):
+        print(tabulate(getAllNameSurnamesJefeemail(), headers="keys",tablefmt="grid"))
+    
