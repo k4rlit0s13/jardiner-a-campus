@@ -17,8 +17,6 @@ def getAllOffice():
 
 
 
-
-
 #filtro que devuelva un listado con el código de oficina y la ciudad donde hay oficinas
 def getAllCodeOfficeCity7():
     AllCodeOfficeCity7=[]
@@ -43,8 +41,9 @@ def getAllCityPhone():
         })
     return AllCityPhone
 
+
 def menu():
- print("""
+        print("""
 
  ██████╗ ███████╗██╗ ██████╗██╗███╗   ██╗ █████╗ ███████╗
 ██╔═══██╗██╔════╝██║██╔════╝██║████╗  ██║██╔══██╗██╔════╝
@@ -58,8 +57,6 @@ def menu():
        3.
        4.
 """)
-    
-opcion=int(input("\nSeleccione una de las opciones: "))
-    
-if(opcion==1):
-    print(tabulate((), headers="keys",tablefmt="grid"))
+        opcion=int(input("\nSeleccione una de las opciones: "))
+        if(opcion==1):
+            print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))

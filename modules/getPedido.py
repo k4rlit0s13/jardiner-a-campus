@@ -125,9 +125,12 @@ def menu():
 ██║     ███████╗██████╔╝██║██████╔╝╚██████╔╝███████║
 ╚═╝     ╚══════╝╚═════╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝
                                                        
-        1.
+        1.obtener todos los pedidos
         2.
         3.
         4.
           
 """)
+    opcion=int(input("\nSeleccione una de las opciones: "))
+    if(opcion==1):
+        print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
