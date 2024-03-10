@@ -125,12 +125,22 @@ def menu():
 ██║     ███████╗██████╔╝██║██████╔╝╚██████╔╝███████║
 ╚═╝     ╚══════╝╚═════╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝
                                                        
-        1.obtener todos los pedidos
-        2.
-        3.
-        4.
+        1. Obtener todos los pedidos
+        2. Obtener todos los pedidos que han sido entregados en el mes de enero de cualquier año
+        3. Obtener los pedidos rechazados en 2009
+        4. Obtener los distintos estados por los que puede pasar un pedido
           
 """)
     opcion=int(input("\nSeleccione una de las opciones: "))
+    
     if(opcion==1):
         print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
+
+    if(opcion==2):
+        print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
+
+    if(opcion==3):
+        print(tabulate(getAllOrdersRefused2009(), headers="keys",tablefmt="grid"))
+
+    if(opcion==4):
+        print(tabulate(obtener_estados_pedidos(), headers="keys",tablefmt="grid"))
