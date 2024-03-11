@@ -120,6 +120,7 @@ import keyboard
 def menu():
     while True:
         print("""
+              
 ██████╗ ███████╗██████╗ ██╗██████╗  ██████╗ ███████╗
 ██╔══██╗██╔════╝██╔══██╗██║██╔══██╗██╔═══██╗██╔════╝
 ██████╔╝█████╗  ██║  ██║██║██║  ██║██║   ██║███████╗
@@ -131,6 +132,7 @@ def menu():
         2. Obtener todos los pedidos que han sido entregados en el mes de enero de cualquier año
         3. Obtener los pedidos rechazados en 2009
         4. Obtener los distintos estados por los que puede pasar un pedido
+        
         0. Salir al menu principal
 """)
         opcion=int(input("\nSeleccione una de las opciones: "))

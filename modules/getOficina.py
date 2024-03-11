@@ -73,6 +73,7 @@ def menu():
        2. Obtener la ciudad y el telefono de las oficinas de españa
        3. Obtener el código de oficina y la ciudad donde hay oficinas
        4. Obtener los telefonos de las oficinas
+
        0. Salir al menu principal
 """)
             opcion=int(input("\nSeleccione una de las opciones: "))

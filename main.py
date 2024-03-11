@@ -5,13 +5,15 @@ from tabulate import tabulate
 
 
 import modules.getClients as cliente
-import modules.getOficina as oficina
 import modules.getEmpleados as empleado
-import modules.getPedido as pedido
-import modules.getPago as pago
-import modules.getProducto as producto
 import modules.getGamaProducto as gama
+import modules.getOficina as oficina
+import modules.getPago as pago
+import modules.getPedido as pedido
 import modules.getProducto as producto
+
+
+
 
 # import sys 
 # for nombre,objeto in sys.modules.items():
@@ -72,6 +74,7 @@ if (__name__=="__main__"):
     4. Pedidos
     5. Gama de producto
     6. Productos
+    7. Pagos
               
     0.Salir del programa
               
@@ -91,6 +94,8 @@ if (__name__=="__main__"):
             gama.menu()
         elif(opcion==6):
             producto.menu()
+        elif(opcion==7):
+            pago.menu()
         elif(opcion==0):
             break
 

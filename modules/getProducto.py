@@ -3,6 +3,21 @@ from tabulate import tabulate
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def menu():
     while True:
         print(f"""
@@ -18,7 +33,8 @@ def menu():
         2.
         3.
         4.
+              
+        0. Salir al menu principal
 
 """)
 
-        
