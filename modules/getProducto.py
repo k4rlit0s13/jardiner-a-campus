@@ -44,8 +44,17 @@ def getAllProductsStock():
         return AllProductsStock
 
 
-
-
+# Obtener todos los productos con precio de venta a 11
+def getAllProductsStorePrice():
+        AllProductsStorePrice=[]
+        for val in pro.producto:
+                if val.get("precio_venta")== 11:
+                        AllProductsStorePrice.append({
+                        "Código del Producto": val.get("codigo_producto"),
+                        "Nombre": val.get("nombre"),
+                        "Precio de Venta": val.get("precio_venta")
+})
+        return AllProductsStorePrice
 
 
 
@@ -64,7 +73,7 @@ def menu():
         1. Obtener todos los productos
         2. Obtener la gama de cada producto 
         3. Obtener todas las catidades en stock 
-        4.
+        4. Obtener todos los productos con precio de venta a 11
               
         0. Salir al menu principal
 
@@ -77,7 +86,8 @@ def menu():
             print(tabulate(getAllProductsGama(), headers="keys",tablefmt="grid"))
         if(opcion==3):
             print(tabulate(getAllProductsStock(), headers="keys",tablefmt="grid"))
-
+        if(opcion==4):
+            print(tabulate(getAllProductsStorePrice(), headers="keys",tablefmt="grid"))
 
         if(opcion==0):
             break
