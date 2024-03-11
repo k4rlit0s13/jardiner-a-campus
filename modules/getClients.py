@@ -187,7 +187,8 @@ def GetAllNamesSpain():
 # https://manytools.org/hacker-tools/ascii-banner/
 
 def menu():
-    print("""
+    while True:
+        print("""
           
 ██████╗ ███████╗██████╗  ██████╗ ██████╗ ████████╗███████╗                        
 ██╔══██╗██╔════╝██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝                        
@@ -209,29 +210,32 @@ def menu():
     3. Obtener toda la información de un cliente segun su limite de credito y ciudad ( ejemplo:1500.0, San Francisco )
     4. Obtener todos los nombrs de clientes según el país
     5. Obtener lista con los nombres de los clientes que contengan un código de número par
+    0. Salir al menu principal
           """)
     
 
-    opcion=int(input("\nSeleccione una de las opciones: "))
+        opcion=int(input("\nSeleccione una de las opciones: "))
+        
+        if(opcion==1):
+            print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
+
+        elif(opcion==2):
+            codigoCliente=int(input("\nIngrese el codigo del cliente: "))
+            print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
+
+        elif(opcion==3):
+            limite=float(input("Ingrese el límite de crédito de los clientes que deseas visualizar: "))
+            ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
+            print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
+
+        elif(opcion==4):
+            pais=input("Ingrese el pais de crédito de los clientes que deseas visualizar: ")
+            print(tabulate(GetAllClientCountry(pais), headers="keys",tablefmt="github"))
+        
+        elif(opcion==5):
+            print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
+
+        elif(opcion==0):
+            break
     
-    if(opcion==1):
-        print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
-
-    elif(opcion==2):
-        codigoCliente=int(input("\nIngrese el codigo del cliente: "))
-        print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
-
-    elif(opcion==3):
-        limite=float(input("Ingrese el límite de crédito de los clientes que deseas visualizar: "))
-        ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
-        print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
-
-    elif(opcion==4):
-        pais=input("Ingrese el pais de crédito de los clientes que deseas visualizar: ")
-        print(tabulate(GetAllClientCountry(pais), headers="keys",tablefmt="github"))
-    
-    elif(opcion==5):
-        print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
-
-
    

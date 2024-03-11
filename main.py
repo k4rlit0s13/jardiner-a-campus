@@ -1,4 +1,6 @@
 #vista para tablas
+
+
 from tabulate import tabulate
 
 
@@ -35,9 +37,20 @@ import modules.getPago as pago
 
 
 
+
+
+
+
+
+
+
+import keyboard
+import sys
+
 # https://manytools.org/hacker-tools/ascii-banner/
 if (__name__=="__main__"):
-    print(f"""
+    while True:
+        print(f"""
           
 ███╗   ███╗███████╗███╗   ██╗██╗   ██╗                          
 ████╗ ████║██╔════╝████╗  ██║██║   ██║                          
@@ -57,18 +70,21 @@ if (__name__=="__main__"):
     2.Oficina
     3.Empleado
     4.Pedidos
+    0.Salir del programa
 """)
     
-    opcion=int(input("\nEscribe el número de una de las opciones: "))
+        opcion=int(input("\nEscribe el número de una de las opciones: "))
     
-    if(opcion==1):
-        cliente.menu()
-    elif(opcion==2):
-        oficina.menu()
-    elif(opcion==3):
-        empleado.menu()
-    elif(opcion==4):
-        pedido.menu() 
+        if(opcion==1):
+            cliente.menu()
+        elif(opcion==2):
+            oficina.menu()
+        elif(opcion==3):
+            empleado.menu()
+        elif(opcion==4):
+            pedido.menu() 
+        elif(opcion==0):
+            break
 
 
 

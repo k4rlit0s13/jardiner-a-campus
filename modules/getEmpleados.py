@@ -62,7 +62,8 @@ def getAllNamesSurnamesJob():
 
 
 def menu():
-    print("""
+    while True:
+        print("""
 ███████╗███╗   ███╗██████╗ ██╗     ███████╗ █████╗ ██████╗  ██████╗ ███████╗
 ██╔════╝████╗ ████║██╔══██╗██║     ██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔════╝
 █████╗  ██╔████╔██║██████╔╝██║     █████╗  ███████║██║  ██║██║   ██║███████╗
@@ -74,20 +75,24 @@ def menu():
         2. Obtener listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
         3. Obtener el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
         4. Obtener el nombre del puesto, nombre, apellidos e email del feje de la empresa
+        0. Salir al menu principal
 """)
     
-    opcion=int(input("\nSeleccione una de las opciones: "))
-    
-    if(opcion==1):
-        print(tabulate(getAllNames(), headers="keys",tablefmt="grid"))
+        opcion=int(input("\nSeleccione una de las opciones: "))
+        
+        if(opcion==1):
+            print(tabulate(getAllNames(), headers="keys",tablefmt="grid"))
 
-    elif(opcion==2):
-        codigo=int(input("Ingresa del numero del jefe: "))
-        print(tabulate(getAllNamesNames2EmailJefe7(codigo), headers="keys",tablefmt="grid"))
-    
-    elif(opcion==3):
-        print(tabulate(getAllNamesSurnamesJob(), headers="keys",tablefmt="grid"))
+        elif(opcion==2):
+            codigo=int(input("Ingresa del numero del jefe: "))
+            print(tabulate(getAllNamesNames2EmailJefe7(codigo), headers="keys",tablefmt="grid"))
+        
+        elif(opcion==3):
+            print(tabulate(getAllNamesSurnamesJob(), headers="keys",tablefmt="grid"))
 
-    elif(opcion==4):
-        print(tabulate(getAllNameSurnamesJefeemail(), headers="keys",tablefmt="grid"))
+        elif(opcion==4):
+            print(tabulate(getAllNameSurnamesJefeemail(), headers="keys",tablefmt="grid"))
+
+        elif(opcion==0):
+            break
     

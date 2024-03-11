@@ -59,7 +59,8 @@ def getAllCityPhones():
 
 
 def menu():
-        print("""
+        while True:
+            print("""
 
  ██████╗ ███████╗██╗ ██████╗██╗███╗   ██╗ █████╗ ███████╗
 ██╔═══██╗██╔════╝██║██╔════╝██║████╗  ██║██╔══██╗██╔════╝
@@ -72,17 +73,21 @@ def menu():
        2. Obtener la ciudad y el telefono de las oficinas de españa
        3. Obtener el código de oficina y la ciudad donde hay oficinas
        4. Obtener los telefonos de las oficinas
+       0. Salir al menu principal
 """)
-        opcion=int(input("\nSeleccione una de las opciones: "))
+            opcion=int(input("\nSeleccione una de las opciones: "))
 
-        if(opcion==1):
-            print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))
+            if(opcion==1):
+                print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))
 
-        if(opcion==2):
-            print(tabulate(getAllCityPhoneSpain(), headers="keys",tablefmt="grid"))
+            if(opcion==2):
+                print(tabulate(getAllCityPhoneSpain(), headers="keys",tablefmt="grid"))
 
-        if(opcion==3):
-            print(tabulate(getAllCodeOfficeCity7(), headers="keys",tablefmt="grid"))
+            if(opcion==3):
+                print(tabulate(getAllCodeOfficeCity7(), headers="keys",tablefmt="grid"))
 
-        if(opcion==4):
-            print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))
+            if(opcion==4):
+                print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))
+
+            if(opcion==0):
+                break

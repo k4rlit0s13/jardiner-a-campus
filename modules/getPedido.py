@@ -114,10 +114,12 @@ def getAllOrder01():
     return AllOrder01
 
 
+import keyboard
 
 
 def menu():
-    print("""
+    while True:
+        print("""
 ██████╗ ███████╗██████╗ ██╗██████╗  ██████╗ ███████╗
 ██╔══██╗██╔════╝██╔══██╗██║██╔══██╗██╔═══██╗██╔════╝
 ██████╔╝█████╗  ██║  ██║██║██║  ██║██║   ██║███████╗
@@ -129,18 +131,23 @@ def menu():
         2. Obtener todos los pedidos que han sido entregados en el mes de enero de cualquier año
         3. Obtener los pedidos rechazados en 2009
         4. Obtener los distintos estados por los que puede pasar un pedido
-          
+        0. Salir al menu principal
 """)
-    opcion=int(input("\nSeleccione una de las opciones: "))
-    
-    if(opcion==1):
-        print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
+        opcion=int(input("\nSeleccione una de las opciones: "))
+        
+        if(opcion==1):
+            print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
 
-    if(opcion==2):
-        print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
+        if(opcion==2):
+            print(tabulate(getAllOrder01(), headers="keys",tablefmt="grid"))
 
-    if(opcion==3):
-        print(tabulate(getAllOrdersRefused2009(), headers="keys",tablefmt="grid"))
+        if(opcion==3):
+            print(tabulate(getAllOrdersRefused2009(), headers="keys",tablefmt="grid"))
 
-    if(opcion==4):
-        print(tabulate(obtener_estados_pedidos(), headers="keys",tablefmt="grid"))
+        if(opcion==4):
+            print(tabulate(obtener_estados_pedidos(), headers="keys",tablefmt="grid"))
+
+        if(opcion==0):
+            break
+
+
