@@ -10,8 +10,8 @@ import modules.getEmpleados as empleado
 import modules.getPedido as pedido
 import modules.getPago as pago
 import modules.getProducto as producto
-
-
+import modules.getGamaProducto as gama
+import modules.getProducto as producto
 
 # import sys 
 # for nombre,objeto in sys.modules.items():
@@ -66,11 +66,15 @@ if (__name__=="__main__"):
 ██║     ██║  ██║██║██║ ╚████║╚██████╗██║██║     ██║  ██║███████╗
 ╚═╝     ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝╚═╝╚═╝     ╚═╝  ╚═╝╚══════╝
                                                                 
-    1.Cliente
-    2.Oficina
-    3.Empleado
-    4.Pedidos
+    1. Cliente
+    2. Oficina
+    3. Empleado
+    4. Pedidos
+    5. Gama de producto
+    6. Productos
+              
     0.Salir del programa
+              
 """)
     
         opcion=int(input("\nEscribe el número de una de las opciones: "))
@@ -82,7 +86,11 @@ if (__name__=="__main__"):
         elif(opcion==3):
             empleado.menu()
         elif(opcion==4):
-            pedido.menu() 
+            pedido.menu()
+        elif(opcion==5):
+            gama.menu()
+        elif(opcion==6):
+            producto.menu()
         elif(opcion==0):
             break
 
