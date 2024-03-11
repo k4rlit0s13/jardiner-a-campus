@@ -4,12 +4,14 @@ from tabulate import tabulate
 #filtro para que devulve un listado en el codigo de cliente de aquellos clientes que realizaron algun pago en 2008, tenga en cuenta que debera eliminar  aquellos codigos de clientes que aparezcan repetidos. Resuelva la consulta
 
 def getAll2008Clients():
-    clientes_pagos_2008 = set()  # Utilizamos un conjunto para asegurarnos de obtener códigos de cliente únicos
+    clientes_pagos_2008 = []  # Utilizamos un conjunto para asegurarnos de obtener códigos de cliente únicos
     for val in pa.pago:  # Suponemos que pago.pago es una lista que contiene todos los pagos
-        fecha_pago = val.get("fecha_pago")
-        if fecha_pago.startswith("2008"):  # Verificamos si la fecha de pago comienza con "2008"
-            clientes_pagos_2008.add(val.get("codigo_cliente"))
-
+        fecha = val.get("fecha_pago")
+        if fecha.startswith("2008"):  # Verificamos si la fecha de pago comienza con "2008"
+            clientes_pagos_2008.append({
+               "Código del cliente":val.get("codigo_cliente"),
+               "fecha_pago":val.get("fecha_pago")
+})
     return clientes_pagos_2008
 
     
@@ -41,15 +43,21 @@ def getAllFormToPay():
 #Obtener todos los pagos realizados 
 def getAllPays():
     Allpays=[]
-    for pays in pa.pago:
+    for val in pa.pago:
         Allpays.append({
 
-           "Código del Cliente": pays.get("codigo_cliente"),
-            "Forma pago": pays.get("forma_pago"),
-            "ID transaccion": pays.get("id_transaccion"),
-            "Fecha pago": pays.get("fecha_pago"),
-            "Total": pays.get("total"),
+           "Código del Cliente": val.get("codigo_cliente"),
+            "Forma pago": val.get("forma_pago"),
+            "ID transaccion": val.get("id_transaccion"),
+            "Fecha pago": val.get("fecha_pago"),
+            "Total": val.get("total"),
         })
+    return Allpays
+
+
+
+
+
 
 
 def menu():
@@ -65,7 +73,7 @@ def menu():
         
         1. Obtener todos los pagos 
         2. Obtener todos los pagos que se realizaron en el anio 2008 mediante PayPal
-        3. 
+        3. Obtener el codigo de cliente de aquellos clientes que realizaron algun pago en 2008
         4. todas las formas de pago 
               
         0. Salir al menu principal
@@ -77,8 +85,9 @@ def menu():
             print(tabulate(getAllPays(), headers="keys",tablefmt="grid"))
         if(opcion==2):
             print(tabulate(getAllPaymentsPaypal2008(), headers="keys",tablefmt="grid"))
-            
+        if(opcion==3):
+            print(tabulate(getAll2008Clients(), headers="keys",tablefmt="grid"))
         if(opcion==4):
-            print(tabulate(getAllPaymentsPaypal2008(), headers="keys",tablefmt="grid"))
+            print(tabulate(getAllFormToPay(), headers="keys",tablefmt="grid"))
         elif(opcion==0):
-                break
+            break
