@@ -1,4 +1,7 @@
 import storage.pago as pa
+import storage.cliente as cli
+import storage.empleado as emp
+
 from tabulate import tabulate
 
 #filtro para que devulve un listado en el codigo de cliente de aquellos clientes que realizaron algun pago en 2008, tenga en cuenta que debera eliminar  aquellos codigos de clientes que aparezcan repetidos. Resuelva la consulta
@@ -55,6 +58,24 @@ def getAllPays():
     return Allpays
 
 
+#Obtener el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes
+def getAllClientRepresentantsPayTrue():
+    AllClientRepresentantsPayTrue=[]
+    for pago in pa.pago:
+        for Nombrecliente in cli.clientes:
+            for Representante in emp.empleados:
+                    if (pago.get("codigo_cliente")==Nombrecliente.get("codigo_cliente")) and (Representante.get("codigo_empleado")==(Nombrecliente.get("codigo_empleado_rep_ventas"))):
+
+                        AllClientRepresentantsPayTrue.append({
+                        "Nombre del cliente": Nombrecliente.get("nombre_cliente"),
+                        "Representante": f'{Representante.get("nombre")}{Representante.get("apellido1")}{Representante.get("apellido2")}',
+                        "Fecha":pago.get("fecha_pago"),
+                        "Precio pagado":pago.get("total")
+                })
+    return AllClientRepresentantsPayTrue
+
+
+
 
 
 
@@ -74,7 +95,8 @@ def menu():
         1. Obtener todos los pagos 
         2. Obtener todos los pagos que se realizaron en el anio 2008 mediante PayPal
         3. Obtener el codigo de cliente de aquellos clientes que realizaron algun pago en 2008
-        4. todas las formas de pago 
+        4. Obtener todas las formas de pago 
+        5. Obtener el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes
               
         0. Salir al menu principal
 
@@ -89,5 +111,7 @@ def menu():
             print(tabulate(getAll2008Clients(), headers="keys",tablefmt="grid"))
         if(opcion==4):
             print(tabulate(getAllFormToPay(), headers="keys",tablefmt="grid"))
+        if(opcion==5):
+            print(tabulate(getAllClientRepresentantsPayTrue(), headers="keys",tablefmt="grid"))
         elif(opcion==0):
             break
