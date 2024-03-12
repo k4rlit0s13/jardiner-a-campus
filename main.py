@@ -47,7 +47,7 @@ import modules.getProducto as producto
 
 
 import keyboard
-import sys
+
 
 # https://manytools.org/hacker-tools/ascii-banner/
 if (__name__=="__main__"):
@@ -81,7 +81,7 @@ if (__name__=="__main__"):
 """)
     
         opcion=int(input("\nEscribe el número de una de las opciones: "))
-    
+
         if(opcion==1):
             cliente.menu()
         elif(opcion==2):
@@ -98,6 +98,8 @@ if (__name__=="__main__"):
             pago.menu()
         elif(opcion==0):
             break
+
+       
 
 
 
