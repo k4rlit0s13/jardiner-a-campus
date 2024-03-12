@@ -1,5 +1,8 @@
 import storage.cliente as cli
+import storage.empleado as emple
 from tabulate import tabulate
+
+
 
 
 
@@ -198,7 +201,17 @@ def getAllCityRepresentants(ciudad,representante):
     return AllCityRepresentants
 
 
-
+# Obtener los nombres de los clientes y el nombre de sus representantes de ventas
+def getAllClientAndRepresentant():
+    AllClientAndRepresentant=[]
+    for Nombrecliente in cli.clientes:
+        for NombreRepresentante in emple.empleados:
+            if Nombrecliente.get("codigo_empleado_rep_ventas")==NombreRepresentante.get("codigo_empleado"):
+                AllClientAndRepresentant.append({
+                    "Nombre del cliente":Nombrecliente.get("nombre_cliente"),
+                    "Nombre del representante":f'{NombreRepresentante.get("nombre")}{NombreRepresentante.get("apellido1")}{NombreRepresentante.get("apellido2")}',
+                })
+    return AllClientAndRepresentant
 
 
 
@@ -245,6 +258,7 @@ def menu():
     4. Obtener todos los nombrs de clientes según el país
     5. Obtener lista con los nombres de los clientes que contengan un código de número par
     6. Obtener los clientes que sean de una ciudad y su representante(ejemplo: Madrid, 11 o 30)
+    7. Obtener los nombres de los clientes y el nombre de sus representantes de ventas
               
     0. Salir al menu principal
 
@@ -277,6 +291,9 @@ def menu():
             representante=int(input("Registra el código del representante: "))
             print(tabulate(getAllCityRepresentants(ciudad, representante), headers="keys",tablefmt="github"))
 
+        if(opcion==7):
+            print(tabulate(getAllClientAndRepresentant(), headers="keys",tablefmt="github"))
+        
         if(opcion==0):
             break
     
