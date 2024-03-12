@@ -183,6 +183,40 @@ def GetAllNamesSpain():
     return  clientesEspañoles
 
 
+#Obtener los clientes que sean de una ciudad y su representante
+def getAllCityRepresentants(ciudad,representante):
+    AllCityRepresentants=[]
+    for val in cli.clientes:
+        if val.get("ciudad")==ciudad and val.get("codigo_empleado_rep_ventas")==representante:
+            AllCityRepresentants.append({
+                "Código del cliente":val.get("codigo_cliente"),
+                "Nombre del cliente":val.get("nombre_cliente"),
+                "Teléfono":val.get("telefono"),
+                "Ciudad":val.get("ciudad"),
+                "Empleado":val.get("codigo_empleado_rep_ventas")
+            })
+    return AllCityRepresentants
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # https://manytools.org/hacker-tools/ascii-banner/
 
@@ -210,6 +244,8 @@ def menu():
     3. Obtener toda la información de un cliente segun su limite de credito y ciudad ( ejemplo:1500.0, San Francisco )
     4. Obtener todos los nombrs de clientes según el país
     5. Obtener lista con los nombres de los clientes que contengan un código de número par
+    6. Obtener los clientes que sean de una ciudad y su representante(ejemplo: Madrid, 11 o 30)
+              
     0. Salir al menu principal
 
 """)
@@ -235,6 +271,11 @@ def menu():
         
         if(opcion==5):
             print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
+
+        if(opcion==6):
+            ciudad=input("\nIngresa la ciudad que deseas mostrar: ")
+            representante=int(input("Registra el código del representante: "))
+            print(tabulate(getAllCityRepresentants(ciudad, representante), headers="keys",tablefmt="github"))
 
         if(opcion==0):
             break
