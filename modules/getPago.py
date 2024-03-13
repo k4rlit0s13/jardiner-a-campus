@@ -75,6 +75,36 @@ def getAllClientRepresentantsPayTrue():
     return AllClientRepresentantsPayTrue
 
 
+#muestra el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
+def getAllPaysFalse():
+    AllPaysFalse = []
+    for cliente in cli.clientes:
+        pagos = False
+    for pago in pa.pago:
+        if cliente.get("codigo_cliente") == pago.get("codigo_cliente"):
+            pagos = True
+            break
+        if not pagos:
+            for empleado in emp.empleados:
+                if cliente.get("codigo_empleado_rep_ventas") == pago.get("codigo_empleado"):
+                    if empleado.get("puesto") == "Representante Ventas":
+                        AllPaysFalse.append({
+                        "Código del cliente": cliente.get("codigo_cliente"),
+                        "Nombre del cliente": cliente.get("nombre_cliente"),
+                        "Representante de ventas": empleado.get('nombre')
+            })
+    return AllPaysFalse
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -97,7 +127,8 @@ def menu():
         3. Obtener el codigo de cliente de aquellos clientes que realizaron algun pago en 2008
         4. Obtener todas las formas de pago 
         5. Obtener el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes
-              
+        6. Obtener el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
+        
         0. Salir al menu principal
 
 """)
@@ -113,5 +144,7 @@ def menu():
             print(tabulate(getAllFormToPay(), headers="keys",tablefmt="grid"))
         if(opcion==5):
             print(tabulate(getAllClientRepresentantsPayTrue(), headers="keys",tablefmt="grid"))
+        if(opcion==6):
+            print(tabulate(getAllPaysFalse(), headers="keys",tablefmt="grid"))
         elif(opcion==0):
             break
