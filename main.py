@@ -4,6 +4,7 @@
 from tabulate import tabulate
 
 import requests
+import json
 
 import modules.getClients as cliente
 import modules.getEmpleados as empleado

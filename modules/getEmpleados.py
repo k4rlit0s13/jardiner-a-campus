@@ -2,7 +2,7 @@
 from tabulate import tabulate
 
 import requests
-
+import json
 
 def FuncionDeConeccionEmpleadoJson():
       peticion=requests.get("http://10.0.2.15:5503") 
@@ -15,7 +15,7 @@ def FuncionDeConeccionEmpleadoJson():
 #filtro para obtener todos los nombres de los empleados
 def getAllNames():
     NamesNames2EmailJefe=[]
-    for val in em.empleados:
+    for val in FuncionDeConeccionEmpleadoJson:
         NamesNames2EmailJefe.append(
                 {
                     "nombre": val.get ("nombre"),
@@ -31,7 +31,7 @@ def getAllNames():
 #algoritmo para devolver un listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
 def getAllNamesNames2EmailJefe7 (codigo):
     getAllNamesNames2EmailJefe=[]
-    for val in em.empleados:
+    for val in FuncionDeConeccionEmpleadoJson:
         if(val.get("codigo_jefe")==codigo):
             getAllNamesNames2EmailJefe.append(
                 {
@@ -46,7 +46,7 @@ def getAllNamesNames2EmailJefe7 (codigo):
 #filtro para devolver el nombre del puesto, nombre, apellidos e email del feje de la empresa
 def getAllNameSurnamesJefeemail():
     NameSurnamesJefeemail=[]
-    for val in em.empleados:
+    for val in FuncionDeConeccionEmpleadoJson:
             if val.get("codigo_empleado")==1:
                 NameSurnamesJefeemail.append(
                 {
@@ -61,7 +61,7 @@ def getAllNameSurnamesJefeemail():
 #filtro para devolver un listado con el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
 def getAllNamesSurnamesJob():
     NamesSurnamesJob=[]
-    for val in em.empleados:
+    for val in FuncionDeConeccionEmpleadoJson:
         if(val.get("puesto")!= "Representante Ventas"):
             NamesSurnamesJob.append(
             {"Nombre":val.get("nombre"),

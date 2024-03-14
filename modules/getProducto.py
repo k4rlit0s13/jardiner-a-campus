@@ -1,15 +1,15 @@
 
 from tabulate import tabulate
 import requests
-
-
-
+import json
+import os
 
 # IP DEL SERVIDOR PRODUCTO:
 # http://10.0.2.15:5506
 
 # Al simular los servidores con json tendremos que crear una funcion que nos ayude a llamar esos datos en nuevo formado ya que ya no son python
 def FuncionDeConeccionProductoJson():
+      #json-server storage/producto.json -b 5506
       peticion=requests.get("http://10.0.2.15:5506") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
       Informacion=peticion.json()  # poner el servidor remoto, no el local, estamos usando simulacion de servidores
       return Informacion        
@@ -61,7 +61,7 @@ def getAllProductsStock():
                         "Nombre": val.get("nombre"),
                         "Dimensiones": val.get("dimensiones"),
                         "Cantidad en stock": val.get("cantidad_en_stock"),
-})
+                })
         return AllProductsStock
 
 
@@ -127,7 +127,7 @@ def menu():
                                                                             
         1. Obtener todos los productos
         2. Obtener la gama de cada producto 
-        3. Obtener todas las catidades en stock 
+        3. Obtener todas las cantidades en stock 
         4. Obtener todos los productos con precio de venta a 11
         5. Obtner todos los productos de una categoria ordenando sus precios de venta, también que su cantidad de inventario sea superior (ejemplo: Ornamentales, 100)
                    

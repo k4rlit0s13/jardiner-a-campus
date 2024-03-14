@@ -2,7 +2,7 @@
 from tabulate import tabulate
 
 import requests
-
+import json
 
 
 
@@ -48,7 +48,7 @@ def FuncionDeConeccionOficinaJson():
 #filtro que obtenga todas las oficinas
 def getAllOffice():
     Office=[]
-    for val in of.oficina:
+    for val in FuncionDeConeccionOficinaJson:
             Office.append(
             {
                 "codigo_oficina":val.get("codigo_oficina"),
@@ -61,7 +61,7 @@ def getAllOffice():
 #filtro que devuelva un listado con el código de oficina y la ciudad donde hay oficinas
 def getAllCodeOfficeCity7():
     AllCodeOfficeCity7=[]
-    for val in of.oficina:
+    for val in FuncionDeConeccionOficinaJson:
         AllCodeOfficeCity7.append(
             {
                 "codigo_oficina":val.get("codigo_oficina"),
@@ -72,7 +72,7 @@ def getAllCodeOfficeCity7():
 #filtro que devuelva un listado con la ciudad y el telefono de las oficinas de españa
 def getAllCityPhoneSpain():
     AllCityPhone=[]
-    for val in of.oficina:
+    for val in FuncionDeConeccionOficinaJson:
         if (val.get("pais"))=="España":
             AllCityPhone.append(
             {
@@ -84,7 +84,7 @@ def getAllCityPhoneSpain():
 # obtener los telefonos de las oficinas
 def getAllCityPhones():
     AllCityPhone=[]
-    for val in of.oficina:
+    for val in FuncionDeConeccionOficinaJson:
         AllCityPhone.append(
              {
         "codigo_oficina":val.get("codigo_oficina"),

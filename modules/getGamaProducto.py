@@ -2,7 +2,7 @@
 from tabulate import tabulate
 
 import requests
-
+import json
 
 
 
@@ -43,7 +43,7 @@ def FuncionDeConeccionGamaProductoJson():
 #Obtener toda la gama de productos
 def getAllGamaProducts():
     AllStockPriceGama=[]
-    for precio in gama.gama_producto:
+    for precio in FuncionDeConeccionGamaProductoJson:
         AllStockPriceGama.append({
             "Gama": precio.get("gama"),
             "Descripcion del produ": precio.get("descripcion_texto")
