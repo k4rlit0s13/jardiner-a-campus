@@ -1,18 +1,4 @@
-# empleado=[
-#     {
-#         "codigo_empleado":0,
-#         "nombre":"",
-#         "apellido1":"",
-#         "apellido2":"",
-#         "extension":"",
-#         "email":"",
-#         "codigo_oficina":"",
-#         "codigo_jefe":0,
-#         "puesto":"",
-#     }
-# ]
-
-empleados = [
+[
 {
 "codigo_empleado": 1,
 "nombre": "Marcos",
@@ -21,7 +7,7 @@ empleados = [
 "extension": "3897",
 "email": "[marcos@jardineria.es](mailto:marcos@jardineria.es)",
 "codigo_oficina": "TAL-ES",
-"codigo_jefe": None,
+"codigo_jefe": null,
 "puesto": "Director General"
 },
 {
