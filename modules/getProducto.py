@@ -1,10 +1,31 @@
-import storage.producto as pro
+
 from tabulate import tabulate
+import requests
+
+
+
+
+# IP DEL SERVIDOR PRODUCTO:
+# http://10.0.2.15:5506
+
+# Al simular los servidores con json tendremos que crear una funcion que nos ayude a llamar esos datos en nuevo formado ya que ya no son python
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5506") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
+      Informacion=peticion.json()  # poner el servidor remoto, no el local, estamos usando simulacion de servidores
+      return Informacion        
+
+
+
+
+# AHORA A CAMBIAR TODAS LAS VARIABLES QUE ERAN IMPORTS POR LA FUNCION DE REQUEST OSEA VOLVEMOS LAS IP'S VARIABLES POR MEDIO DE NA FUNCION QUE OBTENDRA TODOS LOS DATOS
+
+
+
 
 #Obtener todos los productos
 def getAllProducts():
         AllproductsProducts=[]
-        for val in pro.producto:
+        for val in FuncionDeConeccionProductoJson:
                 AllproductsProducts.append({
                         "Código del Producto": val.get("codigo_producto"),
                         "Nombre": val.get("nombre"),
@@ -21,7 +42,7 @@ def getAllProducts():
 #Obtener la gama de cada producto 
 def getAllProductsGama():
         AllProductsGama=[]
-        for val in pro.producto:
+        for val in FuncionDeConeccionProductoJson:
                 AllProductsGama.append({
                         "Código del Producto": val.get("codigo_producto"),
                         "Nombre": val.get("nombre"),
@@ -34,7 +55,7 @@ def getAllProductsGama():
 #Obtener todas las catidades en stock 
 def getAllProductsStock():
         AllProductsStock=[]
-        for val in pro.producto:
+        for val in FuncionDeConeccionProductoJson:
                 AllProductsStock.append({
                         "Código del Producto": val.get("codigo_producto"),
                         "Nombre": val.get("nombre"),
@@ -47,7 +68,7 @@ def getAllProductsStock():
 # Obtener todos los productos con precio de venta a 11
 def getAllProductsStorePrice():
         AllProductsStorePrice=[]
-        for val in pro.producto:
+        for val in FuncionDeConeccionProductoJson:
                 if val.get("precio_venta")== 11:
                         AllProductsStorePrice.append({
                         "Código del Producto": val.get("codigo_producto"),
@@ -58,10 +79,10 @@ def getAllProductsStorePrice():
 
 
 
-#Obtner todos los productos que pertenecen a la gama ornamentales con mas de 100 unidades en stock
+#Obtener todos los productos que pertenecen a la gama ornamentales con mas de 100 unidades en stock
 def getAllProductsOrnamentals(gama,stock):
         AllproductsOrnamentals=[]
-        for val in pro.producto:
+        for val in FuncionDeConeccionProductoJson:
             if (val.get("gama")==gama and val.get("cantidad_en_stock")>=stock):
                 AllproductsOrnamentals.append(val)
         def price(val):

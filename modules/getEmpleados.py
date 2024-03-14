@@ -1,5 +1,16 @@
-import storage.empleado as em
+# import storage.empleado as em
 from tabulate import tabulate
+
+import requests
+
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5503") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
 
 #filtro para obtener todos los nombres de los empleados
 def getAllNames():

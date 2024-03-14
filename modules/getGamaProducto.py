@@ -1,5 +1,43 @@
-import storage.gama_producto as gama
+# import storage.gama_producto as gama
 from tabulate import tabulate
+
+import requests
+
+
+
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5505") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #Obtener toda la gama de productos

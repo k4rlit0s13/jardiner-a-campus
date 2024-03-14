@@ -1,8 +1,14 @@
-import storage.cliente as cli
-import storage.empleado as emple
+# import storage.cliente as cli
+# import storage.empleado as emple
 from tabulate import tabulate
 
+import requests
 
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5501") 
+      Informacion=peticion.json()  
+      return Informacion        
 
 
 

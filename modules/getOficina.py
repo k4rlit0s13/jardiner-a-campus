@@ -1,5 +1,46 @@
-import storage.oficina as of
+# import storage.oficina as of
 from tabulate import tabulate
+
+import requests
+
+
+
+
+
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5502") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

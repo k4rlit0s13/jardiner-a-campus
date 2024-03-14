@@ -1,8 +1,36 @@
-import storage.pago as pa
-import storage.cliente as cli
-import storage.empleado as emp
+# import storage.pago as pa
+# import storage.cliente as cli
+# import storage.empleado as emp
 
+
+import requests
 from tabulate import tabulate
+
+
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5507") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #filtro para que devulve un listado en el codigo de cliente de aquellos clientes que realizaron algun pago en 2008, tenga en cuenta que debera eliminar  aquellos codigos de clientes que aparezcan repetidos. Resuelva la consulta
 

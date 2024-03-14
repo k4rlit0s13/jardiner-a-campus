@@ -1,5 +1,38 @@
-import storage.pedido as pe
+# import storage.pedido as pe
 from tabulate import tabulate
+
+
+
+import requests
+
+
+
+
+def FuncionDeConeccionProductoJson():
+      peticion=requests.get(" http://10.0.2.15:5504") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

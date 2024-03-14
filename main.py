@@ -3,14 +3,19 @@
 
 from tabulate import tabulate
 
+import requests
 
 import modules.getClients as cliente
 import modules.getEmpleados as empleado
 import modules.getGamaProducto as gama
-import modules.getOficina as oficina
+import modules.getOficina as oficina               
 import modules.getPago as pago
 import modules.getPedido as pedido
 import modules.getProducto as producto
+
+
+
+
 
 
 
