@@ -4,8 +4,8 @@ from tabulate import tabulate
 import requests
 
 
-def FuncionDeConeccionProductoJson():
-      peticion=requests.get(" http://10.0.2.15:5503") 
+def FuncionDeConeccionEmpleadoJson():
+      peticion=requests.get("http://10.0.2.15:5503") 
       Informacion=peticion.json()  
       return Informacion        
 

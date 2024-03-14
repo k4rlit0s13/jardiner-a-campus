@@ -8,8 +8,8 @@ from tabulate import tabulate
 
 
 
-def FuncionDeConeccionProductoJson():
-      peticion=requests.get(" http://10.0.2.15:5507") 
+def FuncionDeConeccionPagoJson():
+      peticion=requests.get("http://10.0.2.15:5507") 
       Informacion=peticion.json()  
       return Informacion        
 

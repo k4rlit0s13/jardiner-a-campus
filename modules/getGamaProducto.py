@@ -6,8 +6,8 @@ import requests
 
 
 
-def FuncionDeConeccionProductoJson():
-      peticion=requests.get(" http://10.0.2.15:5505") 
+def FuncionDeConeccionGamaProductoJson():
+      peticion=requests.get("http://10.0.2.15:5505") 
       Informacion=peticion.json()  
       return Informacion        
 
