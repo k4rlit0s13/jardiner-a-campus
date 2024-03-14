@@ -287,7 +287,7 @@ def menu():
             print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
 
         if(opcion==2):
-            codigoCliente=int(input("\nIngrese el codigo del cliente: "))
+            codigoCliente=int(input("Ingrese el codigo del cliente: "))
             print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
 
         if(opcion==3):
