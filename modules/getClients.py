@@ -7,12 +7,12 @@ import json
 
 
 def FuncionDeConeccionClienteJson():
-      peticion=requests.get("http://10.0.2.15:5501") 
+      peticion=requests.get("http://10.0.2.15:5001") 
       Informacion=peticion.json()  
       return Informacion        
 
 def FuncionDeConeccionEmpleadoJson():
-      peticion=requests.get("http://10.0.2.15:5503") 
+      peticion=requests.get("http://10.0.2.15:5003") 
       Informacion=peticion.json()  
       return Informacion        
 
@@ -26,7 +26,7 @@ def FuncionDeConeccionEmpleadoJson():
 
 def search():
     clienteNames=[]
-    for val in FuncionDeConeccionClienteJson:
+    for val in FuncionDeConeccionClienteJson():
         codigoName=({
         "codigo_cliente": val.get("codigo_cliente"),
         "nombre_cliente": val.get ("nombre_cliente")
@@ -39,9 +39,9 @@ def search():
 
 
 #filtro para obtener lista del codigo y nombre de cliente
-def getAllCodesClients ():
+def getAllCodesClients():
     clienteNames= []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
             clienteNames.append({
                 "codigo del cliente": cliente.get("codigo_cliente"),
                 "nombre del cliente": cliente.get("nombre_cliente")
@@ -53,9 +53,9 @@ def getAllCodesClients ():
 
 
 #filtro para obtener lista del codigo y nombre de cliente a partir de un numero de codigo escrito
-def getOneClienteCodigo (codigo):
+def getOneClienteCodigo(codigo):
     clienteNames= list()
-    for codigoN in FuncionDeConeccionClienteJson:
+    for codigoN in FuncionDeConeccionClienteJson():
         if (codigoN.get("codigo_cliente")==codigo):
             clienteNames.append({
                 "codigo del cliente": codigoN.get("codigo_cliente"),
@@ -70,9 +70,9 @@ def getOneClienteCodigo (codigo):
 
 #fuiltro para devolver todos los datos segun un limite de credito y la ciudad
 
-def  getAllClientCreditCiudad (limiteCredit,ciudad):
+def  getAllClientCreditCiudad(limiteCredit,ciudad):
     clienteCredit=list()
-    for val in FuncionDeConeccionClienteJson:
+    for val in FuncionDeConeccionClienteJson():
         if(val.get("limite_credito")>=limiteCredit and val.get("ciudad")==ciudad):
             clienteCredit.append(val)
     return clienteCredit
@@ -83,9 +83,9 @@ def  getAllClientCreditCiudad (limiteCredit,ciudad):
 
 
 #filtro que devuelva la info de los clientes del limite y la ciudad
-def  getAllClientCreditCiudad2 (limiteCredit,ciudad):
+def  getAllClientCreditCiudad2(limiteCredit,ciudad):
     clienteCredit=[]
-    for datos in FuncionDeConeccionClienteJson:
+    for datos in FuncionDeConeccionClienteJson():
         if(datos.get("limite_credito")>=limiteCredit and datos.get("ciudad")==ciudad):
             clienteCredit.append({
 
@@ -107,9 +107,9 @@ def  getAllClientCreditCiudad2 (limiteCredit,ciudad):
 
 
 # obtener pais region y ciudad de los clientes 
-def getAllPaisRegionCiudad (pais,region=None,ciudad=None):
+def getAllPaisRegionCiudad(pais,region=None,ciudad=None):
     clientZone = list()
-    for val in FuncionDeConeccionClienteJson:
+    for val in FuncionDeConeccionClienteJson():
         if(
             val.get('pais')==pais and
             (val.get('region')==region or val.get('region')==None) or
@@ -125,7 +125,7 @@ def getAllPaisRegionCiudad (pais,region=None,ciudad=None):
 #filtro para obtener nombre con la direccion numero 2 de los clientes
 def obtener_informacion_clientes():
     clientes_info = []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         info = {
             "nombre_cliente": cliente.get("nombre_cliente"),
             "linea_direccion2": cliente.get("linea_direccion2")
@@ -137,7 +137,7 @@ def obtener_informacion_clientes():
 #filtro para obtener los nombres de los clientes que contengan un código con número par
 def GetAllCodePar ():
     clientes_info = []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         codigo_cliente = cliente.get("codigo_cliente")
         if codigo_cliente % 2 == 0:  # Verifica si el código del cliente es par
             info = {
@@ -151,7 +151,7 @@ def GetAllCodePar ():
 #filtro que permita buscar clientes cuyos nombres coincidan parcialmente con un término de búsqueda proporcionado
 def GetAllsimilarNames(nombre_busqueda):
     clientes_info = []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         nombre_cliente = cliente.get("nombre_contacto")
         codigo_cliente = cliente.get("codigo_cliente")
         if nombre_busqueda.lower() in nombre_cliente.lower():  # Verificar si el término de búsqueda está contenido en el nombre del cliente
@@ -166,7 +166,7 @@ def GetAllsimilarNames(nombre_busqueda):
 #filtro que muestre clientes por país según el seleccionado
 def GetAllClientCountry(pais):
     clientes_info = []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         if cliente.get("pais") == pais:
             info = {
             "nombre_cliente": cliente.get("nombre_cliente"),
@@ -179,7 +179,7 @@ def GetAllClientCountry(pais):
 #filtro que muestre los clientes con el primer digito de telefono igual
 def GetAllClientTel(numero_telefono):
     clientes_info = []
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         telefono_cliente = cliente.get("telefono", "")
         if str(telefono_cliente).startswith(str(numero_telefono)): #str para para convertir un objeto en su representación de cadena
             info = {
@@ -193,7 +193,7 @@ def GetAllClientTel(numero_telefono):
 #filtro que devuelve un listado con el nombre de todos los clientes españoles 
 def GetAllNamesSpain():
     clientesEspañoles=[]
-    for cliente in FuncionDeConeccionClienteJson:
+    for cliente in FuncionDeConeccionClienteJson():
         if (cliente.get("pais")=='Spain'):
             clientesEspañoles.append(
             {
@@ -205,7 +205,7 @@ def GetAllNamesSpain():
 #Obtener los clientes que sean de una ciudad y su representante
 def getAllCityRepresentants(ciudad,representante):
     AllCityRepresentants=[]
-    for val in FuncionDeConeccionClienteJson:
+    for val in FuncionDeConeccionClienteJson():
         if val.get("ciudad")==ciudad and val.get("codigo_empleado_rep_ventas")==representante:
             AllCityRepresentants.append({
                 "Código del cliente":val.get("codigo_cliente"),
@@ -220,7 +220,7 @@ def getAllCityRepresentants(ciudad,representante):
 # Obtener los nombres de los clientes y el nombre de sus representantes de ventas
 def getAllClientAndRepresentant():
     AllClientAndRepresentant=[]
-    for Nombrecliente in FuncionDeConeccionClienteJson:
+    for Nombrecliente in FuncionDeConeccionClienteJson():
         for NombreRepresentante in FuncionDeConeccionEmpleadoJson:
             if Nombrecliente.get("codigo_empleado_rep_ventas")==NombreRepresentante.get("codigo_empleado"):
                 AllClientAndRepresentant.append({

@@ -9,7 +9,7 @@ import json
 
 
 def FuncionDeConeccionPedidoJson():
-      peticion=requests.get("http://10.0.2.15:5504") 
+      peticion=requests.get("http://10.0.2.15:5004") 
       Informacion=peticion.json()  
       return Informacion        
 
@@ -41,7 +41,7 @@ def FuncionDeConeccionPedidoJson():
 
 def obtener_estados_pedidos():
     estados = set()  # Utilizamos un conjunto para asegurarnos de obtener estados únicos
-    for val in FuncionDeConeccionPedidoJson:  
+    for val in FuncionDeConeccionPedidoJson():  
         estado = val.get("estado")
         if val.get not in estados:
             estados.add(estado)
@@ -82,7 +82,7 @@ def obtener_pedidos_entrega_tardia():
         "Fecha_esperada": "/".join(pedido.get("fecha_esperada").split("-")[::-1]),
         "Fecha_de_entrega": "/".join(pedido.get("fecha_entrega").split("-")[::-1])
         } 
-            for pedido in FuncionDeConeccionPedidoJson if pedido.get("estado") == "Entregado"
+            for pedido in FuncionDeConeccionPedidoJson() if pedido.get("estado") == "Entregado"
             and pedido.get("fecha_entrega") and pedido.get("fecha_esperada")
             and pedido.get("fecha_entrega") > pedido.get("fecha_esperada")]
    return pedidos_entrega_tardia 
@@ -90,7 +90,7 @@ def obtener_pedidos_entrega_tardia():
 #filtro que devuelva el codigo del pedido, código de cliente, fecha esperada y fecha de entrega de los pedidos cuya fecha de entrega ha sido al menos 2 dias antes de la fecha esperada, usando la función adddate,datediff, sera posible es consulta utilizando el operador de suma o resta, comandos equivalentes para python
 def getAllOrderClientDates2DaysAgo():
     pedidos_entrega_anticipada=[]
-    for pedido in FuncionDeConeccionPedidoJson:
+    for pedido in FuncionDeConeccionPedidoJson():
 
         fecha_entrega_base=(pedido.get("fecha_entrega"))
         fecha_esperada_base=(pedido.get("fecha_esperada"))
@@ -117,7 +117,7 @@ def getAllOrderClientDates2DaysAgo():
 #filtro que devuelva los pedidos rechazados en 2009
 def getAllOrdersRefused2009():
     AllOrdersRefused2009=[]
-    for pedido in FuncionDeConeccionPedidoJson:
+    for pedido in FuncionDeConeccionPedidoJson():
         pedidos_2009=(pedido.get("fecha_pedido"))
 
         if pedidos_2009.startswith("2009") and pedido.get("estado")=="Rechazado":
@@ -134,7 +134,7 @@ def getAllOrdersRefused2009():
 #filtro que devuelva todos los pedidos que han sido entregados en el mes de enero de cualquier año\
 def getAllOrder01():
     AllOrder01=[]
-    for pedido in FuncionDeConeccionPedidoJson:
+    for pedido in FuncionDeConeccionPedidoJson():
         entrega=pedido.get("fecha_entrega")
         if entrega:
             year,month,_=entrega.split("-")

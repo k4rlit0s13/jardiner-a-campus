@@ -7,7 +7,7 @@ import json
 
 
 def FuncionDeConeccionGamaProductoJson():
-      peticion=requests.get("http://10.0.2.15:5505") 
+      peticion=requests.get("http://10.0.2.15:5005") 
       Informacion=peticion.json()  
       return Informacion        
 
@@ -43,7 +43,7 @@ def FuncionDeConeccionGamaProductoJson():
 #Obtener toda la gama de productos
 def getAllGamaProducts():
     AllStockPriceGama=[]
-    for precio in FuncionDeConeccionGamaProductoJson:
+    for precio in FuncionDeConeccionGamaProductoJson():
         AllStockPriceGama.append({
             "Gama": precio.get("gama"),
             "Descripcion del produ": precio.get("descripcion_texto")
