@@ -1,5 +1,6 @@
 import json
 import requests
+from tabulate import tabulate
 
 
 
@@ -7,6 +8,10 @@ import requests
 
 
 
+# def FuncionDeConeccionPagoJson():
+#       peticion=requests.get("http://10.0.2.15:5007") 
+#       Informacion=peticion.json()  
+#       return Informacion    
 
 
 

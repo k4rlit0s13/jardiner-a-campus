@@ -1,13 +1,29 @@
 import json
 import requests
+from tabulate import tabulate
 
 
 
 
 
+# def FuncionDeConeccionGamaProductoJson():
+#       peticion=requests.get("http://10.0.2.15:5005") 
+#       Informacion=peticion.json()  
+#       return Informacion    
 
 
-
+def agregarDatosGama():
+    gama = {
+    "gama": input("Ingrese la gama del producto: "),
+    "descripcion_texto": input("Ingrese el nombre del cliente/empresa: "),
+    "descripcion_html": input("Ingrese el nombre del contacto de la empresa: "),
+    
+}
+    headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
+    peticion = requests.post("http://10.0.2.15:5005",headers=headers, data=json.dumps(gama, indent=4).encode("UTF-8"))
+    res = peticion.json()
+    res["Mensaje"] = "Producto Guardado"
+    return [res]
 
 
 
