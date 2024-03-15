@@ -5,7 +5,7 @@ from tabulate import tabulate
 import requests
 import json
 
-
+#json-server storage/cliente.json -b 5001
 def FuncionDeConeccionClienteJson():
       peticion=requests.get("http://10.0.2.15:5001") 
       Informacion=peticion.json()  
@@ -221,7 +221,7 @@ def getAllCityRepresentants(ciudad,representante):
 def getAllClientAndRepresentant():
     AllClientAndRepresentant=[]
     for Nombrecliente in FuncionDeConeccionClienteJson():
-        for NombreRepresentante in FuncionDeConeccionEmpleadoJson:
+        for NombreRepresentante in FuncionDeConeccionEmpleadoJson():
             if Nombrecliente.get("codigo_empleado_rep_ventas")==NombreRepresentante.get("codigo_empleado"):
                 AllClientAndRepresentant.append({
                     "Nombre del cliente":Nombrecliente.get("nombre_cliente"),

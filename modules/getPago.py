@@ -3,10 +3,10 @@
 # import storage.empleado as emp
 
 
-import requests
 from tabulate import tabulate
-import json
 
+import json
+import requests
 
 def FuncionDeConeccionPagoJson():
       peticion=requests.get("http://10.0.2.15:5007") 
@@ -19,8 +19,9 @@ def FuncionDeConeccionClienteJson():
       Informacion=peticion.json()  
       return Informacion     
 
+
 def FuncionDeConeccionEmpleadoJson():
-      peticion=requests.get("http://10.0.2.15:5503") 
+      peticion=requests.get("http://10.0.2.15:5003") 
       Informacion=peticion.json()  
       return Informacion        
 
@@ -111,48 +112,9 @@ def getAllClientRepresentantsPayTrue():
 
 
 #muestra el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
-# def getAllPaysFalse():
-#     AllPaysFalse = []
-#     for cliente in FuncionDeConeccionClienteJson():
-#         pagos = False
-#     for pago in FuncionDeConeccionPagoJson():
-#         if cliente.get("codigo_cliente") == pago.get("codigo_cliente"):
-#             pagos = True
-#             break
-#         if not pagos:
-#             for empleado in FuncionDeConeccionClienteJson():
-#                 if cliente.get("codigo_empleado_rep_ventas") == pago.get("codigo_empleado"):
-#                     if empleado.get("puesto") == "Representante Ventas":
-#                         AllPaysFalse.append({
-#                         "Código del cliente": cliente.get("codigo_cliente"),
-#                         "Nombre del cliente": cliente.get("nombre_cliente"),
-#                         "Representante de ventas": empleado.get('nombre')
-#             })
-#     return AllPaysFalse
-def getAllPaysFalse1():
-    AllPaysFalse = []
-    for cliente in FuncionDeConeccionClienteJson():
-        # Variable para verificar si el cliente ha realizado algún pago
-        pagos = False
-        
-        # Verificar si el cliente tiene algún pago asociado
-        for pago in FuncionDeConeccionPagoJson():
-            if cliente.get("codigo_cliente") == pago.get("codigo_cliente"):
-                pagos = True
-                break
-        
-        # Si el cliente no ha realizado pagos, agregarlo a la lista AllPaysFalse
-        if not pagos:
-            for empleado in FuncionDeConeccionClienteJson():
-                # Verificar si el empleado es un representante de ventas
-                if empleado.get("puesto") == "Representante Ventas" and cliente.get("codigo_empleado_rep_ventas") == empleado.get("codigo_empleado"):
-                    AllPaysFalse.append({
-                        "Código del cliente": cliente.get("codigo_cliente"),
-                        "Nombre del cliente": cliente.get("nombre_cliente"),
-                        "Representante de ventas": f'{empleado.get("nombre")} {empleado.get("apellido1")} {empleado.get("apellido2")}'
-                    })
-    return AllPaysFalse
 
+def getAllPaysFalse1():
+    AllPaysFalse1=[]
 
 
 
