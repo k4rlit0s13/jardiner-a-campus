@@ -128,7 +128,7 @@ json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5
 
 
 
-
+# PRUEBAS DIRECTAS DE LAS FUNCIONES GET
 
 #print(cliente.GetAllNamesSpain())
 
