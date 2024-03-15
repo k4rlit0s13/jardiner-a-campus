@@ -5,6 +5,7 @@ from tabulate import tabulate
 
 import requests
 import json
+import re
 
 import modules.getClients as cliente
 import modules.getEmpleados as empleado
@@ -86,24 +87,28 @@ if (__name__=="__main__"):
               
 """)
     
-        opcion=int(input("\nEscribe el número de una de las opciones: "))
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=7:    
+                        
+                        if(opcion==1):
+                                cliente.menu()   
+                        elif(opcion==2):
+                                oficina.menu()
+                        elif(opcion==3):
+                                empleado.menu()
+                        elif(opcion==4):
+                                pedido.menu()
+                        elif(opcion==5):
+                                gama.menu()
+                        elif(opcion==6):
+                                producto.menu()
+                        elif(opcion==7):
+                                pago.menu()
+                        elif(opcion==0):
+                                break
 
-        if(opcion==1):
-            cliente.menu()
-        elif(opcion==2):
-            oficina.menu()
-        elif(opcion==3):
-            empleado.menu()
-        elif(opcion==4):
-            pedido.menu()
-        elif(opcion==5):
-            gama.menu()
-        elif(opcion==6):
-            producto.menu()
-        elif(opcion==7):
-            pago.menu()
-        elif(opcion==0):
-            break
 
        
 # ACTIVAR CODIGOS EN LA TERMINAL

@@ -2,6 +2,7 @@
 # import storage.empleado as emple
 from tabulate import tabulate
 
+import re
 import requests
 import json
 import modules.postClients as postcli
@@ -292,39 +293,42 @@ def menu():
 """)
     
 
-        opcion=int(input("\nSeleccione una de las opciones: "))
-        
-        if(opcion==1):
-            print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=8:
 
-        if(opcion==2):
-            codigoCliente=int(input("Ingrese el codigo del cliente: "))
-            print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
+                    if(opcion==1):
+                        print(tabulate(getAllCodesClients(), headers="keys",tablefmt="grid"))
 
-        if(opcion==3):
-            limite=float(input("Ingrese el límite de crédito de los clientes que deseas visualizar: "))
-            ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
-            print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
+                    if(opcion==2):
+                        codigoCliente=int(input("Ingrese el codigo del cliente: "))
+                        print(tabulate(getOneClienteCodigo(codigoCliente), headers="keys",tablefmt="github"))
 
-        if(opcion==4):
-            pais=input("Ingrese el pais de crédito de los clientes que deseas visualizar: ")
-            print(tabulate(GetAllClientCountry(pais), headers="keys",tablefmt="github"))
-        
-        if(opcion==5):
-            print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
+                    if(opcion==3):
+                        limite=float(input("Ingrese el límite de crédito de los clientes que deseas visualizar: "))
+                        ciudad=input("Ingrese el nombre de la ciudad que deseas filtrar los clientes: ")
+                        print(tabulate(getAllClientCreditCiudad2(limite,ciudad), headers="keys",tablefmt="github"))
 
-        if(opcion==6):
-            ciudad=input("\nIngresa la ciudad que deseas mostrar: ")
-            representante=int(input("Registra el código del representante: "))
-            print(tabulate(getAllCityRepresentants(ciudad, representante), headers="keys",tablefmt="github"))
+                    if(opcion==4):
+                        pais=input("Ingrese el pais de crédito de los clientes que deseas visualizar: ")
+                        print(tabulate(GetAllClientCountry(pais), headers="keys",tablefmt="github"))
+                    
+                    if(opcion==5):
+                        print(tabulate(GetAllCodePar(), headers="keys",tablefmt="github"))
 
-        if(opcion==7):
-            print(tabulate(getAllClientAndRepresentant(), headers="keys",tablefmt="github"))
+                    if(opcion==6):
+                        ciudad=input("\nIngresa la ciudad que deseas mostrar: ")
+                        representante=int(input("Registra el código del representante: "))
+                        print(tabulate(getAllCityRepresentants(ciudad, representante), headers="keys",tablefmt="github"))
 
-        if(opcion==8):
-           postcli.menu()
+                    if(opcion==7):
+                        print(tabulate(getAllClientAndRepresentant(), headers="keys",tablefmt="github"))
 
-        if(opcion==0):
-            break
-    
+                    if(opcion==8):
+                        postcli.menu()
+
+                    if(opcion==0):
+                        break
+                
    

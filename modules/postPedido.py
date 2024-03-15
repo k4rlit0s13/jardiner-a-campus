@@ -1,7 +1,7 @@
 import json
 import requests
 from tabulate import tabulate
-
+import re
 
 
 
@@ -90,9 +90,13 @@ def menu():
         
 
         """)
-        opcion=int(input("\nSeleccione una de las opciones: "))
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=1:    
+                        
         
-        if(opcion==1):
-            print(tabulate(agregarDatosPedido(), headers="keys",tablefmt="grid"))
-        if(opcion==0):
-            break
+                    if(opcion==1):
+                        print(tabulate(agregarDatosPedido(), headers="keys",tablefmt="grid"))
+                    if(opcion==0):
+                        break

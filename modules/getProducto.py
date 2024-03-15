@@ -4,6 +4,8 @@ import requests
 import json
 import os
 import modules.postProducto as postProd
+import re
+
 
 # IP DEL SERVIDOR PRODUCTO:
 # http://10.0.2.15:5006
@@ -138,22 +140,25 @@ def menu():
         0. Salir al menu principal
 
 """)
-        opcion=int(input("\nSeleccione una de las opciones: "))
-        
-        if(opcion==1):
-            print(tabulate(getAllProducts(), headers="keys",tablefmt="grid"))
-        if(opcion==2):
-            print(tabulate(getAllProductsGama(), headers="keys",tablefmt="grid"))
-        if(opcion==3):
-            print(tabulate(getAllProductsStock(), headers="keys",tablefmt="grid"))
-        if(opcion==4):
-            print(tabulate(getAllProductsStorePrice(), headers="keys",tablefmt="grid"))
-        if(opcion==5):
-            gama=input("ingrese la gama que deseas mostrar: ")
-            stock=int(input("ingrese las unidades que deseas mostrar: "))
-            print(tabulate(getAllProductsOrnamentals(gama,stock), headers="keys",tablefmt="grid"))
-        if(opcion==6):
-           postProd.menu()
-        if(opcion==0):
-            break
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=6:      
+                                 
+                        if(opcion==1):
+                                print(tabulate(getAllProducts(), headers="keys",tablefmt="grid"))
+                        if(opcion==2):
+                                print(tabulate(getAllProductsGama(), headers="keys",tablefmt="grid"))
+                        if(opcion==3):
+                                print(tabulate(getAllProductsStock(), headers="keys",tablefmt="grid"))
+                        if(opcion==4):
+                                print(tabulate(getAllProductsStorePrice(), headers="keys",tablefmt="grid"))
+                        if(opcion==5):
+                                gama=input("ingrese la gama que deseas mostrar: ")
+                                stock=int(input("ingrese las unidades que deseas mostrar: "))
+                                print(tabulate(getAllProductsOrnamentals(gama,stock), headers="keys",tablefmt="grid"))
+                        if(opcion==6):
+                                postProd.menu()
+                        if(opcion==0):
+                                break
 

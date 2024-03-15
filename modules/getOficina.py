@@ -4,7 +4,7 @@ from tabulate import tabulate
 import requests
 import json
 import modules.postOficina as postOfi
-
+import re
 
 
 
@@ -100,8 +100,8 @@ def getAllCityPhones():
 
 
 def menu():
-        while True:
-            print("""
+    while True:
+        print("""
 
  ██████╗ ███████╗██╗ ██████╗██╗███╗   ██╗ █████╗ ███████╗
 ██╔═══██╗██╔════╝██║██╔════╝██║████╗  ██║██╔══██╗██╔════╝
@@ -120,22 +120,26 @@ def menu():
 
        0. Salir al menu principal
 """)
-            opcion=int(input("\nSeleccione una de las opciones: "))
-
-            if(opcion==1):
-                print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))
-
-            if(opcion==2):
-                print(tabulate(getAllCityPhoneSpain(), headers="keys",tablefmt="grid"))
-
-            if(opcion==3):
-                print(tabulate(getAllCodeOfficeCity7(), headers="keys",tablefmt="grid"))
-
-            if(opcion==4):
-                print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))
             
-            if(opcion==5):
-                postOfi.menu()
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=5:
+                        
+                    if(opcion==1):
+                        print(tabulate(getAllOffice(), headers="keys",tablefmt="grid"))
 
-            if(opcion==0):
-                break
+                    elif(opcion==2):
+                        print(tabulate(getAllCityPhoneSpain(), headers="keys",tablefmt="grid"))
+
+                    elif(opcion==3):
+                        print(tabulate(getAllCodeOfficeCity7(), headers="keys",tablefmt="grid"))
+
+                    elif(opcion==4):
+                        print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))
+                    
+                    elif(opcion==5):
+                        postOfi.menu()
+
+                    elif(opcion==0):
+                        break
