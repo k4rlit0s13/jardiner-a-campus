@@ -12,12 +12,12 @@ from tabulate import tabulate
 
 def agregarDatosEmpleado():
     empleado = {
-    "codigo_empleado": int(input("Ingrese el código del cliente/empresa: ")),
-    "nombre": input("Ingrese el nombre del cliente/empresa: "),
-    "apellido1":input("Ingrese el nombre del contacto de la empresa: "),
-    "apellido2":input("Ingrese el apellido del contacto de la empresa: "),
-    "extension":input("Ingrese el telefono: "),
-    "email": input("Ingrese el fax: "),
+    "codigo_empleado": int(input("Ingrese el código del empleado: ")),
+    "nombre": input("Ingrese el nombre del empleado: "),
+    "apellido1":input("Ingrese el primer apellido del empleado: "),
+    "apellido2":input("Ingrese el segundo apellido del empleado: "),
+    "extension":input("Ingrese la extensión del empleado: "),
+    "email": input("Ingrese el email del empleado: "),
     "codigo_oficina": input("Ingrese la dirección 1: "),
     "codigo_jefe": int(input("Ingrese la dirección 2: ")),
     "puesto": input("Ingrese la ciudad: "),

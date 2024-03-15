@@ -18,13 +18,13 @@ from tabulate import tabulate
 def agregarDatosOficina():
     oficina = {
     "codigo_oficina": input("Ingrese el codigo de la oficina: "),
-    "ciudad": input("Ingrese el nombre del empleado: "),
-    "pais": input("Ingrese el país: "),
-    "region": input("Ingrese la región: "),
-    "codigo_postal": input("Ingrese el código postal: "),
-    "telefono": input("Ingrese el teléfono: "),
-    "linea_direccion1": int(input("Ingrese la dirección 1: ")),
-    "linea_direccion2": int(input("Ingrese la dirección 2: "))
+    "ciudad": input("Ingrese la ciudad de la oficina: "),
+    "pais": input("Ingrese el país de la oficina: "),
+    "region": input("Ingrese la región de la oficina: "),
+    "codigo_postal": input("Ingrese el código postal de la oficina: "),
+    "telefono": input("Ingrese el teléfono de la oficina: "),
+    "linea_direccion1": int(input("Ingrese la dirección 1 de la oficina: ")),
+    "linea_direccion2": int(input("Ingrese la dirección 2 de la oficina: "))
 }
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
     peticion = requests.post("http://10.0.2.15:5002",headers=headers, data=json.dumps(oficina, indent=4).encode("UTF-8"))

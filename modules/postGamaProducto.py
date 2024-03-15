@@ -15,8 +15,8 @@ from tabulate import tabulate
 def agregarDatosGama():
     gama = {
     "gama": input("Ingrese la gama del producto: "),
-    "descripcion_texto": input("Ingrese el nombre del cliente/empresa: "),
-    "descripcion_html": input("Ingrese el nombre del contacto de la empresa: "),
+    "descripcion_texto": input("Ingrese una descripción del producto: "),
+    "descripcion_html": input("Ingrese una descipción html del producto: "),
     
 }
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
