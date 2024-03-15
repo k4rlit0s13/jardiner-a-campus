@@ -114,9 +114,24 @@ def getAllClientRepresentantsPayTrue():
 #muestra el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
 
 def getAllPaysFalse1():
-    AllPaysFalse1=[]
-
-
+    AllPaysFalse1 = []
+    for val in FuncionDeConeccionClienteJson():
+        pagos = False
+    for val2 in FuncionDeConeccionPagoJson():
+        if val.get("codigo_cliente") == val2.get("codigo_cliente"):
+            pagos = True
+            break
+        if not pagos:
+            for val3 in FuncionDeConeccionEmpleadoJson():
+                if val.get('codigo_empleado_rep_ventas') == val3.get("codigo_empleado"):
+                    if val2.get("puesto") == "Representante Ventas":
+                        AllPaysFalse1.append({
+                                "codigo": val.get("codigo_cliente"),
+                                "Nombre Cliente": val.get("nombre_cliente"),
+                                "puesto": val2.get("puesto"),
+                                "Representante de ventas": val3.get("nombre")
+                            })
+    return AllPaysFalse1
 
 
 

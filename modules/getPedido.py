@@ -166,6 +166,9 @@ def menu():
         3. Obtener los pedidos rechazados en 2009
         4. Obtener los distintos estados por los que puede pasar un pedido
         
+        EDITAR DATOS:      
+        5. Modificar datos de pedidos        
+        
         0. Salir al menu principal
 """)
         opcion=int(input("\nSeleccione una de las opciones: "))

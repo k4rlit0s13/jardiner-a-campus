@@ -130,7 +130,10 @@ def menu():
         3. Obtener todas las cantidades en stock 
         4. Obtener todos los productos con precio de venta a 11
         5. Obtener todos los productos de una categoria ordenando sus precios de venta, también que su cantidad de inventario sea superior (ejemplo: Ornamentales, 100)
-                   
+        
+        EDITAR DATOS:      
+        6. Modificar datos de productos                        
+        
         0. Salir al menu principal
 
 """)

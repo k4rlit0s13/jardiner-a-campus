@@ -72,9 +72,14 @@ def menu():
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝ ╚══════╝
                                                                             
 
-              1. Obtener toda la gama de productos
+            1. Obtener toda la gama de productos
             
-              0. Salir al menu principal
+              
+            EDITAR DATOS:      
+            2. Modificar datos de productos
+            
+              
+            0. Salir al menu principal
 
 """)
         

@@ -87,7 +87,11 @@ def menu():
         2. Obtener listado con el nombre y email de los empleados cuyo jefe tiene un código de jefe igual a 7
         3. Obtener el nombre, apellidos y puesto de aquellos empleados que no sean respresentantes de ventas
         4. Obtener el nombre del puesto, nombre, apellidos e email del feje de la empresa
+
+        EDITAR DATOS:      
+        5. Modificar datos de empleado
         
+              
         0. Salir al menu principal
 """)
     

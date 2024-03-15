@@ -276,6 +276,9 @@ def menu():
     6. Obtener los clientes que sean de una ciudad y su representante(ejemplo: Madrid, 11 o 30)
     7. Obtener los nombres de los clientes y el nombre de sus representantes de ventas
               
+    EDITAR DATOS:      
+    8. Modificar datos de clientes
+              
     0. Salir al menu principal
 
 """)
