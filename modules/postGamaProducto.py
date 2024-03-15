@@ -98,6 +98,6 @@ def menu():
         opcion=int(input("\nSeleccione una de las opciones: "))
         
         if(opcion==1):
-            print(tabulate((), headers="keys",tablefmt="grid"))
+            print(tabulate(agregarDatosGama(), headers="keys",tablefmt="grid"))
         if(opcion==0):
             break        
