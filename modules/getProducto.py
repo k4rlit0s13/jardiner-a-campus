@@ -3,6 +3,7 @@ from tabulate import tabulate
 import requests
 import json
 import os
+import modules.postProducto as postProd
 
 # IP DEL SERVIDOR PRODUCTO:
 # http://10.0.2.15:5006
@@ -151,6 +152,8 @@ def menu():
             gama=input("ingrese la gama que deseas mostrar: ")
             stock=int(input("ingrese las unidades que deseas mostrar: "))
             print(tabulate(getAllProductsOrnamentals(gama,stock), headers="keys",tablefmt="grid"))
+        if(opcion==6):
+           postProd.menu()
         if(opcion==0):
             break
 

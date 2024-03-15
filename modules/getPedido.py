@@ -5,7 +5,7 @@ from tabulate import tabulate
 
 import requests
 import json
-
+import modules.postPedido as postPe
 
 
 def FuncionDeConeccionPedidoJson():
@@ -184,6 +184,9 @@ def menu():
 
         if(opcion==4):
             print(tabulate(obtener_estados_pedidos(), headers="keys",tablefmt="grid"))
+        
+        if(opcion==5):
+           postPe.menu()
 
         if(opcion==0):
             break

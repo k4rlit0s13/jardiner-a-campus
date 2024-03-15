@@ -7,6 +7,10 @@ from tabulate import tabulate
 
 import json
 import requests
+import modules.postpago as postPa
+
+
+
 
 def FuncionDeConeccionPagoJson():
       peticion=requests.get("http://10.0.2.15:5007") 
@@ -159,7 +163,10 @@ def menu():
         4. Obtener todas las formas de pago 
         5. Obtener el nombre de los clientes que hayan realizado pagos junto con el nombre de sus representantes
         6. Obtener el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
-        
+       
+        EDITAR DATOS:      
+        7. Modificar datos de oficinas  
+                    
         0. Salir al menu principal
 
 """)
@@ -177,5 +184,7 @@ def menu():
             print(tabulate(getAllClientRepresentantsPayTrue(), headers="keys",tablefmt="grid"))
         if(opcion==6):
             print(tabulate(getAllPaysFalse1(), headers="keys",tablefmt="grid"))
+        if(opcion==7):
+           postPa.menu()
         elif(opcion==0):
             break

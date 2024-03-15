@@ -3,6 +3,10 @@ from tabulate import tabulate
 
 import requests
 import json
+import modules.postEmpleados as postEm
+
+
+
 
 def FuncionDeConeccionEmpleadoJson():
       peticion=requests.get("http://10.0.2.15:5003") 
@@ -109,6 +113,9 @@ def menu():
 
         if(opcion==4):
             print(tabulate(getAllNameSurnamesJefeemail(), headers="keys",tablefmt="grid"))
+
+        if(opcion==5):
+           postEm.menu()
 
         if(opcion==0):
             break

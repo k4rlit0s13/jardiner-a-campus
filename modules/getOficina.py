@@ -3,7 +3,7 @@ from tabulate import tabulate
 
 import requests
 import json
-
+import modules.postOficina as postOfi
 
 
 
@@ -133,6 +133,9 @@ def menu():
 
             if(opcion==4):
                 print(tabulate(getAllCityPhones(), headers="keys",tablefmt="grid"))
+            
+            if(opcion==5):
+                postOfi.menu()
 
             if(opcion==0):
                 break

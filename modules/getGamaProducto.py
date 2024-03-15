@@ -3,7 +3,7 @@ from tabulate import tabulate
 
 import requests
 import json
-
+import modules.postGamaProducto as postGama
 
 
 def FuncionDeConeccionGamaProductoJson():
@@ -87,5 +87,7 @@ def menu():
 
         if (opcion==1):
             print(tabulate(getAllGamaProducts(), headers="keys",tablefmt="grid"))
+        if(opcion==2):
+           postGama.menu()
         if(opcion==0):
             break

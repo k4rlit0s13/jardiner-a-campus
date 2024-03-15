@@ -4,6 +4,14 @@ from tabulate import tabulate
 
 import requests
 import json
+import modules.postClients as postcli
+
+
+
+
+
+
+
 
 #json-server storage/cliente.json -b 5001
 def FuncionDeConeccionClienteJson():
@@ -312,7 +320,10 @@ def menu():
 
         if(opcion==7):
             print(tabulate(getAllClientAndRepresentant(), headers="keys",tablefmt="github"))
-        
+
+        if(opcion==8):
+           postcli.menu()
+
         if(opcion==0):
             break
     
