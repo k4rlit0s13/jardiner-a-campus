@@ -18,9 +18,9 @@ def agregarDatosEmpleado():
     "apellido2":input("Ingrese el segundo apellido del empleado: "),
     "extension":input("Ingrese la extensión del empleado: "),
     "email": input("Ingrese el email del empleado: "),
-    "codigo_oficina": input("Ingrese la dirección 1: "),
-    "codigo_jefe": int(input("Ingrese la dirección 2: ")),
-    "puesto": input("Ingrese la ciudad: "),
+    "codigo_oficina": input("Ingrese el codigo de la oficina del empleado: "),
+    "codigo_jefe": int(input("Ingrese el código del jefe del empleado: ")),
+    "puesto": input("Ingrese el puesto del empleado: "),
 
 
 }
