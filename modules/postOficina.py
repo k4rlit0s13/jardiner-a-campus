@@ -34,29 +34,42 @@ import re
 
 
 def agregarDatosoficina():
-    pagos={}
+    oficinas={}
     while True:
         try:
             # expresion regulat que tenga en cuenta escribir un numero solamente
-            if not pagos.get("codigo_oficina"):
-                codigoCliente=input("Ingresa el codigo del cliente: ")
-                if (re.match(r'^\d+$',codigoCliente)is not None):
-                        codigoCliente= int(codigoCliente)
-                        pagos["codigo_cliente"]=codigoCliente
-                        print("El codigo del cliente cumple con el estandar, OK")
-                        break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
+            if not oficinas.get("codigo_oficina"):
+                codigoOficina=input("Ingresa el código de la oficina: ")
+                if (re.match(r'[A-Z]+-[A-Z]+',codigoOficina)is not None):
+                        oficinas["codigo_oficina"]=codigoOficina
+                        print("El código de la oficina cumple con el estandar, OK")
+                        # break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
                 else:
-                    raise Exception("El código del cliente no cumple con el estandar establecido")  
+                    raise Exception("El código de la oficina no cumple con el estandar establecido")  
+
+
+            # expresion regulat que tenga en cuenta escribir un numero solamente
+            # if not oficinas.get("codigo_oficina"):
+            #     codigoCliente=input("Ingresa el codigo del cliente: ")
+            #     if (re.match(r'^\d+$',codigoCliente)is not None):
+            #             codigoCliente= int(codigoCliente)
+            #             oficinas["codigo_oficina"]=codigoCliente
+            #             print("El codigo de la oficina cumple con el estandar, OK")
+            #             break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
+            #     else:
+            #         raise Exception("El código de la oficina no cumple con el estandar establecido")  
+
+
 
         except Exception as error:
             print(error)
    
 
-    headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5002",headers=headers, data=json.dumps(pedidos, indent=4).encode("UTF-8"))
-    res = peticion.json()
-    res["Mensaje"] = "Producto Guardado"
-    return [res]
+    # headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
+    # peticion = requests.post("http://10.0.2.15:5002",headers=headers, data=json.dumps(oficinas, indent=4).encode("UTF-8"))
+    # res = peticion.json()
+    # res["Mensaje"] = "Producto Guardado"
+    # return [res]
 
 
 
@@ -108,6 +121,6 @@ def menu():
                 if opcion>=0 and opcion<=1:  
                              
                     if(opcion==1):
-                        print(tabulate(agregarDatosOficina(), headers="keys",tablefmt="grid"))
+                        print(tabulate(agregarDatosoficina(), headers="keys",tablefmt="grid"))
                     if(opcion==0):
                         break

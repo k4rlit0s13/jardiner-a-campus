@@ -34,8 +34,11 @@ def FuncionDeConeccionEmpleadoJson():
 
 
 
-
-
+def getAllIdTransactions(id):
+    transaction=[]
+    for val in FuncionDeConeccionPagoJson():
+         if val.get("id_transaccion")==id:
+            return [val]
 
 
 
@@ -165,7 +168,7 @@ def menu():
         6. Obtener el nombre de los clientes que no hayan realizado pagos junto con el nombre de sus representantes de ventas
        
         EDITAR DATOS:      
-        7. Modificar datos de oficinas  
+        7. Modificar datos de pagos
                     
         0. Salir al menu principal
 
