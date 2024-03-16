@@ -23,6 +23,12 @@ def FuncionDeConeccionClienteJson():
 # AHORA A CAMBIAR TODAS LAS VARIABLES QUE ERAN IMPORTS POR LA FUNCION DE REQUEST OSEA VOLVEMOS LAS IP'S VARIABLES POR MEDIO DE NA FUNCION QUE OBTENDRA TODOS LOS DATOS
 
 
+#obtener solo el código
+def getAllCodeByCode(codigo):
+        AllproductsProducts=[]
+        for val in FuncionDeConeccionClienteJson():
+                if val.get("codigo_producto")==codigo:
+                        return [val]
 
 
 #Obtener todos los productos
