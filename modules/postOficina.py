@@ -2,12 +2,7 @@ import json
 import requests
 from tabulate import tabulate
 import re
-
-# def FuncionDeConeccionOficinaJson():
-#       peticion=requests.get("http://10.0.2.15:5002") 
-#       Informacion=peticion.json()  
-#       return Informacion        
-
+import modules.getOficina as getOf
 
 
 
@@ -33,43 +28,140 @@ import re
 #     return [res]
 
 
+def FuncionDeConeccionOficinaJson():
+      peticion=requests.get("http://10.0.2.15:5002") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
 def agregarDatosoficina():
     oficinas={}
     while True:
         try:
-            # expresion regulat que tenga en cuenta escribir un numero solamente
+            # expresion regular que tenga en cuenta escribir un numero solamente
             if not oficinas.get("codigo_oficina"):
-                codigoOficina=input("Ingresa el código de la oficina: ")
-                if (re.match(r'[A-Z]+-[A-Z]+',codigoOficina)is not None):
+                codigoOficina=input("Ingresa el código de la oficina(AAA-AAA): ")
+                if(re.match(r'^[A-Z]+-[A-Z]+$',codigoOficina)is not None):
+                    Data=getOf.getCodeOfficeCode(codigoOficina)
+                    if(Data):
+                        print(tabulate(Data, headers="keys",tablefmt="grid"))
+                        raise Exception("El código de la oficina ya es existente")
+                        #break #solo para el ultimo modulo sino se rompe
+                    else:
                         oficinas["codigo_oficina"]=codigoOficina
-                        print("El código de la oficina cumple con el estandar, OK")
-                        # break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
+                        print("El dato cumple con el estandar,OK")
+
                 else:
-                    raise Exception("El código de la oficina no cumple con el estandar establecido")  
+                    raise Exception("El dato no cumple con el estandar establecido")
 
 
-            # expresion regulat que tenga en cuenta escribir un numero solamente
-            # if not oficinas.get("codigo_oficina"):
-            #     codigoCliente=input("Ingresa el codigo del cliente: ")
-            #     if (re.match(r'^\d+$',codigoCliente)is not None):
-            #             codigoCliente= int(codigoCliente)
-            #             oficinas["codigo_oficina"]=codigoCliente
-            #             print("El codigo de la oficina cumple con el estandar, OK")
-            #             break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
-            #     else:
-            #         raise Exception("El código de la oficina no cumple con el estandar establecido")  
+            # expresion regular que tenga en cuenta una palabra con mayuscula al principio,o  que pueda ser toda mayuscula, o que pueda tener un guion, que puedan ser varias palabras, que pueda tener numeros ni caracteres especiales
+            if not oficinas.get("ciudad"):
+                ciudad =input("Ingresa la ciudad de la oficina: ")
+                if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',ciudad)is not None):
+                    oficinas["ciudad"]=ciudad
+                    print("El dato cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
 
+
+
+            # if not oficinas.get("pais"):
+                pais =input("Ingresa el país de la oficina: ")
+                if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',pais)is not None):
+                    oficinas["pais"]=pais
+                    print("El dato cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
+
+
+
+            # if not oficinas.get("region"):
+                region =input("Ingresa la región de la oficina: ")
+                if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',region)is not None):
+                    oficinas["region"]=region
+                    print("El dato cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
+
+
+
+            #expresion regular que tenga en cuenta la escritura de numeros solamente, o que escriba unas letras(obligatorio en mayuscula) junto con numeros separados por un espacio, o que pueda ser un numero seguido de un guión y luego más numeros todo pegado
+            if not oficinas.get("codigo_postal"):
+                codigoPostal =input("Ingresa el código postal de la oficina: ")
+                if(re.match(r'^(\d+|[A-Z]+\s\d+|\d+-\d+)$',codigoPostal)is not None):
+                    oficinas["codigo_postal"]=codigoPostal
+                    print("El dato cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
+
+
+            # expresion que tenga en cuenta la escritura de un telefono de oficina, debe ser 11 numeros en total pueden llevar espacios, es obligatorio que tenga un  +de primero, un numero pegado y un espacio, separado del resto de numeros
+            if not oficinas.get("telefono"):
+                telefono=input("Ingresa el teléfono de la oficina(+00 000 0000 000): ")
+                if(re.match(r'^\+\d{1,2} \d{1,3} \d{1,4} \d{1,4}$',telefono)is not None):
+                    Data=getOf.getTelFromTel(telefono)
+                    if(Data):
+                        print(tabulate(Data, headers="keys",tablefmt="grid"))
+                        raise Exception("El telefono de la oficina ya existe")
+                        #break #solo para el ultimo modulo sino se rompe
+                    else:
+                        oficinas["telefono"]=telefono
+                        print("El dato cumple con el estandar,OK")
+
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
+
+
+
+
+            # expresion que tenga en cuenta la escritura de una direccion 
+            if not oficinas.get("linea_direccion1"):
+                direcion1=input("Ingresa la primera direccion de la oficina: ")
+                if(re.match(r'\w+',direcion1)is not None):
+                    Data=getOf.getDireccion1FromDireccion(direcion1)
+                    if(Data):
+                        print(tabulate(Data, headers="keys",tablefmt="grid"))
+                        raise Exception("la dirección de la oficina ya existe")
+                        #break #solo para el ultimo modulo sino se rompe
+                    else:
+                        oficinas["linea_direccion1"]=direcion1
+                        print("El dato cumple con el estandar,OK")
+
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
+                
+
+
+            if not oficinas.get("linea_direccion2"):
+                direccion2=input("Ingresa la segunda direccion de la oficina: ")
+                if(re.match(r'\w+',direccion2)is not None):
+                    Data=getOf.getDireccion2FromDireccion(direccion2)
+                    if(Data):
+                        print(tabulate(Data, headers="keys",tablefmt="grid"))
+                        raise Exception("La dirección de la oficina ya existe")
+                        #break #solo para el ultimo modulo sino se rompe
+                    else:
+                        oficinas["linea_direccion2"]=direccion2
+                        print("El dato cumple con el estandar,OK")
+
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
 
 
         except Exception as error:
             print(error)
    
 
-    # headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    # peticion = requests.post("http://10.0.2.15:5002",headers=headers, data=json.dumps(oficinas, indent=4).encode("UTF-8"))
-    # res = peticion.json()
-    # res["Mensaje"] = "Producto Guardado"
-    # return [res]
+        headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
+        peticion = requests.post("http://10.0.2.15:5002",headers=headers, data=json.dumps(oficinas, indent=4).encode("UTF-8"))
+        res = peticion.json()
+        res["Mensaje"] = "Producto Guardado"
+        return [res]
 
 
 

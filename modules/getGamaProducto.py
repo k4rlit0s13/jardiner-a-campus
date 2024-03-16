@@ -6,27 +6,6 @@ import json
 import modules.postGamaProducto as postGama
 import re
 
-def FuncionDeConeccionGamaProductoJson():
-      peticion=requests.get("http://10.0.2.15:5005") 
-      Informacion=peticion.json()  
-      return Informacion        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -50,6 +29,13 @@ def getAllGamaProducts():
         })
     return AllStockPriceGama
 
+
+
+
+def FuncionDeConeccionGamaProductoJson():
+      peticion=requests.get("http://10.0.2.15:5005") 
+      Informacion=peticion.json()  
+      return Informacion        
 
 
 
