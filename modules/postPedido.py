@@ -48,10 +48,10 @@ import modules.getPedido as getPe
 
 #SERVER A CONECTAR LOS DATOS(JSON DE ESTE ARCHIVO.PY)
 
-# def FuncionDeConeccionPedidoJson():
-#       peticion=requests.get("http://10.0.2.15:5004") 
-#       Informacion=peticion.json()  
-#       return Informacion     
+def FuncionDeConeccionPedidoJson():
+      peticion=requests.get("http://10.0.2.15:5004") 
+      Informacion=peticion.json()  
+      return Informacion     
 
 
 # ESTRUCTURA DE DATOS DE ESTE .PY
@@ -78,70 +78,69 @@ def agregarDatosPedido():
     while True:
         try:
 
-
-
             # expresion regulat que tenga en cuenta escribir un numero solamente
 
-            # if not pedidos.get("codigo_pedido"):
-            #     codigoPedido=input("Ingresa el código del pedido: ")
-            #     if(re.match(r'^\d+$',codigoPedido)is not None):
-            #         Data=getPe.getCodeByCode(codigoPedido)
-            #         if(Data):
-            #             print(tabulate(Data, headers="keys",tablefmt="grid"))
-            #             raise Exception("El código ya es existente")
-            #             #break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
-            #         else:
-            #             pedidos["codigo_pedido"]=codigoPedido
-            #             print("El código cumple con el estandar, OK")
-            #     else:
-            #         raise Exception("El código no cumple con el estandar establecido")
+            if not pedidos.get("codigo_pedido"):
+                codigoPedido=input("Ingresa el código del pedido: ")
+                if(re.match(r'^\d+$',codigoPedido)is not None):
+                    codigoPedido=int(codigoPedido)
+                    Data=getPe.getCodeByCode(codigoPedido)
+                    if(Data):
+                        print(tabulate(Data, headers="keys",tablefmt="grid"))
+                        raise Exception("El código ya existe")
+                        #break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
+                    else:
+                        pedidos["codigo_pedido"]=codigoPedido
+                        print("El código cumple con el estandar, OK")
+                else:
+                    raise Exception("El código no cumple con el estandar establecido")
 
  
             # expresion que tenga en cuenta la escritura de una fecha que va el año 4 numeros, quión,el mes 2 numeros,gión y el dia tambien 2 numeros
                 
-            # if not pedidos.get("fecha_pedido"):
-            #     fechaPedido =input("Ingresa la fecha del pedido(año-mes-día): ")
-            #     if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaPedido)is not None):
-            #         pedidos["fecha_pedido"]=fechaPedido
-            #         print("la fecha del pedido cumple con el estandar,OK")
-            #         #break #solo para el ultimo modulo sino se rompe
-            #     else:
-            #         raise Exception("La fecha del pedido no cumple con el estandar establecido")
+            if not pedidos.get("fecha_pedido"):
+                fechaPedido =input("Ingresa la fecha del pedido(año-mes-día): ")
+                if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaPedido)is not None):
+                    pedidos["fecha_pedido"]=fechaPedido
+                    print("la fecha del pedido cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("La fecha del pedido no cumple con el estandar establecido")
 
 
 
-            # if not pedidos.get("fecha_esperada"):
-            #     fechaEsperada =input("Ingresa la fecha de espera(año-mes-día): ")
-            #     if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaEsperada)is not None):
-            #         pedidos["fecha_esperada"]=fechaEsperada
-            #         print("la fecha de espera cumple con el estandar,OK")
-            #         #break #solo para el ultimo modulo sino se rompe
-            #     else:
-            #         raise Exception("La fecha de espera no cumple con el estandar establecido")
+            if not pedidos.get("fecha_esperada"):
+                fechaEsperada =input("Ingresa la fecha de espera(año-mes-día): ")
+                if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaEsperada)is not None):
+                    pedidos["fecha_esperada"]=fechaEsperada
+                    print("la fecha de espera cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("La fecha de espera no cumple con el estandar establecido")
 
 
 
-            # if not pedidos.get("fecha_entrega"):
-            #     fechaEntrega =input("Ingresa la fecha de entrega(año-mes-día): ")
-            #     if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaEntrega)is not None):
-            #         pedidos["fecha_entrega"]=fechaEntrega
-            #         print("la fecha de entrega cumple con el estandar,OK")
-            #         #break #solo para el ultimo modulo sino se rompe
-            #     else:
-            #         raise Exception("La fecha de entrega no cumple con el estandar establecido")
+            if not pedidos.get("fecha_entrega"):
+                fechaEntrega =input("Ingresa la fecha de entrega(año-mes-día): ")
+                if(re.match(r'^\d{4}-\d{2}-\d{2}$',fechaEntrega)is not None):
+                    pedidos["fecha_entrega"]=fechaEntrega
+                    print("la fecha de entrega cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("La fecha de entrega no cumple con el estandar establecido")
                 
 
                 
             # expresion regular que tenga en cuenta la escritura de palabras primera letra en mayuscula seguidas de minusculas, una palabra única, nada más, sin numeros ni simbolos especiales
 
-            # if not pedidos.get("estado"):
-            #     estado =input("Ingresa el estado del producto (ejemplos: Entregado, Pendiente, Rechazado): ")
-            #     if(re.match(r'^[A-Z][a-z]+$',estado)is not None):
-            #         pedidos["estado"]=estado
-            #         print("El estado cumple con el estandar,OK")
-            #         #break #solo para el ultimo modulo sino se rompe
-            #     else:
-            #         raise Exception("El estado no cumple con el estandar establecido")
+            if not pedidos.get("estado"):
+                estado =input("Ingresa el estado del producto (ejemplos: Entregado, Pendiente, Rechazado): ")
+                if(re.match(r'^[A-Z][a-z]+$',estado)is not None):
+                    pedidos["estado"]=estado
+                    print("El estado cumple con el estandar,OK")
+                    #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El estado no cumple con el estandar establecido")
 
 
 
@@ -156,13 +155,28 @@ def agregarDatosPedido():
                 
 
 
-
-
+            # expresion regulat que tenga en cuenta escribir un numero solamente
+            if not pedidos.get("codigo_cliente"):
+                codigoCliente=input("Ingresa el codigo del cliente: ")
+                if (re.match(r'^\d+$',codigoCliente)is not None):
+                        codigoCliente= int(codigoCliente)
+                        pedidos["codigo_cliente"]=codigoCliente
+                        print("El codigo del cliente cumple con el estandar, OK")
+                        break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
+                else:
+                    raise Exception("El código del cliente no cumple con el estandar establecido")  
 
 
 
         except Exception as error:
             print(error)
+   
+
+    headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
+    peticion = requests.post("http://10.0.2.15:5004",headers=headers, data=json.dumps(pedidos, indent=4).encode("UTF-8"))
+    res = peticion.json()
+    res["Mensaje"] = "Producto Guardado"
+    return [res]
 
 
 

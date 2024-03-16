@@ -2821,36 +2821,14 @@
         "precio_proveedor": 11
     },
     {
-        "codigo_producto": "ag",
-        "nombre": "sdgdh",
-        "gama": "asfsgsh",
-        "dimensiones": "dfhh",
-        "proveedor": "dfh",
-        "cantidad_en_stock": 120,
-        "precio_venta": 2,
+        "codigo_producto": "QW-789",
+        "nombre": "Serrucho",
+        "gama": "Herramientas",
+        "dimensiones": "50x30",
+        "proveedor": "SerruchosMen",
+        "cantidad_en_stock": 100,
+        "precio_venta": 3,
         "precio_proveedor": 1,
-        "id": 277
-    },
-    {
-        "codigo_producto": "OP-456",
-        "nombre": "Martillo",
-        "gama": "Herramientas",
-        "dimensiones": "30x20",
-        "proveedor": "Bob The Builder",
-        "cantidad_en_stock": "200",
-        "precio_venta": "2",
-        "precio_proveedor": "1",
-        "id": 278
-    },
-    {
-        "codigo_producto": "AS-741",
-        "nombre": "Destornillador",
-        "gama": "Herramientas",
-        "dimensiones": "20x5",
-        "proveedor": "CarlosDistrits",
-        "cantidad_en_stock": "100",
-        "precio_venta": "2",
-        "precio_proveedor": "1",
-        "id": 279
+        "id": 280
     }
 ]

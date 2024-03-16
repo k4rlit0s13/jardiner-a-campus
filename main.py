@@ -113,7 +113,7 @@ if (__name__=="__main__"):
        
 # ACTIVAR CODIGOS EN LA TERMINAL
 """
-json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5002 & json-server storage/empleado.json -b 5003 & json-server storage/detalle_pedido.json -b 5004 & json-server storage/gama_producto.json -b 5005 & json-server storage/producto.json -b 5006 & json-server storage/pago.json -b 5007
+json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5002 & json-server storage/empleado.json -b 5003 & json-server storage/pedido.json -b 5004 & json-server storage/gama_producto.json -b 5005 & json-server storage/producto.json -b 5006 & json-server storage/pago.json -b 5007
 """    
 # si hize un cambio de pc cambiar ips !
 
