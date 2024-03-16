@@ -8,6 +8,11 @@ import json
 import modules.postPedido as postPe
 import re
 
+
+
+
+
+
 def FuncionDeConeccionPedidoJson():
       peticion=requests.get("http://10.0.2.15:5004") 
       Informacion=peticion.json()  
@@ -21,18 +26,13 @@ def FuncionDeConeccionPedidoJson():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+#obtener los codigos segun se meta
+#obtener solo el código
+def getCodeByCode(codigo):
+        AllproductsProducts=[]
+        for val in FuncionDeConeccionPedidoJson():
+                if val.get("codigo_pedido")==codigo:
+                        return [val]
 
 
 
@@ -46,6 +46,10 @@ def obtener_estados_pedidos():
         if val.get not in estados:
             estados.add(estado)
     return estados
+
+
+
+
 
 #filtro que devuelva un listado con el codigo de pedido, codigo de cliente, fecha esperada y fecha de entrega de los pedidos que no han sido entregados a tiempo
 #importar fechas

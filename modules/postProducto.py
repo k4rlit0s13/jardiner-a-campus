@@ -154,7 +154,7 @@ def agregarDatosProducto():
             # expresion regular que solo tenga en cuenta datos numericos, nada de letras ni simbolos/caracteres especiales, solo valores numericos
             if not producto.get("cantidad_en_stock"):
                 stock=input("Ingresa la cantidad de producto en stock: ")
-                if(re.match(r'^\d+$',stock)is not None):
+                if str(re.match(r'^\d+$',stock)is not None):
                         producto["cantidad_en_stock"]=stock
                         print("El dato cumple con el estandar, OK")
                         #break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
@@ -165,7 +165,7 @@ def agregarDatosProducto():
             # expresion regular que solo tenga en cuenta datos numericos, nada de letras ni simbolos/caracteres especiales, solo valores numericos
             if not producto.get("precio_venta"):
                 precioVenta=input("Ingresa el valor del precio de venta en dolares (precio entero): ")
-                if(re.match(r'^\d+$',precioVenta)is not None):
+                if str(re.match(r'^\d+$',precioVenta)is not None):
                         producto["precio_venta"]=precioVenta
                         print("El dato cumple con el estandar, OK")
                         #break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
@@ -177,7 +177,7 @@ def agregarDatosProducto():
             # expresion regular que solo tenga en cuenta datos numericos, nada de letras ni simbolos/caracteres especiales, solo valores numericos
             if not producto.get("precio_proveedor"):
                 precioProveedor=input("Ingresa el valor del precio del proveedor en dolares (precio entero): ")
-                if(re.match(r'^\d+$',precioProveedor)is not None):
+                if str(re.match(r'^\d+$',precioProveedor)is not None):
                         producto["precio_proveedor"]=precioProveedor
                         print("El dato cumple con el estandar, OK")
                         break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
