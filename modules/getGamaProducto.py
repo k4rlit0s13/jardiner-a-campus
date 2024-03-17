@@ -12,9 +12,17 @@ import re
 
 
 
+def FuncionDeConeccionGamaProductoJson():
+      peticion=requests.get("http://10.0.2.15:5006") 
+      Informacion=peticion.json()  
+      return Informacion        
 
 
-
+def getGamaformGama(gama):
+     GamaformGama=[]
+     for val in FuncionDeConeccionGamaProductoJson():
+          if val.get("gama")==gama:
+               return [val]
 
 
 
@@ -32,10 +40,6 @@ def getAllGamaProducts():
 
 
 
-def FuncionDeConeccionGamaProductoJson():
-      peticion=requests.get("http://10.0.2.15:5005") 
-      Informacion=peticion.json()  
-      return Informacion        
 
 
 

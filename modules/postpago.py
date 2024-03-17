@@ -26,7 +26,7 @@ import modules.getPago as getpa
 
 
 def FuncionDeConeccionPagoJson():
-      peticion=requests.get("http://10.0.2.15:5007") 
+      peticion=requests.get("http://10.0.2.15:5008") 
       Informacion=peticion.json()  
       return Informacion    
 
@@ -105,7 +105,7 @@ def agregarDatosPagos():
    
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5007",headers=headers, data=json.dumps(pagos, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5008",headers=headers, data=json.dumps(pagos, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]

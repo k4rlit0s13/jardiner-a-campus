@@ -11,10 +11,10 @@ import modules.getClients as cliente
 import modules.getEmpleados as empleado
 import modules.getGamaProducto as gama
 import modules.getOficina as oficina               
-import modules.getPago as pago
+import modules.getPago as getPa
 import modules.getPedido as pedido
 import modules.getProducto as producto
-
+import modules.getDetallePedido as getDet
 
 
 
@@ -79,9 +79,10 @@ if (__name__=="__main__"):
     2. Oficina
     3. Empleado
     4. Pedidos
-    5. Gama de producto
-    6. Productos
-    7. Pagos
+    5. Detalle de pedidos
+    6. Gama de producto
+    7. Productos
+    8. Pagos
               
     0.Salir del programa
               
@@ -90,8 +91,7 @@ if (__name__=="__main__"):
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=7:    
-                        
+                if opcion>=0 and opcion<=8:    
                         if(opcion==1):
                                 cliente.menu()   
                         elif(opcion==2):
@@ -101,11 +101,13 @@ if (__name__=="__main__"):
                         elif(opcion==4):
                                 pedido.menu()
                         elif(opcion==5):
-                                gama.menu()
+                                getDet.menu()        
                         elif(opcion==6):
-                                producto.menu()
+                                gama.menu()
                         elif(opcion==7):
-                                pago.menu()
+                                producto.menu()
+                        elif(opcion==8):
+                                getPa.menu()
                         elif(opcion==0):
                                 break
 
@@ -113,7 +115,7 @@ if (__name__=="__main__"):
        
 # ACTIVAR CODIGOS EN LA TERMINAL
 """
-json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5002 & json-server storage/empleado.json -b 5003 & json-server storage/pedido.json -b 5004 & json-server storage/gama_producto.json -b 5005 & json-server storage/producto.json -b 5006 & json-server storage/pago.json -b 5007
+json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5002 & json-server storage/empleado.json -b 5003 & json-server storage/pedido.json -b 5004 & json-server storage/detalle_pedido.json -b 5005 & json-server storage/gama_producto.json -b 5006 & json-server storage/producto.json -b 5007 & json-server storage/pago.json -b 5008 
 """    
 # si hize un cambio de pc cambiar ips !
 

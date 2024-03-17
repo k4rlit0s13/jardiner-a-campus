@@ -77,7 +77,7 @@ import modules.getProducto as getPro
 
 def FuncionDeConeccionClienteJson():
       # json-server storage/producto.json -b 5006
-      peticion=requests.get("http://10.0.2.15:5006") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
+      peticion=requests.get("http://10.0.2.15:5007") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
       Informacion=peticion.json()  # poner el servidor remoto, no el local, estamos usando simulacion de servidores
       return Informacion
 
@@ -123,10 +123,10 @@ def agregarDatosProducto():
                 gama =input("Ingresa la gama del producto (ejemplos existentes: Herramientas, Ornamentales, Herbaceas, Aromáticas, Frutales): ")
                 if(re.match(r'^[A-Z][a-z]+$',gama)is not None):
                     producto["gama"]=gama
-                    print("El nombre cumple con el estandar,OK")
+                    print("El dato cumple con el estandar,OK")
                     #break #solo para el ultimo modulo sino se rompe
                 else:
-                    raise Exception("El nombre del producto no cumple con el estandar establecido")
+                    raise Exception("El dato no cumple con el estandar establecid")
 
 
             # expresion regular que tenga en cuenta la escritura de unas dimenciones, un numero seguido de una x y terminando con otro numero, estos deben ser enteros y un ejemplo debe quedar asi: 20x50
@@ -194,7 +194,7 @@ def agregarDatosProducto():
 
     # PARA SUBIR LOS DATOS AL JSON DE LOS DATOS DE ESTE .PY
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5006",headers=headers, data=json.dumps(producto, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5007",headers=headers, data=json.dumps(producto, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]

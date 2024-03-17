@@ -13,7 +13,7 @@ import re
 
 
 def FuncionDeConeccionPagoJson():
-      peticion=requests.get("http://10.0.2.15:5007") 
+      peticion=requests.get("http://10.0.2.15:5008") 
       Informacion=peticion.json()  
       return Informacion        
 
@@ -175,22 +175,22 @@ def menu():
 """)
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
-                opcion= int(opcion)
-                if opcion>=0 and opcion<=7:
+            opcion= int(opcion)
+            if opcion>=0 and opcion<=7:
 
-                    if(opcion==1):
-                        print(tabulate(getAllPays(), headers="keys",tablefmt="grid"))
-                    if(opcion==2):
-                        print(tabulate(getAllPaymentsPaypal2008(), headers="keys",tablefmt="grid"))
-                    if(opcion==3):
-                        print(tabulate(getAll2008Clients(), headers="keys",tablefmt="grid"))
-                    if(opcion==4):
-                        print(tabulate(getAllFormToPay(), headers="keys",tablefmt="grid"))
-                    if(opcion==5):
-                        print(tabulate(getAllClientRepresentantsPayTrue(), headers="keys",tablefmt="grid"))
-                    if(opcion==6):
-                        print(tabulate(getAllPaysFalse1(), headers="keys",tablefmt="grid"))
-                    if(opcion==7):
-                        postPa.menu()
-                    elif(opcion==0):
-                        break
+                if(opcion==1):
+                    print(tabulate(getAllPays(), headers="keys",tablefmt="grid"))
+                if(opcion==2):
+                    print(tabulate(getAllPaymentsPaypal2008(), headers="keys",tablefmt="grid"))
+                if(opcion==3):
+                    print(tabulate(getAll2008Clients(), headers="keys",tablefmt="grid"))
+                if(opcion==4):
+                    print(tabulate(getAllFormToPay(), headers="keys",tablefmt="grid"))
+                if(opcion==5):
+                    print(tabulate(getAllClientRepresentantsPayTrue(), headers="keys",tablefmt="grid"))
+                if(opcion==6):
+                    print(tabulate(getAllPaysFalse1(), headers="keys",tablefmt="grid"))
+                if(opcion==7):
+                    postPa.menu()
+                elif(opcion==0):
+                    break
