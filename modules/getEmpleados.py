@@ -16,6 +16,30 @@ def FuncionDeConeccionEmpleadoJson():
 
 
 
+
+
+
+
+
+
+
+
+#obtener codigo cliente a partir de codigo
+def getEmpleadoFormempleados(codigo):
+    clientecode=[]
+    for val in FuncionDeConeccionEmpleadoJson():
+        if (val.get("codigo_empleado")==codigo):
+            return[val]
+
+
+
+def getEmailFromEmail(email):
+    empleadoemail=[]
+    for val in FuncionDeConeccionEmpleadoJson():
+        if (val.get("email")==email):
+            return[val]
+        
+
 #filtro para obtener todos los nombres de los empleados
 def getAllNames():
     NamesNames2EmailJefe=[]

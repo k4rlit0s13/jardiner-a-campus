@@ -67,7 +67,7 @@ def agregarDatosoficina():
 
 
 
-            # if not oficinas.get("pais"):
+            if not oficinas.get("pais"):
                 pais =input("Ingresa el país de la oficina: ")
                 if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',pais)is not None):
                     oficinas["pais"]=pais
@@ -78,7 +78,7 @@ def agregarDatosoficina():
 
 
 
-            # if not oficinas.get("region"):
+            if not oficinas.get("region"):
                 region =input("Ingresa la región de la oficina: ")
                 if(re.match(r'^([A-ZÁÉÍÓÚÜ][a-záéíóúü]*-?)+[A-ZÁÉÍÓÚÜ]?[a-záéíóúü]*$',region)is not None):
                     oficinas["region"]=region
