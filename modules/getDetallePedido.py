@@ -12,6 +12,23 @@ def FuncionDeConeccionDetallePedidosJson():
       return Informacion        
 
 
+#obtener solo el código
+def getCodeByCode(codigo):
+        AllproductsProducts=[]
+        for val in FuncionDeConeccionDetallePedidosJson():
+                if val.get("codigo_pedido")==codigo:
+                        return [val]
+
+def getCodeProductFromCodeProduct(codigo):
+        AllproductsProducts=[]
+        for val in FuncionDeConeccionDetallePedidosJson():
+                if val.get("codigo_producto")==codigo:
+                        return [val]
+                
+
+
+
+
 
 
 #obtener todos los detalles de los pedidos
@@ -63,8 +80,11 @@ def menu():
                 if(opcion==1):
                     print(tabulate(getAlldetallepedidos(), headers="keys",tablefmt="grid"))
 
-                if(opcion==2):
+                elif(opcion==2):
                     postDe.menu()
+
+                elif(opcion==0):
+                    break
 
 
 

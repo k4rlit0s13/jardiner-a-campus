@@ -102,8 +102,8 @@ def agregarDatosProducto():
                         producto["codigo_producto"]=codigo
                         print("El código cumple con el estandar, OK")
 
-                else:
-                    raise Exception("El código del producto no cumple con el estandar establecido, DENEGADO")
+            else:
+                raise Exception("El código del producto no cumple con el estandar establecido, DENEGADO")
 
 
 
