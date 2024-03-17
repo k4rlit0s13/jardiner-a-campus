@@ -34,16 +34,16 @@ def FuncionDeConeccionEmpleadoJson():
       return Informacion    
 
 
-def agregarDatosPagos():
-    pagos={}
+def agregarDatosEmpleados():
+    empleados={}
     while True:
         try:
             # expresion regulat que tenga en cuenta escribir un numero solamente
-            if not pagos.get("codigo_cliente"):
+            if not empleados.get("codigo_cliente"):
                 codigoCliente=input("Ingresa el codigo del cliente: ")
                 if (re.match(r'^\d+$',codigoCliente)is not None):
                         codigoCliente= int(codigoCliente)
-                        pagos["codigo_cliente"]=codigoCliente
+                        empleados["codigo_cliente"]=codigoCliente
                         print("El codigo del cliente cumple con el estandar, OK")
                         break # el break se deja solo para el ultimo modulo sino se rompe toda la cadena
                 else:

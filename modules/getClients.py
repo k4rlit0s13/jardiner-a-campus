@@ -33,6 +33,63 @@ def FuncionDeConeccionEmpleadoJson():
 
 
 
+
+
+
+
+
+
+
+
+
+#obtener codigo cliente a partir de codigo
+def getclientFormClient(codigo):
+    clientecode=[]
+    for val in FuncionDeConeccionClienteJson():
+        if (val.get("codigo_cliente")==codigo):
+            return[val]
+
+
+# Obtener oficinca segun se escriba
+def getTelFromTelclient(telefono):
+     Officecode=[]
+     for val in FuncionDeConeccionClienteJson():
+        if val.get("telefono")==telefono:
+            return[val]
+        
+
+#obtener fax a partir de un fax       
+def getfaxfromfax(fax):
+     fax=[]
+     for val in FuncionDeConeccionClienteJson():
+        if val.get("fax")==fax:
+            return[val]
+
+#obtener direcciones a partir de direcciones
+def getDireccion1FromDireccion(direccion):
+     linea1=[]
+     for val in FuncionDeConeccionClienteJson():
+        if val.get("linea_direccion1")==direccion:
+            return[val]
+        
+def getDireccion2FromDireccion(direccion):
+     line2=[]
+     for val in FuncionDeConeccionClienteJson():
+        if val.get("linea_direccion2")==direccion:
+            return[val]
+
+
+
+
+
+
+
+
+
+
+
+
+
 def search():
     clienteNames=[]
     for val in FuncionDeConeccionClienteJson():

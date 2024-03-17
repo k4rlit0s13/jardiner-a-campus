@@ -27,6 +27,11 @@ def agregarDatosGama():
     gamasProducto={}
     while True:
         try:
+           
+
+
+
+
             #expresion regular que escriba una palabra con la primera en mayuscula seguido de minusculas solo una palabra
            if not gamasProducto.get("gama"):
                 idTransaccion=input("Ingresa la nueva gama de producto(ejemplo: Herramientas): ")
@@ -42,12 +47,25 @@ def agregarDatosGama():
                 else:
                     raise Exception("El dato no cumple con el estandar establecido")
     
+
+
+
+
+
                 if not gamasProducto.get("descripcion_texto"):
                     descripcionGama =input("Ingresa un comentario sobre la nueva gama: ")
                     if(re.match(r'\w+',descripcionGama)is not None):
                         gamasProducto["descripcion_texto"]=descripcionGama
                         print("El comentario cumple con el estandar,OK")
                         break #solo para el ultimo modulo sino se rompe
+
+
+
+
+
+
+
+
 
         except Exception as error:
             print(error)
