@@ -18,7 +18,7 @@ import modules.getGamaProducto as getgama
 
 
 def FuncionDeConeccionGama():
-    peticion=requests.get("http://10.0.2.15:5006") 
+    peticion=requests.get("http://10.0.2.15:5006/gama_productos") 
     Informacion=peticion.json()  
     return Informacion    
 

@@ -29,7 +29,7 @@ import modules.getEmpleados as getEm
 
 
 def FuncionDeConeccionempleadosJson():
-      peticion=requests.get("http://10.0.2.15:5003") 
+      peticion=requests.get("http://10.0.2.15:5003/empleados") 
       Informacion=peticion.json()  
       return Informacion    
 

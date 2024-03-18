@@ -6,7 +6,7 @@ import re
 import modules.getClients as getcli
 
 def FuncionDeConeccionClienteJson():
-      peticion=requests.get("http://10.0.2.15:5001") 
+      peticion=requests.get("http://10.0.2.15:5001/clientes") 
       Informacion=peticion.json()  
       return Informacion        
 

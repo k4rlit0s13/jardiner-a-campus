@@ -7,7 +7,7 @@ import modules.getDetallePedido as getDe
 
 
 def FuncionDeConeccionDetallePedidosJson():
-      peticion=requests.get("http://10.0.2.15:5005") 
+      peticion=requests.get("http://10.0.2.15:5005/detalle_pedidos") 
       Informacion=peticion.json()  
       return Informacion        
 

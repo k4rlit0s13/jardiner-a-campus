@@ -273,6 +273,6 @@ def menu():
                         print(tabulate(agregarDatosPedido(), headers="keys",tablefmt="grid"))
                     if(opcion==2):
                         idProducto=input("Ingrese el id del producto que desea eliminar: ")
-                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                    
+                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                 
                     if(opcion==0):
                         break

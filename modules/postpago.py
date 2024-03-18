@@ -184,7 +184,8 @@ def menu():
 
 
         1. Guardar un nuevo dato de un pago
-              
+        2. Eliminar un dato de pago     
+               
         0. Atras                                                                                                           
           
           
@@ -199,5 +200,8 @@ def menu():
                            
                     if(opcion==1):
                         print(tabulate(agregarDatosPagos(), headers="keys",tablefmt="grid"))
+                    if(opcion==2):
+                        idProducto=input("Ingrese el id del producto que desea eliminar: ")
+                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
                     if(opcion==0):
                         break
