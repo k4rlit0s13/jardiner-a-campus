@@ -9,7 +9,7 @@ import re
 
 
 def FuncionDeConeccionEmpleadoJson():
-      peticion=requests.get("http://10.0.2.15:5003") 
+      peticion=requests.get("http://10.0.2.15:5003/empleados") 
       Informacion=peticion.json()  
       return Informacion        
 

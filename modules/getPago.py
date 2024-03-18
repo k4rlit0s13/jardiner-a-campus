@@ -13,19 +13,19 @@ import re
 
 
 def FuncionDeConeccionPagoJson():
-      peticion=requests.get("http://10.0.2.15:5008") 
+      peticion=requests.get("http://10.0.2.15:5008/pagos") 
       Informacion=peticion.json()  
       return Informacion        
 
 
 def FuncionDeConeccionClienteJson():
-      peticion=requests.get("http://10.0.2.15:5001") 
+      peticion=requests.get("http://10.0.2.15:5001/clientes") 
       Informacion=peticion.json()  
       return Informacion     
 
 
 def FuncionDeConeccionEmpleadoJson():
-      peticion=requests.get("http://10.0.2.15:5003") 
+      peticion=requests.get("http://10.0.2.15:5003/empleados") 
       Informacion=peticion.json()  
       return Informacion        
 

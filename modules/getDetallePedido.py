@@ -7,7 +7,7 @@ import modules.postDetallePedido as postDe
 
 
 def FuncionDeConeccionDetallePedidosJson():
-      peticion=requests.get("http://10.0.2.15:5005") 
+      peticion=requests.get("http://10.0.2.15:5005/detalle_pedidos") 
       Informacion=peticion.json()  
       return Informacion        
 

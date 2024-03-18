@@ -14,7 +14,7 @@ import re
 
 
 def FuncionDeConeccionPedidoJson():
-      peticion=requests.get("http://10.0.2.15:5004") 
+      peticion=requests.get("http://10.0.2.15:5004/pedidos") 
       Informacion=peticion.json()  
       return Informacion        
 

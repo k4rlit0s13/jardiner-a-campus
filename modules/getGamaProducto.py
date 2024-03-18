@@ -14,7 +14,7 @@ import re
 
 
 def FuncionDeConeccionGamaProductoJson():
-      peticion=requests.get("http://10.0.2.15:5006") 
+      peticion=requests.get("http://10.0.2.15:5006/productos") 
       Informacion=peticion.json()  
       return Informacion        
 
