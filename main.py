@@ -130,6 +130,28 @@ json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5
 
 
 
+
+
+
+
+
+
+# with open("storage/producto.json", "r") as f:
+#         fichero = f.read()
+#         data = json.loads(fichero)
+#         for i, val in enumerate(data):
+#                 data[i]["id"] = (i+1)
+#         data = json.dumps(data, indent=4).encode("utf-8")
+#         with open("storage/producto.json", "wb+") as f1:
+#                 f1.write(data)
+#                 f1.close()
+
+
+
+
+
+
+
 # PRUEBAS DIRECTAS DE LAS FUNCIONES GET
 
 #print(cliente.GetAllNamesSpain())

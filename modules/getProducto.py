@@ -23,6 +23,16 @@ def FuncionDeConeccionClienteJson():
 # AHORA A CAMBIAR TODAS LAS VARIABLES QUE ERAN IMPORTS POR LA FUNCION DE REQUEST OSEA VOLVEMOS LAS IP'S VARIABLES POR MEDIO DE NA FUNCION QUE OBTENDRA TODOS LOS DATOS
 
 
+
+#obtener un codigo de la lista directo(optimizado)
+def deleteProducto(codigo):
+       peticion=requests.delete(f"http://10.0.2.15:5007/productos/{codigo}")
+       return(peticion.json()) if peticion.ok else []
+
+
+
+
+
 #obtener solo el código
 def getAllCodeByCode(codigo):
         AllproductsProducts=[]
@@ -111,9 +121,6 @@ def getAllProductsOrnamentals(gama,stock):
                   }
         return AllproductsOrnamentals
             
-
-
-
 
 
 
