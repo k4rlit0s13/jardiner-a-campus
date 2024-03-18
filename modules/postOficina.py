@@ -34,6 +34,33 @@ def FuncionDeConeccionOficinaJson():
       return Informacion        
 
 
+
+# opcion 2 borrar datos de la lista 
+def deletearProduct(id):
+
+    data=getOf.deleteProducto(id)
+
+    if(len(data)):  
+        peticion=requests.delete(f"http://10.0.2.15:5002/oficinas/{id}")
+        if(peticion.status_code==204):
+            data.append({"message":"producto eliminado correctamente"})
+            return {
+              "body":data,
+              "status":peticion.status_code,
+         }
+    else:
+        return{
+              "body":[{
+                   "message":"producto no encontrado",
+                   "id":id
+              }],
+              "status":400,
+         }
+    
+
+
+
+
 def agregarDatosoficina():
     oficinas={}
     while True:

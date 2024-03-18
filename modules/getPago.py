@@ -45,6 +45,13 @@ def getAllIdTransactions(id):
 
 
 
+#obtener un codigo de la lista directo(optimizado)
+def deleteProducto(codigo):
+       peticion=requests.get(f"http://10.0.2.15:5008/pagos/{codigo}")
+       return(peticion.json()) if peticion.ok else []
+
+
+
 
 
 #filtro para que devulve un listado en el codigo de cliente de aquellos clientes que realizaron algun pago en 2008, tenga en cuenta que debera eliminar  aquellos codigos de clientes que aparezcan repetidos. Resuelva la consulta

@@ -20,6 +20,11 @@ def FuncionDeConeccionPedidoJson():
 
 
 
+#obtener un codigo de la lista directo(optimizado)
+def deleteProducto(codigo):
+       peticion=requests.get(f"http://10.0.2.15:5004/pedidos/{codigo}")
+       return(peticion.json()) if peticion.ok else []
+
 
 
 

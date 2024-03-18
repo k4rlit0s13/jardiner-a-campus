@@ -53,12 +53,17 @@ import modules.getDetallePedido as getDet
 
 
 
-import keyboard
 
 
-# https://manytools.org/hacker-tools/ascii-banner/
+
+# # https://manytools.org/hacker-tools/ascii-banner/
 if (__name__=="__main__"):
     while True:
+
+
+
+
+
         print(f"""
           
 ███╗   ███╗███████╗███╗   ██╗██╗   ██╗                          
@@ -113,7 +118,7 @@ if (__name__=="__main__"):
 
 
        
-# ACTIVAR CODIGOS EN LA TERMINAL
+# # ACTIVAR CODIGOS EN LA TERMINAL
 """
 json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5002 & json-server storage/empleado.json -b 5003 & json-server storage/pedido.json -b 5004 & json-server storage/detalle_pedido.json -b 5005 & json-server storage/gama_producto.json -b 5006 & json-server storage/producto.json -b 5007 & json-server storage/pago.json -b 5008 
 """    
@@ -125,26 +130,23 @@ json-server storage/cliente.json -b 5001 & json-server storage/oficina.json -b 5
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# with open("storage/producto.json", "r") as f:
+# with open("storage/cliente.json", "r") as f:
 #         fichero = f.read()
 #         data = json.loads(fichero)
 #         for i, val in enumerate(data):
 #                 data[i]["id"] = (i+1)
 #         data = json.dumps(data, indent=4).encode("utf-8")
-#         with open("storage/producto.json", "wb+") as f1:
+# with open("storage/cliente.json", "wb+") as f1:
 #                 f1.write(data)
-#                 f1.close()
+#                 f1.close()      
+
+
+
+
+
+
+
+
 
 
 

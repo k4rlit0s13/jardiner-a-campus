@@ -12,10 +12,23 @@ import re
 
 
 
+
 def FuncionDeConeccionGamaProductoJson():
       peticion=requests.get("http://10.0.2.15:5006") 
       Informacion=peticion.json()  
       return Informacion        
+
+
+
+
+#obtener un codigo de la lista directo(optimizado)
+def deleteProducto(codigo):
+       peticion=requests.get(f"http://10.0.2.15:5006/productos/{codigo}")
+       return(peticion.json()) if peticion.ok else []
+
+
+
+
 
 
 def getGamaformGama(gama):

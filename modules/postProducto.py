@@ -204,7 +204,7 @@ def agregarDatosProducto():
 
 
 # opcion 2 borrar datos de la lista 
-def deleteProduct(id):
+def deletearProduct(id):
 
     data=getPro.deleteProducto(id)
 
@@ -212,18 +212,26 @@ def deleteProduct(id):
         peticion=requests.delete(f"http://10.0.2.15:5007/productos/{id}")
         if(peticion.status_code==204):
             data.append({"message":"producto eliminado correctamente"})
-            return{
+            return {
               "body":data,
               "status":peticion.status_code,
          }
     else:
-         return{
+        return{
               "body":[{
                    "message":"producto no encontrado",
                    "id":id
               }],
               "status":400,
          }
+
+
+
+
+
+
+
+
 
 
 
@@ -257,6 +265,7 @@ def menu():
 
         1. Guardar un nuevo dato de Producto
         2. Borrar un dato de producto
+        3. Actualizar un dato de producto
 
         0. Atras
 
@@ -267,12 +276,12 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=2:
+                if opcion>=0 and opcion<=3:
 
                     if(opcion==1):
                         print(tabulate(agregarDatosProducto(), headers="keys",tablefmt="grid"))
                     if(opcion==2):
-                         idProducto=input("Ingrese el id del producto que desea eliminar: ")
-                         print(tabulate(deleteProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
+                        idProducto=input("Ingrese el id del producto que desea eliminar: ")
+                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
                     if(opcion==0):
                         break

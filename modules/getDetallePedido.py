@@ -12,6 +12,15 @@ def FuncionDeConeccionDetallePedidosJson():
       return Informacion        
 
 
+
+
+#obtener un codigo de la lista directo(optimizado)
+def deleteProducto(codigo):
+       peticion=requests.get(f"http://10.0.2.15:5005/detalle_pedidos/{codigo}")
+       return(peticion.json()) if peticion.ok else []
+
+
+
 #obtener solo el código
 def getCodeByCode(codigo):
         AllproductsProducts=[]
