@@ -77,7 +77,7 @@ import modules.getProducto as getPro
 
 def FuncionDeConeccionClienteJson():
       # json-server storage/producto.json -b 5006
-      peticion=requests.get("http://10.0.2.15:5007") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
+      peticion=requests.get("http://10.0.2.15:5007/productos") #aqui tendremos que solocar una ip que es la que tendremos al iniciar el servidor, esto se hace con: json-server storage/producto.json -b (numero de puerto) OJO NUNCA DARLE KILL SOLO CERRAR, SERVIDOR ACTIVO FUNCIONARA EL CODIGO
       Informacion=peticion.json()  # poner el servidor remoto, no el local, estamos usando simulacion de servidores
       return Informacion
 
@@ -194,7 +194,7 @@ def agregarDatosProducto():
 
     # PARA SUBIR LOS DATOS AL JSON DE LOS DATOS DE ESTE .PY
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5007",headers=headers, data=json.dumps(producto, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5007/productos",headers=headers, data=json.dumps(producto, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]

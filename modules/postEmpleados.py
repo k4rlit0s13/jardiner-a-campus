@@ -195,7 +195,7 @@ def agregarDatosempleados():
 
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5003",headers=headers, data=json.dumps(empleados, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5003/empleados",headers=headers, data=json.dumps(empleados, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]

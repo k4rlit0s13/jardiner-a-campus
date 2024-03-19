@@ -49,7 +49,7 @@ import modules.getPedido as getPe
 #SERVER A CONECTAR LOS DATOS(JSON DE ESTE ARCHIVO.PY)
 
 def FuncionDeConeccionPedidoJson():
-      peticion=requests.get("http://10.0.2.15:5004") 
+      peticion=requests.get("http://10.0.2.15:5004/pedidos") 
       Informacion=peticion.json()  
       return Informacion     
 
@@ -197,7 +197,7 @@ def agregarDatosPedido():
    
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5004",headers=headers, data=json.dumps(pedidos, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5004/pedidos",headers=headers, data=json.dumps(pedidos, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]

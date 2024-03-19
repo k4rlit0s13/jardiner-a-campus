@@ -26,7 +26,7 @@ import modules.getPago as getpa
 
 
 def FuncionDeConeccionPagoJson():
-      peticion=requests.get("http://10.0.2.15:5008") 
+      peticion=requests.get("http://10.0.2.15:5008/pagos") 
       Informacion=peticion.json()  
       return Informacion    
 
@@ -39,7 +39,7 @@ def deletearProduct(id):
     data=getpa.deleteProducto(id)
 
     if(len(data)):  
-        peticion=requests.delete(f"http://10.0.2.15:5007/pagos/{id}")
+        peticion=requests.delete(f"http://10.0.2.15:5007/productos/{id}")
         if(peticion.status_code==204):
             data.append({"message":"producto eliminado correctamente"})
             return {
@@ -133,7 +133,7 @@ def agregarDatosPagos():
    
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5008",headers=headers, data=json.dumps(pagos, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5008/pagos",headers=headers, data=json.dumps(pagos, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]
