@@ -29,8 +29,6 @@ def getAllcode(codigo):
 
 
 
-
-
 def getGamaformGama(gama):
      GamaformGama=[]
      for val in FuncionDeConeccionGamaProductoJson():

@@ -46,8 +46,8 @@ def getAllIdTransactions(id):
 
 
 #obtener un codigo de la lista directo(optimizado)
-def getAllcode(codigo):
-       peticion=requests.get(f"http://10.0.2.15:5008/pagos/{codigo}")
+def getAllcode(id):
+       peticion=requests.get(f"http://10.0.2.15:5008/pagos/{id}")
        return[peticion.json()] if peticion.ok else []
 
 

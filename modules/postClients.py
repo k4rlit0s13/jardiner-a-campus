@@ -5,6 +5,10 @@ import re
 
 import modules.getClients as getcli
 
+
+
+
+
 def FuncionDeConeccionClienteJson():
       peticion=requests.get("http://10.0.2.15:5001/clientes") 
       Informacion=peticion.json()  
@@ -260,10 +264,103 @@ def agregarDatosClientes():
    
 
     headers = {'Content-type': 'application/json', 'charset': 'UTF-8'}
-    peticion = requests.post("http://10.0.2.15:5001",headers=headers, data=json.dumps(Clientes, indent=4).encode("UTF-8"))
+    peticion = requests.post("http://10.0.2.15:5001/clientes",headers=headers, data=json.dumps(Clientes, indent=4).encode("UTF-8"))
     res = peticion.json()
     res["Mensaje"] = "Producto Guardado"
     return [res]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def actualizardatos():
+    while True:
+        print("""
+              
+ █████╗  ██████╗████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗                        
+██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║     ██║╚══███╔╝██╔══██╗██╔══██╗                       
+███████║██║        ██║   ██║   ██║███████║██║     ██║  ███╔╝ ███████║██████╔╝                       
+██╔══██║██║        ██║   ██║   ██║██╔══██║██║     ██║ ███╔╝  ██╔══██║██╔══██╗                       
+██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║██║  ██║                       
+╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝                       
+                                                                                                    
+██████╗  █████╗ ████████╗ ██████╗ ███████╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗
+██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+██║  ██║███████║   ██║   ██║   ██║███████╗    ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗  
+██║  ██║██╔══██║   ██║   ██║   ██║╚════██║    ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  
+██████╔╝██║  ██║   ██║   ╚██████╔╝███████║    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗
+╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+                                                                                                    
+                                         
+                                                                                                                 
+        1. Actualizar el nombre de la empresa
+        2. Actualizar el nombre del contacto
+        3. Actualizar telefono
+        4. Actualizar direcciones
+        5. Actualizar ciudad
+        6. Actualizar región
+        7. Actualizar código postal
+        8. Actualizar codigo del representante de ventas
+        9. Actualizar límite de crédito
+                    
+        0. Atras          
+          
+        """)
+      
 
 
 
@@ -296,6 +393,7 @@ def menu():
                                                                                                                      
         1. Guardar un nuevo dato de un cliente
         2. Eliminar un dato
+        3. Actualizar un dato de clientes
                     
         0. Atras          
           
@@ -312,7 +410,113 @@ def menu():
                     if(opcion==1):
                         print(tabulate(agregarDatosClientes(), headers="keys",tablefmt="grid"))
                     if(opcion==2):
-                        idProducto=input("Ingrese el id del producto que desea eliminar: ")
-                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                        
+                        idProducto=input("Ingrese el id del cliente que desea eliminar: ")
+                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
+                    if(opcion==3):
+                        actualizardatos()                       
                     if(opcion==0):
                         break       
+
+
+
+
+
+
+
+
+
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

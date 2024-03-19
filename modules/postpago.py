@@ -144,6 +144,23 @@ def agregarDatosPagos():
 
 
 
+def actualizarPagoTotal(id):
+    nuevoValorPago = float(input("Ingrese el nuevo valor del pago: "))
+    pagos = getpa.getAllcode(id)  # Obtener todos los pagos
+    for pago in pagos:  # Buscar el pago con el ID proporcionado
+        if pago.get("id") == id: # Actualizar el valor total del pago
+            pago["total"] = nuevoValorPago
+            try:
+                peticion = requests.put(f"http://154.38.171.54:5006/pagos/{id}", json=pago)  # Realizar una solicitud PUT para actualizar el pago en el servidor
+                res = peticion.json()
+                return [res]  # Devolver la respuesta del servidor
+            except requests.exceptions.RequestException as e:
+                print("Error al realizar la solicitud PUT:", e)
+                return None
+    
+    # Si no se encontró un pago con el ID proporcionado
+    print(f"No se encontró un pago con ID {id}")
+    return None
 
 
 
@@ -152,6 +169,47 @@ def agregarDatosPagos():
 
 
 
+def actualizarPagos():
+    while True:
+        print("""
+ █████╗  ██████╗████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗            
+██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║     ██║╚══███╔╝██╔══██╗██╔══██╗           
+███████║██║        ██║   ██║   ██║███████║██║     ██║  ███╔╝ ███████║██████╔╝           
+██╔══██║██║        ██║   ██║   ██║██╔══██║██║     ██║ ███╔╝  ██╔══██║██╔══██╗           
+██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║██║  ██║           
+╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝           
+                                                                                        
+██████╗  █████╗ ████████╗ ██████╗ ███████╗    ██████╗  █████╗  ██████╗  ██████╗ ███████╗
+██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝    ██╔══██╗██╔══██╗██╔════╝ ██╔═══██╗██╔════╝
+██║  ██║███████║   ██║   ██║   ██║███████╗    ██████╔╝███████║██║  ███╗██║   ██║███████╗
+██║  ██║██╔══██║   ██║   ██║   ██║╚════██║    ██╔═══╝ ██╔══██║██║   ██║██║   ██║╚════██║
+██████╔╝██║  ██║   ██║   ╚██████╔╝███████║    ██║     ██║  ██║╚██████╔╝╚██████╔╝███████║
+╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝    ╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝
+                                                                                        
+
+        1. Actualizar codigo cliente      
+        2. Actualizar forma de pago     
+        3. Actualizar id transaccion    
+        4. Actualizar fecha de pago
+        5. Actualizar total
+        6. Actualizar id
+                                   
+        0. Atras                                                                                                           
+          
+          
+          
+        
+
+        """)
+        opcion=input("\nEscribe el número de una de las opciones: ")
+        if(re.match(r'[0-9]+$',opcion)is not None):
+                opcion= int(opcion)
+                if opcion>=0 and opcion<=6:   
+                           
+                   
+                  
+                    if(opcion==0):
+                        break
 
 
 
@@ -185,7 +243,8 @@ def menu():
 
         1. Guardar un nuevo dato de un pago
         2. Eliminar un dato     
-               
+        3. Actualizar datos
+                     
         0. Atras                                                                                                           
           
           
@@ -196,12 +255,14 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=2:   
+                if opcion>=0 and opcion<=3:   
                            
                     if(opcion==1):
                         print(tabulate(agregarDatosPagos(), headers="keys",tablefmt="grid"))
                     if(opcion==2):
                         idProducto=input("Ingrese el id del producto que desea eliminar: ")
                         print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
+                    if(opcion==3):
+                        actualizarPagos()             
                     if(opcion==0):
                         break
