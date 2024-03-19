@@ -256,7 +256,7 @@ def menu():
 ╚═╝     ╚══════╝╚═════╝ ╚═╝╚═════╝  ╚═════╝                                         
 
         1. Guardar un nuevo dato de un pedido
-        2. Eliminar un dato de pedido
+        2. Eliminar un dato 
                     
         0. Atras    
 

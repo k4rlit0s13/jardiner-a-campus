@@ -264,7 +264,7 @@ def menu():
 ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝  ╚═════╝   ╚═╝    ╚═════╝
 
         1. Guardar un nuevo dato de Producto
-        2. Borrar un dato de producto
+        2. Borrar un dato 
         3. Actualizar un dato de producto
 
         0. Atras

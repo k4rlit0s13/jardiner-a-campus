@@ -295,7 +295,8 @@ def menu():
 ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚══════╝
                                                                                                                      
         1. Guardar un nuevo dato de un cliente
-              
+        2. Eliminar un dato
+                    
         0. Atras          
           
           
@@ -306,9 +307,12 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=1:      
+                if opcion>=0 and opcion<=2:      
                          
                     if(opcion==1):
                         print(tabulate(agregarDatosClientes(), headers="keys",tablefmt="grid"))
+                    if(opcion==2):
+                        idProducto=input("Ingrese el id del producto que desea eliminar: ")
+                        print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                        
                     if(opcion==0):
                         break       
