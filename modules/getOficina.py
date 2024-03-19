@@ -18,9 +18,9 @@ def FuncionDeConeccionOficinaJson():
 
 
 #obtener un codigo de la lista directo(optimizado)
-def deleteProducto(codigo):
+def getAllcode(codigo):
        peticion=requests.get(f"http://10.0.2.15:5002/oficinas/{codigo}")
-       return(peticion.json()) if peticion.ok else []
+       return[peticion.json()] if peticion.ok else []
 
 
 

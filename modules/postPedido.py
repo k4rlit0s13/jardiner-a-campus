@@ -76,7 +76,7 @@ def FuncionDeConeccionPedidoJson():
 # opcion 2 borrar datos de la lista 
 def deletearProduct(id):
 
-    data=getPe.deleteProducto(id)
+    data=getPe.getAllcode(id)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5004/pedidos/{id}")

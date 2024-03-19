@@ -36,10 +36,10 @@ def FuncionDeConeccionPagoJson():
 # opcion 2 borrar datos de la lista 
 def deletearProduct(id):
 
-    data=getpa.deleteProducto(id)
+    data=getpa.getAllcode(id)
 
     if(len(data)):  
-        peticion=requests.delete(f"http://10.0.2.15:5007/productos/{id}")
+        peticion=requests.delete(f"http://10.0.2.15:5008/pagos/{id}")
         if(peticion.status_code==204):
             data.append({"message":"producto eliminado correctamente"})
             return {

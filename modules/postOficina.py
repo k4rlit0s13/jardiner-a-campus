@@ -38,7 +38,7 @@ def FuncionDeConeccionOficinaJson():
 # opcion 2 borrar datos de la lista 
 def deletearProduct(id):
 
-    data=getOf.deleteProducto(id)
+    data=getOf.getAllcode(id)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5002/oficinas/{id}")
