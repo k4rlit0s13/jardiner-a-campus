@@ -6,15 +6,6 @@ import re
 import modules.getClients as getcli
 
 
-
-
-
-def FuncionDeConeccionClienteJson():
-      peticion=requests.get("http://10.0.2.15:5001/clientes") 
-      Informacion=peticion.json()  
-      return Informacion        
-
-
 # def agregarDatosCliente():
 #     cliente = {
 #     "codigo_cliente": input("Ingrese el código del cliente/empresa: "),
@@ -37,6 +28,37 @@ def FuncionDeConeccionClienteJson():
 #     res = peticion.json()
 #     res["Mensaje"] = "Producto Guardado"
 #     return [res]
+
+
+
+
+
+
+
+
+
+
+
+def FuncionDeConeccionClienteJson():
+      peticion=requests.get("http://10.0.2.15:5001/clientes") 
+      Informacion=peticion.json()  
+      return Informacion        
+
+
+
+
+
+
+def FuncionDeConeccionAUnaId(id):
+      peticion=requests.get(f"http://10.0.2.15:5001/clientes/{id}") 
+      return [peticion.json()] if peticion.ok else[]
+
+
+
+
+
+
+
 
 
 
@@ -106,7 +128,10 @@ def agregarDatosClientes():
                     Clientes["nombre_contacto"]=nombreCliente
                     print("El dato cumple con el estandar,OK")
                     #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
                 
+
 
             if not Clientes.get("apellido_contacto"):
                 nombreCliente =input("Ingresa el apellido de representante de la empresa(ejemplo: Alberto): ")
@@ -114,6 +139,8 @@ def agregarDatosClientes():
                     Clientes["apellido_contacto"]=nombreCliente
                     print("El dato cumple con el estandar,OK")
                     #break #solo para el ultimo modulo sino se rompe
+                else:
+                    raise Exception("El dato no cumple con el estandar establecido")
                 
 
 
@@ -273,97 +300,155 @@ def agregarDatosClientes():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def actualizardatos():
+def actualizarCodigoDelCliente(id):
     while True:
-        print("""
-              
- █████╗  ██████╗████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗                        
-██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║     ██║╚══███╔╝██╔══██╗██╔══██╗                       
-███████║██║        ██║   ██║   ██║███████║██║     ██║  ███╔╝ ███████║██████╔╝                       
-██╔══██║██║        ██║   ██║   ██║██╔══██║██║     ██║ ███╔╝  ██╔══██║██╔══██╗                       
-██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║██║  ██║                       
-╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝                       
-                                                                                                    
-██████╗  █████╗ ████████╗ ██████╗ ███████╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗
-██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
-██║  ██║███████║   ██║   ██║   ██║███████╗    ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗  
-██║  ██║██╔══██║   ██║   ██║   ██║╚════██║    ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  
-██████╔╝██║  ██║   ██║   ╚██████╔╝███████║    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗
-╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
-                                                                                                    
-                                         
-                                                                                                                 
-        1. Actualizar el nombre de la empresa
-        2. Actualizar el nombre del contacto
-        3. Actualizar telefono
-        4. Actualizar direcciones
-        5. Actualizar ciudad
-        6. Actualizar región
-        7. Actualizar código postal
-        8. Actualizar codigo del representante de ventas
-        9. Actualizar límite de crédito
-                    
-        0. Atras          
-          
-        """)
-      
+
+        codigo_cliente=(input("Ingresa el nuevo codigo del cliente: "))
+        if not re.match(r"^\d+$", codigo_cliente):
+            print("El código del cliente debe ser un número entero.")
+            continue
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+        break
+                
+           
+            
+    cliente = {
+        "codigo_cliente": int(codigo_cliente)
+            # "nombre_cliente":
+            # "nombre_contacto":,
+            # "apellido_contacto":,
+            # "telefono":,
+            # "fax":,
+            # "linea_direccion1":,
+            # "linea_direccion2":,
+            # "ciudad":,
+            # "region":,
+            # "pais":,
+            # "codigo_postal":,
+            # "codigo_empleado_rep_ventas":,
+            # "limite_credito":,
+            # "id":
+        }
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def actualizarDatosClientes():
+    while True:
+            print("""
+                
+     █████╗  ██████╗████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗                        
+    ██╔══██╗██╔════╝╚══██╔══╝██║   ██║██╔══██╗██║     ██║╚══███╔╝██╔══██╗██╔══██╗                       
+    ███████║██║        ██║   ██║   ██║███████║██║     ██║  ███╔╝ ███████║██████╔╝                       
+    ██╔══██║██║        ██║   ██║   ██║██╔══██║██║     ██║ ███╔╝  ██╔══██║██╔══██╗                       
+    ██║  ██║╚██████╗   ██║   ╚██████╔╝██║  ██║███████╗██║███████╗██║  ██║██║  ██║                       
+    ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝                       
+                                                                                                        
+    ██████╗  █████╗ ████████╗ ██████╗ ███████╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗███████╗
+    ██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗██╔════╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝██╔════╝
+    ██║  ██║███████║   ██║   ██║   ██║███████╗    ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   █████╗  
+    ██║  ██║██╔══██║   ██║   ██║   ██║╚════██║    ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   ██╔══╝  
+    ██████╔╝██║  ██║   ██║   ╚██████╔╝███████║    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗
+    ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
+                                                                                                        
+                                            
+            1.  Actualizar codigo del cliente (ingresa el entero desde 00,01...)                                                                                                        
+            2.  Actualizar el nombre de la empresa
+            3.  Actualizar el nombre del contacto
+            4.  Actualizar telefono
+            5.  Actualizar direcciones
+            6.  Actualizar ciudad
+            7.  Actualizar región
+            8.  Actualizar código postal
+            9.  Actualizar codigo del representante de ventas
+            10. Actualizar límite de crédito
+                
+            11. Actualizar todos los datos anteriores
+                        
+            0. Atras          
+            
+                
+                """)
+            
+            opcion=input("\nEscribe el número de una de las opciones: ")
+            if(re.match(r'[0-9]+$',opcion)is not None):
+                    opcion= int(opcion)
+                    if opcion>=0 and opcion<=11:    
+
+
+                        if opcion == 1:
+                            id=input("Ingrese la id del cliente que desea cambiar: ")
+                            print(tabulate(actualizarCodigoDelCliente(id),headers="keys",tablefmt="grid"))
+                   
+
+
+
+                        if(opcion==0):
+                            break    
 
 
 
@@ -405,7 +490,7 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=2:      
+                if opcion>=0 and opcion<=3:      
                          
                     if(opcion==1):
                         print(tabulate(agregarDatosClientes(), headers="keys",tablefmt="grid"))
@@ -413,7 +498,7 @@ def menu():
                         idProducto=input("Ingrese el id del cliente que desea eliminar: ")
                         print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))
                     if(opcion==3):
-                        actualizardatos()                       
+                        actualizarDatosClientes()                         
                     if(opcion==0):
                         break       
 
