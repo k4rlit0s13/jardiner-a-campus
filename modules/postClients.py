@@ -62,7 +62,7 @@ def FuncionDeConeccionAUnaId(id):
 
 
 
-# opcion 2 borrar datos de la lista 
+# DELETE DATO
 def deletearProduct(id):
 
     data=getcli.getAllcode(id)
@@ -85,8 +85,7 @@ def deletearProduct(id):
          }
     
 
-
-
+# POST DATO
 def agregarDatosClientes():
     Clientes={}
     while True:
@@ -298,7 +297,462 @@ def agregarDatosClientes():
 
 
 
+#UPDATE DATO
+def actualizarCodigoDelCliente(id):
 
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        codigo_cliente = (input("Ingresa el nuevo código del cliente: "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", codigo_cliente):
+            print("El código del cliente debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+
+    cliente = {
+            "codigo_cliente":int(codigo_cliente)}
+
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarNombreDelCliente(id):
+    # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    while True:
+        # actualizar el nombre del cliente/empresa
+        nombre_cliente = (input("Ingrese el nuevo nombre de la empresa: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_cliente):
+            print("El nombre del cliente no es válido.")
+            continue
+         # Validar si el nombre ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_cliente}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"nombre_cliente":(nombre_cliente),}
+
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarNombreDelContacto(id):
+
+    while True:
+            # actualizar el nombre del contacto
+            nombre_contacto=(input("Ingrese el nuevo nombre del representante de la empresa: "))
+
+            # Validar nombre
+            if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_contacto):
+                print("El nombre del contacto no es válido.")
+                continue
+            #  # NO ES NECESARIO VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_contacto}")
+            # if response.status_code == 200:
+            #     print("El código del cliente ya existe.")
+            #     continue
+            break
+
+
+
+    # actualizar el apellido del contacto y se puede repetir
+    while True:
+        # actualizar el nombre del cliente/empresa
+        apellido_contacto=(input("Ingrese el nuevo apellido del representante de la empresa: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", apellido_contacto):
+            print("El nombre del contacto no es válido.")
+            continue
+        #  # NO ES NECESARIO VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5001/clientes/{apellido_contacto}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+        break
+       
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = { 
+         "nombre_contacto":(nombre_contacto),
+        "apellido_contacto":(apellido_contacto),}
+
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarTelefonoDelContacto(id):
+
+
+    while True:
+         # actualizar el teléfono del cliente sin que se repita con alguno ya existente
+        telefono = (input("Ingresa el nuevo teléfono del cliente (11 dijitos 00000000000): "))
+        # Validar solo 11 números
+        if not re.match(r"^[0-9]{11}$", telefono):
+            print("El teléfono del cliente se construye de 11 dígitos 00000000000.")
+            continue
+        # Validar si el telefono ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{telefono}")
+        if response.status_code == 200:
+            print("El teléfono del cliente ya existe.")
+            continue
+        break
+
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"telefono":(telefono),}
+
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarDirecciones1Y2DelContacto(id):
+
+    while True:
+            # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
+            linea_direccion1 = (input("Ingresa la nueva dirección del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[\x00-\xFF]+$",linea_direccion1):
+                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+                continue
+            # Validar si la direccion ya existe
+            response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion1}")
+            if response.status_code == 200:
+                print("La dirección del cliente ya existe.")
+                continue
+            break
+
+
+    while True:
+            # actualizar la linea_direccion2 del cliente sin que se repita con alguno ya existente
+            linea_direccion2 = (input("Ingresa una nueva indicacion a la direccion del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[\x00-\xFF]+$",linea_direccion2):
+                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+                continue
+            # Validar si la direccion2 ya existe
+            response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion2}")
+            if response.status_code == 200:
+                print("El dato de la dirección del cliente ya existe.")
+                continue
+            break
+
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "linea_direccion1":(linea_direccion1),
+        "linea_direccion2":(linea_direccion2)}
+    
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarCiudadDelContacto(id):
+
+    while True:
+            # actualizar la ciudad del cliente sin que se repita con alguno ya existente
+            ciudad = (input("Ingresa una nueva ciudad del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",ciudad):
+                print("La ciudad se indica con primera en mayuscula .")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{ciudad}")
+            # if response.status_code == 200:
+            #     print("El dato de la ciudad del cliente ya existe.")
+            #     continue
+            break
+    
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"ciudad":(ciudad)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarRegionDelContacto(id):
+
+    while True:
+            # actualizar la region del cliente sin que se repita con alguno ya existente
+            region = (input("Ingresa una nueva región del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",region):
+                print("La región se indica con primera en mayuscula .")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{region}")
+            # if response.status_code == 200:
+            #     print("El dato de region del cliente ya existe.")
+            #     continue
+            break
+    
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"region":(region)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarPaisContacto(id):
+
+    while True:
+            # actualizar el pais del cliente sin que se repita con alguno ya existente
+            pais = (input("Ingresa un nuevo país del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",pais):
+                print("El país se indica con primera en mayuscula .")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{pais}")
+            # if response.status_code == 200:
+            #     print("El dato de pais del cliente ya existe.")
+            #     continue
+            break
+
+    
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"pais":(pais)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarCodigoPostalContacto(id):
+
+    while True:
+            # actualizar el codigo postal sin que se repita con alguno ya existente
+            codigo_postal = (input("Ingresa un nuevo código postal del cliente (5 números 00000): "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[0-9]{5}$",codigo_postal):
+                print("El código postal se indica con  .")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{region}")
+            # if response.status_code == 200:
+            #     print("El dato de pais del cliente ya existe.")
+            #     continue
+            break
+
+    cliente = {"codigo_postal":(codigo_postal),}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarRepresentanteContacto(id):
+
+    while True:
+            # actualizar el codigo del empleado sin que se repita con alguno ya existente
+            codigo_empleado_rep_ventas = (input("Ingresa un nuevo codigo del empleado del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[0-9]+$",codigo_empleado_rep_ventas):
+                print("El codigo del empleadol se indica con un número.")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_empleado_rep_ventas}")
+            # if response.status_code == 200:
+            #     print("El dato de codigo del empleado del cliente ya existe.")
+            #     continue
+            break
+
+    cliente = { "codigo_empleado_rep_ventas":int(codigo_empleado_rep_ventas)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarLimiteCreditoContacto(id):
+
+    while True:
+            # actualizar el limite_credito del empleado sin que se repita con alguno ya existente
+            limite_credito = (input("Ingresa un nuevo limite de crédito del cliente: "))
+            # Validar números float
+            if not re.match(r"^[0-9]+$",limite_credito):
+                print("El limite crédito se indica con un número.")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5001/clientes/{limite_credito}")
+            # if response.status_code == 200:
+            #     print("El dato de codigo del empleado del cliente ya existe.")
+            #     continue
+            break
+
+    cliente = { "limite_credito":float(limite_credito)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizaridContacto(id):
+
+    while True:
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        idNueva = (input("Ingresa el nuevo id del cliente(1,2,...): "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", id):
+            print("El id del cliente debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{idNueva}")
+        if response.status_code == 200:
+            print("El id del cliente ya existe.")
+            continue
+
+        break
+
+    cliente = {"id":int(idNueva)}
+
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
 
 def actualizarTodoUnDatoCliente(id):
 
@@ -599,333 +1053,6 @@ def actualizarTodoUnDatoCliente(id):
     
     return[res]
 
-def actualizarCodigoDelCliente(id):
-
-    while True:
-        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
-
-         # actualizar el codigo del cliente sin que se repita con alguno ya existente
-        codigo_cliente = (input("Ingresa el nuevo código del cliente: "))
-
-        # Validar solo números
-        if not re.match(r"^[0-9]+$", codigo_cliente):
-            print("El código del cliente debe ser un número entero positivo.")
-            continue
-        # Validar si el código ya existe
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
-        if response.status_code == 200:
-            print("El código del cliente ya existe.")
-            continue
-
-        break
-
-    cliente = {
-            "codigo_cliente":int(codigo_cliente)}
-
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarNombreDelCliente(id):
-    # actualizar el nombre del cliente sin que se repita con alguno ya existente
-    while True:
-        # actualizar el nombre del cliente/empresa
-        nombre_cliente = (input("Ingrese el nuevo nombre de la empresa: "))
-
-        # Validar nombre
-        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_cliente):
-            print("El nombre del cliente no es válido.")
-            continue
-         # Validar si el nombre ya existe
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_cliente}")
-        if response.status_code == 200:
-            print("El código del cliente ya existe.")
-            continue
-
-        break
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"nombre_cliente":(nombre_cliente),}
-
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarNombreDelContacto(id):
-
-  # actualizar el nombre del contacto y se puede repetir
-    while True:
-        # actualizar el nombre del contacto
-        nombre_contacto=(input("Ingrese el nuevo nombre del representante de la empresa: "))
-
-        # Validar nombre
-        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_contacto):
-            print("El nombre del contacto no es válido.")
-            continue
-        #  # NO ES NECESARIO VALIDAR
-        # response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_contacto}")
-        # if response.status_code == 200:
-        #     print("El código del cliente ya existe.")
-        #     continue
-        break
-       
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"nombre_contacto":(nombre_contacto),}
-
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarTelefonoDelContacto(id):
-
-
-    while True:
-         # actualizar el teléfono del cliente sin que se repita con alguno ya existente
-        telefono = (input("Ingresa el nuevo teléfono del cliente (11 dijitos 00000000000): "))
-        # Validar solo 11 números
-        if not re.match(r"^[0-9]{11}$", telefono):
-            print("El teléfono del cliente se construye de 11 dígitos 00000000000.")
-            continue
-        # Validar si el telefono ya existe
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{telefono}")
-        if response.status_code == 200:
-            print("El teléfono del cliente ya existe.")
-            continue
-        break
-
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"telefono":(telefono),}
-
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarDirecciones1Y2DelContacto(id):
-
-    while True:
-            # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
-            linea_direccion1 = (input("Ingresa la nueva dirección del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^[\x00-\xFF]+$",linea_direccion1):
-                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
-                continue
-            # Validar si la direccion ya existe
-            response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion1}")
-            if response.status_code == 200:
-                print("La dirección del cliente ya existe.")
-                continue
-            break
-
-
-    while True:
-            # actualizar la linea_direccion2 del cliente sin que se repita con alguno ya existente
-            linea_direccion2 = (input("Ingresa una nueva indicacion a la direccion del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^[\x00-\xFF]+$",linea_direccion2):
-                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
-                continue
-            # Validar si la direccion2 ya existe
-            response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion2}")
-            if response.status_code == 200:
-                print("El dato de la dirección del cliente ya existe.")
-                continue
-            break
-
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {
-        "linea_direccion1":(linea_direccion1),
-        "linea_direccion2":(linea_direccion2)}
-    
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarCiudadDelContacto(id):
-
-    while True:
-            # actualizar la ciudad del cliente sin que se repita con alguno ya existente
-            ciudad = (input("Ingresa una nueva ciudad del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",ciudad):
-                print("La ciudad se indica con primera en mayuscula .")
-                continue
-            # NO NESECITA VALIDAR
-            # response = requests.get(f"http://10.0.2.15:5001/clientes/{ciudad}")
-            # if response.status_code == 200:
-            #     print("El dato de la ciudad del cliente ya existe.")
-            #     continue
-            break
-    
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"ciudad":(ciudad)}
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarRegionDelContacto(id):
-
-    while True:
-            # actualizar la region del cliente sin que se repita con alguno ya existente
-            region = (input("Ingresa una nueva región del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",region):
-                print("La región se indica con primera en mayuscula .")
-                continue
-            # NO NESECITA VALIDAR
-            # response = requests.get(f"http://10.0.2.15:5001/clientes/{region}")
-            # if response.status_code == 200:
-            #     print("El dato de region del cliente ya existe.")
-            #     continue
-            break
-    
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"region":(region)}
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-def actualizarPaisContacto(id):
-
-    while True:
-            # actualizar el pais del cliente sin que se repita con alguno ya existente
-            pais = (input("Ingresa un nuevo país del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",pais):
-                print("El país se indica con primera en mayuscula .")
-                continue
-            # NO NESECITA VALIDAR
-            # response = requests.get(f"http://10.0.2.15:5001/clientes/{pais}")
-            # if response.status_code == 200:
-            #     print("El dato de pais del cliente ya existe.")
-            #     continue
-            break
-
-    
-   # PRIMERO ponemos todo el listado de información de nuestra lista
-    cliente = {"pais":(pais)}
-
-    clienteExistente=FuncionDeConeccionAUnaId(id)
-    if not clienteExistente:
-            return{"message":"Cliente no encontrado"}
-        
-    clienteActualizado= {**clienteExistente[0],**cliente}
-    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
-    res=peticion.json()
-
-    if peticion.status_code==200:
-        res["messaje"]="Cliente actualizado correctamente"
-    else:
-        res["message"]="Cliente no se pudo actualizar"
-    
-    return[res]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -950,7 +1077,7 @@ def actualizarDatosClientes():
     ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
                                                                                                         
                                             
-            1.  Actualizar codigo del cliente (ingresa el entero desde 00,01...)                                                                                                        
+            1.  Actualizar codigo del cliente (ingresa el entero desde 00,01...)                                                                                            
             2.  Actualizar el nombre de la empresa
             3.  Actualizar el nombre del contacto
             4.  Actualizar telefono
@@ -961,8 +1088,9 @@ def actualizarDatosClientes():
             9.  Actualizar código postal
             10. Actualizar codigo del representante de ventas
             11. Actualizar límite de crédito
+            12. Actualizar id del cliente
                 
-            12. Actualizar todos los datos anteriores
+            13. Actualizar todos los datos anteriores
                         
             0. Atras          
             
@@ -972,7 +1100,7 @@ def actualizarDatosClientes():
             opcion=input("\nEscribe el número de una de las opciones: ")
             if(re.match(r'[0-9]+$',opcion)is not None):
                     opcion= int(opcion)
-                    if opcion>=0 and opcion<=11:    
+                    if opcion>=0 and opcion<=13:    
 
 
 
@@ -1006,24 +1134,27 @@ def actualizarDatosClientes():
 
                         if opcion == 8:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate((id),headers="keys",tablefmt="grid"))    
+                            print(tabulate(actualizarPaisContacto(id),headers="keys",tablefmt="grid"))    
 
                         if opcion == 9:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate((id),headers="keys",tablefmt="grid"))    
+                            print(tabulate(actualizarCodigoPostalContacto(id),headers="keys",tablefmt="grid"))    
 
                         if opcion == 10:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate((id),headers="keys",tablefmt="grid"))                                                                                                                                            
+                            print(tabulate(actualizarRepresentanteContacto(id),headers="keys",tablefmt="grid"))                                                                                                                                            
 
                         if opcion == 11:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate((id),headers="keys",tablefmt="grid"))
+                            print(tabulate(actualizarLimiteCreditoContacto(id),headers="keys",tablefmt="grid"))
                    
                         if opcion == 12:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate((id),headers="keys",tablefmt="grid"))
+                            print(tabulate(actualizaridContacto(id),headers="keys",tablefmt="grid"))
 
+                        if opcion == 13:
+                            id=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarTodoUnDatoCliente(id),headers="keys",tablefmt="grid"))
 
                         if(opcion==0):
                             break    
