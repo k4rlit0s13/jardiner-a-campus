@@ -23,8 +23,13 @@ def FuncionDeConeccionGama():
     return Informacion    
 
 
+#obtener un codigo de la lista directo(optimizado)
+def getAllcode(id):
+       peticion=requests.get(f"http://10.0.2.15:5006/gama_productos/{'id'}")
+       return[peticion.json()] if peticion.ok else []
 
-# opcion 2 borrar datos de la lista 
+
+# DELETE DATOS
 def deletearProduct(code):
 
     data=getgama.getAllcode(code)
@@ -48,7 +53,7 @@ def deletearProduct(code):
     
 
 
-
+# POST DATOS 
 def agregarDatosGama():
     gamasProducto={}
     while True:
@@ -104,6 +109,144 @@ def agregarDatosGama():
     return [res]
 
 
+# UPDATE DATOS
+def actualizarTodosdatosGamaProductos(id):
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        gama = (input("Ingresa nueva gama del producto: "))
+
+        # Validar solo números
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜ]{1}[a-záéíóúñü]*)$", gama):
+            print("La gama es con primera en mayuscula y solo una palabra.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5006/gama_productos{gama}")
+        if response.status_code == 200:
+            print("gama ya existe.")
+            continue
+
+        break
+
+
+
+    # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    while True:
+        # actualizar el nombre del cliente/empresa
+        descripcion_texto = (input("Ingrese la nueva descripcion del texto: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$",descripcion_texto):
+            print("la descripción es solo texto.")
+            continue
+        #  # NO SE ASIMILA
+        # response = requests.get(f"http://10.0.2.15:5006/gama_productos{descripcion_texto}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+
+        break
+
+     # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "gama":str(gama),
+        "descripcion_texto":str(descripcion_texto),}
+
+
+    clienteExistente=getAllcode(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5006/gama_productos{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarGama(id):
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        gama = (input("Ingresa nueva gama del producto: "))
+
+        # Validar solo números
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜ]{1}[a-záéíóúñü]*)$", gama):
+            print("La gama es con primera en mayuscula y solo una palabra.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5006/gama_productos{gama}")
+        if response.status_code == 200:
+            print("gama ya existe.")
+            continue
+
+        break
+
+
+     # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "gama":str(gama),}
+
+
+    clienteExistente=getAllcode(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5006/gama_productos{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizardescripcion(id):
+
+    # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    while True:
+        # actualizar el nombre del cliente/empresa
+        descripcion_texto = (input("Ingrese la nueva descripcion del texto: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$",descripcion_texto):
+            print("la descripción es solo texto.")
+            continue
+        #  # NO SE ASIMILA
+        # response = requests.get(f"http://10.0.2.15:5006/gama_productos{descripcion_texto}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+
+        break
+
+     # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "descripcion_texto":str(descripcion_texto),}
+
+
+    clienteExistente=getAllcode(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5006/gama_productos{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
 
 
 
@@ -132,8 +275,7 @@ def agregarDatosGama():
 
 
 
-
-def actualizarPagos():
+def actualizarGamaProoductos():
     while True:
         print("""
  █████╗  ██████╗████████╗██╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ██████╗     
@@ -159,16 +301,14 @@ def actualizarPagos():
                                                                                  
                                                                                         
 
-        1. Actualizar      
-        2. Actualizar    
-        3. Actualizar   
-        4. Actualizar 
-        5. Actualizar 
-        6. Actualizar 
-                                   
+        1. Actualizar gama
+        2. Actualizar descripción   
+              
+        3. Actualizar ambos
+                   
         0. Atras                                                                                                           
           
-          
+        
           
         
 
@@ -176,9 +316,20 @@ def actualizarPagos():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=6:   
+                if opcion>=0 and opcion<=3:   
                            
-                   
+                    if opcion == 1:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate(actualizarGama(id),headers="keys",tablefmt="grid"))
+
+                    if opcion == 2:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate(actualizardescripcion(id),headers="keys",tablefmt="grid"))
+
+                    if opcion == 3:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate(actualizarTodosdatosGamaProductos(id),headers="keys",tablefmt="grid"))
+                                       
                   
                     if(opcion==0):
                         break
@@ -219,7 +370,8 @@ def menu():
                                                                                                                  
         1. Guardar un nuevo dato de gama de productos
         2. Eliminar un dato
-                    
+        3. Actualizar gama de productos
+                          
         0. Atras          
           
           
@@ -230,11 +382,15 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
             opcion=int(opcion)
-            if opcion>=0 and opcion<=2:      
+            if opcion>=0 and opcion<=3:      
                 if(opcion==1):
                     print(tabulate(agregarDatosGama(), headers="keys",tablefmt="grid"))
                 if(opcion==2):
                     idProducto=input("Ingrese el id del producto que desea eliminar: ")
                     print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                    
-                elif(opcion==0):
+                if(opcion==3):
+                    actualizarGamaProoductos()
+                if(opcion==0):
                     break        
+
+                

@@ -531,7 +531,7 @@ def actualizaridNueva(id):
             print("El id del cliente debe ser un número entero positivo.")
             continue
         # Validar si el código ya existe
-        response = requests.get(f"http://10.0.2.15:5003/empleados/{idNueva}")
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{id}")
         if response.status_code == 200:
             print("El id del cliente ya existe.")
             continue
@@ -722,7 +722,7 @@ def actualizarTodoUnDatoempleados(id):
             print("El id del cliente debe ser un número entero positivo.")
             continue
         # Validar si el código ya existe
-        response = requests.get(f"http://10.0.2.15:5003/empleados/{idNueva}")
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{id}")
         if response.status_code == 200:
             print("El id del cliente ya existe.")
             continue
@@ -869,6 +869,13 @@ def actualizarPagos():
                                                                     
                     if(opcion==0):
                         break
+
+
+
+
+
+
+
 
 
 
