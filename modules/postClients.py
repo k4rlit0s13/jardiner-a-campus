@@ -300,7 +300,7 @@ def agregarDatosClientes():
 
 
 
-def actualizarCodigoDelCliente(id):
+def actualizarTodoUnDatoCliente(id):
 
     while True:
         # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
@@ -564,8 +564,6 @@ def actualizarCodigoDelCliente(id):
 
 
 
-
-
     # PRIMERO ponemos todo el listado de información de nuestra lista
     cliente = {
         "codigo_cliente":int(codigo_cliente),
@@ -586,9 +584,6 @@ def actualizarCodigoDelCliente(id):
         }
 
 
-
-
-
     clienteExistente=FuncionDeConeccionAUnaId(id)
     if not clienteExistente:
         return{"message":"Cliente no encontrado"}
@@ -604,22 +599,80 @@ def actualizarCodigoDelCliente(id):
     
     return[res]
 
+def actualizarCodigoDelCliente(id):
+
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        codigo_cliente = (input("Ingresa el nuevo código del cliente: "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", codigo_cliente):
+            print("El código del cliente debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+
+    cliente = {
+            "codigo_cliente":int(codigo_cliente)}
 
 
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizarNombreDelCliente(id):
+    # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    while True:
+        # actualizar el nombre del cliente/empresa
+        nombre_cliente = (input("Ingrese el nuevo nombre de la empresa: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_cliente):
+            print("El nombre del cliente no es válido.")
+            continue
+         # Validar si el nombre ya existe
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_cliente}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+   # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {"nombre_cliente":(nombre_cliente),}
 
 
+    clienteExistente=FuncionDeConeccionAUnaId(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5001/clientes/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
 
-
-
-
-
-
-
-
-
-
-
-
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
 
 
 
@@ -694,9 +747,18 @@ def actualizarDatosClientes():
                     if opcion>=0 and opcion<=11:    
 
 
+
                         if opcion == 1:
                             id=input("Ingrese la id del cliente que desea actualizar: ")
                             print(tabulate(actualizarCodigoDelCliente(id),headers="keys",tablefmt="grid"))
+
+                        if opcion == 2:
+                            id=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarNombreDelCliente(id),headers="keys",tablefmt="grid"))
+
+                        if opcion == 11:
+                            id=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarTodoUnDatoCliente(id),headers="keys",tablefmt="grid"))
                    
 
 
