@@ -1076,8 +1076,8 @@ def actualizarDatosClientes():
     ██████╔╝██║  ██║   ██║   ╚██████╔╝███████║    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   ███████╗
     ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚══════╝
                                                                                                         
-                                            
-            1.  Actualizar codigo del cliente (ingresa el entero desde 00,01...)                                                                                            
+
+            1.  Actualizar codigo del cliente (ingresa el entero desde 00,01...)
             2.  Actualizar el nombre de la empresa
             3.  Actualizar el nombre del contacto
             4.  Actualizar telefono

@@ -76,7 +76,7 @@ def menu():
         1. Obtener todos los detalles de los pedidos
       
         EDITAR DATOS:      
-        2. Guardar un detalle de pedido
+        2. Editar datos detalle pedido
                     
         0. Salir al menu principal
 
