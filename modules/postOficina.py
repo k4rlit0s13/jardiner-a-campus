@@ -33,10 +33,15 @@ def FuncionDeConeccionOficinaJson():
       Informacion=peticion.json()  
       return Informacion        
 
+#obtener un codigo de la lista directo(optimizado)
+def getAllcode(id):
+       peticion=requests.get(f"http://10.0.2.15:5002/oficinas/{id}")
+       return[peticion.json()] if peticion.ok else []
 
 
-# opcion 2 borrar datos de la lista 
-def deletearProduct(code):
+
+# DELETE DATOS
+def deletearProduct(id):
 
     data=getOf.getAllcode(code)
 
@@ -57,10 +62,7 @@ def deletearProduct(code):
               "status":400,
          }
     
-
-
-
-
+# AGREGAR DATOS OFICINAS
 def agregarDatosoficina():
     oficinas={}
     while True:
@@ -190,6 +192,160 @@ def agregarDatosoficina():
         res["Mensaje"] = "Producto Guardado"
         return [res]
 
+# UPDATE DATOS
+def actualizarTodoUnDatoOficina(id):
+
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        codigo_oficina = (input("Ingresa el nuevo código de la oficina(ejemplo:AAA-AAA): "))
+
+        # Validar solo números
+        if not re.match(r"^([A-Z]{3})-([A-Z]+)$", codigo_oficina):
+            print("El código de la oficina no es valido.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5002/oficinas/{codigo_oficina}")
+        if response.status_code == 200:
+            print("El código de oficina ya existe.")
+            continue
+
+        break
+
+
+    while True:
+            # actualizar la ciudad del cliente sin que se repita con alguno ya existente
+            ciudad = (input("Ingresa una nueva ciudad de la oficina: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",ciudad):
+                print("La ciudad se indica con primera en mayuscula .")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5002/oficinas{ciudad}")
+            # if response.status_code == 200:
+            #     print("El dato de la ciudad del cliente ya existe.")
+            #     continue
+            break
+    
+
+    while True:
+        # actualizar el pais del cliente sin que se repita con alguno ya existente
+        pais = (input("Ingresa un nuevo país de la oficina: "))
+        # Validar números,letras espacios y carácteres especiales
+        if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",pais):
+            print("El país se indica con primera en mayuscula .")
+            continue
+        # NO NESECITA VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5002/oficinas{pais}")
+        # if response.status_code == 200:
+        #     print("El dato de pais del cliente ya existe.")
+        #     continue
+        break
+
+
+    while True:
+        # actualizar la region del cliente sin que se repita con alguno ya existente
+        region = (input("Ingresa una nueva región de la oficina: "))
+        # Validar números,letras espacios y carácteres especiales
+        if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",region):
+            print("La región se indica con primera en mayuscula .")
+            continue
+        # NO NESECITA VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5002/oficinas{region}")
+        # if response.status_code == 200:
+        #     print("El dato de region del cliente ya existe.")
+        #     continue
+        break
+
+
+    while True:
+        # actualizar el codigo postal sin que se repita con alguno ya existente
+        codigo_postal = (input("Ingresa un nuevo código postal de la oficina (5 números 00000): "))
+        # Validar números,letras espacios y carácteres especiales
+        if not re.match(r"^[0-9]{5}$",codigo_postal):
+            print("El código postal no es válido .")
+            continue
+        # NO NESECITA VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5002/oficinas{region}")
+        # if response.status_code == 200:
+        #     print("El dato de pais del cliente ya existe.")
+        #     continue
+        break
+       
+
+    while True:
+         # actualizar el teléfono del cliente sin que se repita con alguno ya existente
+        telefono = (input("Ingresa el nuevo teléfono dela oficina(11 dijitos 00000000000): "))
+        # Validar solo 11 números
+        if not re.match(r"^[0-9]{11}$", telefono):
+            print("El teléfono del cliente se construye de 11 dígitos 00000000000.")
+            continue
+        # Validar si el telefono ya existe
+        response = requests.get(f"http://10.0.2.15:5002/oficinas/{telefono}")
+        if response.status_code == 200:
+            print("El teléfono del cliente ya existe.")
+            continue
+        break
+
+
+    while True:
+            # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
+            linea_direccion1 = (input("Ingresa la nueva dirección de la oficina: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[\x00-\xFF]+$",linea_direccion1):
+                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+                continue
+            # Validar si la direccion ya existe
+            response = requests.get(f"http://10.0.2.15:5002/oficinas/{linea_direccion1}")
+            if response.status_code == 200:
+                print("La dirección del cliente ya existe.")
+                continue
+            break
+
+
+    while True:
+            # actualizar la linea_direccion2 del cliente sin que se repita con alguno ya existente
+            linea_direccion2 = (input("Ingresa una nueva indicacion a la direccion de la oficina: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[\x00-\xFF]+$",linea_direccion2):
+                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+                continue
+            # Validar si la direccion2 ya existe
+            response = requests.get(f"http://10.0.2.15:5002/oficinas/{linea_direccion2}")
+            if response.status_code == 200:
+                print("El dato de la dirección del cliente ya existe.")
+                continue
+            break
+    
+
+    # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "codigo_oficina":str(codigo_oficina),
+        "ciudad":str(ciudad),
+        "region":str(region),
+        "pais":str(pais),
+        "codigo_postal":str(codigo_postal),
+        "telefono":str(telefono),
+        "linea_direccion1":str(linea_direccion1),
+        "linea_direccion2":str(linea_direccion2)
+        }
+
+
+    clienteExistente=getAllcode(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5002/oficinas/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
 
 
 
@@ -235,12 +391,15 @@ def actualizarPagos():
                                                                                                
                                                                                         
 
-        1. Actualizar      
-        2. Actualizar    
-        3. Actualizar   
-        4. Actualizar 
-        5. Actualizar 
-        6. Actualizar 
+        1. Actualizar codigo oficina      
+        2. Actualizar ciudad   
+        3. Actualizar pais  
+        4. Actualizar region
+        5. Actualizar codigo postal
+        6. Actualizar telefono
+        7. Actualizar direcciones
+
+        8. Actualizar todas      
                                    
         0. Atras                                                                                                           
           
@@ -252,10 +411,41 @@ def actualizarPagos():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=6:   
+                if opcion>=0 and opcion<=8:   
                            
                    
-                  
+                    if opcion == 1:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid"))
+
+                    if opcion == 2:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid"))
+
+                    if opcion == 3:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid"))                     
+                    
+                    if opcion == 4:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid"))                   
+                    
+                    if opcion == 5:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid")) 
+
+                    if opcion == 6:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid")) 
+
+                    if opcion == 7:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate((id),headers="keys",tablefmt="grid")) 
+
+                    if opcion == 8:
+                        id=input("Ingrese la id de la ofificna que desea actualizar: ")
+                        print(tabulate(actualizarTodoUnDatoOficina(id),headers="keys",tablefmt="grid"))                    
+                    
                     if(opcion==0):
                         break
 
@@ -291,7 +481,8 @@ def menu():
 
         1. Guardar nuevo dato de oficina
         2. Borrar un dato 
-                    
+        3. Actualizar datos oficina
+                          
         0. Atras       
 
 
@@ -301,12 +492,14 @@ def menu():
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=2:  
+                if opcion>=0 and opcion<=3:  
                              
                     if(opcion==1):
                         print(tabulate(agregarDatosoficina(), headers="keys",tablefmt="grid"))
                     if(opcion==2):
                         idProducto=input("Ingrese el id del producto que desea eliminar: ")
                         print(tabulate(deletearProduct(idProducto)["body"],headers="keys",tablefmt="grid"))                        
+                    if(opcion==3):
+                        actualizarPagos()              
                     if(opcion==0):
                         break
