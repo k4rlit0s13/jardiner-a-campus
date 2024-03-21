@@ -34,8 +34,8 @@ def FuncionDeConeccionempleadosJson():
       return Informacion    
 
 #obtener un codigo de la lista directo(optimizado)
-def getAllcode(codigo):
-       peticion=requests.get(f"http://10.0.2.15:5005/detalle_pedidos/{codigo}")
+def getAllcode(id):
+       peticion=requests.get(f"http://10.0.2.15:5005/detalle_pedidos/{id}")
        return[peticion.json()] if peticion.ok else []
 
 
@@ -378,12 +378,11 @@ def actualizarExtensionEmpleado(id):
 
 def actualizarEmailEmpleado(id):
 
-   
     while True:
          # actualizar el fax del cliente sin que se repita con alguno ya existente
         email = (input("Ingresa el nuevo email: "))
         # Validar solo 11 números
-        if not re.match(r".+",email):
+        if not re.match(r"^[\x00-\xFF]+$",email):
             print("El email es incorrecto.")
             continue
         # Validar si el fax ya existe
@@ -392,7 +391,6 @@ def actualizarEmailEmpleado(id):
             print("El fax del cliente ya existe.")
             continue
         break
-
 
     cliente = {
         "email":(email)
@@ -416,16 +414,16 @@ def actualizarEmailEmpleado(id):
 def actualizarCodigoOficinaEmpleado(id):
 
     while True:
-            # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
-            codigo_oficina = (input("Ingresa la nueva dirección del cliente: "))
-            # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^[A-Z]{3}-[A-Z]{3}$",codigo_oficina):
-                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+            # actualizar código oficinad cliente sin que se repita con alguno ya existente
+            codigo_oficina = (input("Ingresa el nuevo código del empleado(ejemplo:AAA-BBB): "))
+            # Validar código oficina
+            if not re.match(r"^[A-Z]{3}-[A-Z]$",codigo_oficina):
+                print("el nuevo código oficina no es válido.")
                 continue
-            # Validar si la direccion ya existe
+            # Validar si código oficina existe
             response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_oficina}")
             if response.status_code == 200:
-                print("La dirección del cliente ya existe.")
+                print("El código oficina ya existe.")
                 continue
             break
 
@@ -656,7 +654,7 @@ def actualizarTodoUnDatoempleados(id):
          # actualizar el fax del cliente sin que se repita con alguno ya existente
         email = (input("Ingresa el nuevo email: "))
         # Validar solo 11 números
-        if not re.match(r".+",email):
+        if not re.match(r"^[\x00-\xFF]+$",email):
             print("El email es incorrecto.")
             continue
         # Validar si el fax ya existe
