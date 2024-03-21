@@ -452,7 +452,7 @@ def actualizarTodoUnDatoProducto(id):
         idNueva = (input("Ingresa el nuevo id del cliente(1,2,...): "))
 
         # Validar solo números
-        if not re.match(r"^[0-9]+$", id):
+        if not re.match(r"^[0-9]+$", idNueva):
             print("El id del cliente debe ser un número entero positivo.")
             continue
         # Validar si el código ya existe

@@ -35,7 +35,7 @@ def FuncionDeConeccionempleadosJson():
 
 #obtener un codigo de la lista directo(optimizado)
 def getAllcode(id):
-       peticion=requests.get(f"http://10.0.2.15:5005/detalle_pedidos/{id}")
+       peticion=requests.get(f"http://10.0.2.15:5003/empleados/{id}")
        return[peticion.json()] if peticion.ok else []
 
 
@@ -415,9 +415,9 @@ def actualizarCodigoOficinaEmpleado(id):
 
     while True:
             # actualizar código oficinad cliente sin que se repita con alguno ya existente
-            codigo_oficina = (input("Ingresa el nuevo código del empleado(ejemplo:AAA-BBB): "))
+            codigo_oficina = (input("Ingresa el nuevo código de la oficina(ejemplo:AAA-BBB): "))
             # Validar código oficina
-            if not re.match(r"^[A-Z]{3}-[A-Z]$",codigo_oficina):
+            if not re.match(r"^([A-Z]{3})-([A-Z]+)$",codigo_oficina):
                 print("el nuevo código oficina no es válido.")
                 continue
             # Validar si código oficina existe
@@ -452,10 +452,10 @@ def actualizarCodigoJefeEmpleado(id):
 
     while True:
         # actualizar codigo gefe del cliente sin que se repita con alguno ya existente
-        codigo_jefe = (input("Ingresa una nueva indicacion a la direccion del cliente: "))
+        codigo_jefe = (input("Ingresa un nuevo código del jefe: "))
         # Validar números,letras espacios y carácteres especiales
         if not re.match(r"^[0-9]+$",codigo_jefe):
-            print("El código se construye por un número.")
+            print("El código jefe se construye por un número.")
             continue
         # # no se repite
         # response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_jefe}")
@@ -490,7 +490,7 @@ def actualizarPuestoEmpleado(id):
         # actualizar la ciudad del cliente sin que se repita con alguno ya existente
         puesto = (input("Ingresa una nueva puesto del empleado: "))
         # Validar números,letras espacios y carácteres especiales
-        if not re.match(r"^[A-Z][a-zA-Z]*$",puesto):
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜ]{1}[a-záéíóúñü]+)(?:\s[A-ZÁÉÍÓÚÑÜ]{1}[a-záéíóúñü]+)*$",puesto):
             print("El puesto que indica no cumple.")
             continue
         # NO NESECITA VALIDAR
@@ -581,7 +581,7 @@ def actualizarTodoUnDatoempleados(id):
     # actualizar el nombre del cliente sin que se repita con alguno ya existente
     while True:
         # actualizar el nombre del cliente/empresa
-        nombre = (input("Ingrese el nuevo nombre de la empresa: "))
+        nombre = (input("Ingrese el nuevo nombre del empleado: "))
 
         # Validar nombre
         if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre):
@@ -670,7 +670,7 @@ def actualizarTodoUnDatoempleados(id):
             # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
             codigo_oficina = (input("Ingresa la nueva dirección del cliente: "))
             # Validar números,letras espacios y carácteres especiales
-            if not re.match(r"^[A-Z]{3}-[A-Z]{3}$",codigo_oficina):
+            if not re.match(r"^([A-Z]{3})-([A-Z]+)$",codigo_oficina):
                 print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
                 continue
             # Validar si la direccion ya existe

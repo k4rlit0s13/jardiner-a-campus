@@ -34,9 +34,9 @@ def FuncionDeConeccionPagoJson():
 
 
 # opcion 2 borrar datos de la lista 
-def deletearProduct(id):
+def deletearProduct(code):
 
-    data=getpa.getAllcode(id)
+    data=getpa.getAllcode(code)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5008/pagos/{id}")
@@ -144,9 +144,9 @@ def agregarDatosPagos():
 
 
 
-def actualizarPagoTotal(id):
+def actualizarPagoTotal(code):
     nuevoValorPago = float(input("Ingrese el nuevo valor del pago: "))
-    pagos = getpa.getAllcode(id)  # Obtener todos los pagos
+    pagos = getpa.getAllcode(code)  # Obtener todos los pagos
     for pago in pagos:  # Buscar el pago con el ID proporcionado
         if pago.get("id") == id: # Actualizar el valor total del pago
             pago["total"] = nuevoValorPago

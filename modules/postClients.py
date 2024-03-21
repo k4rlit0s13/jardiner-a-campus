@@ -49,7 +49,7 @@ def FuncionDeConeccionClienteJson():
 
 
 
-def FuncionDeConeccionAUnaId(id):
+def FuncionDeConeccionAUnaId(code):
       peticion=requests.get(f"http://10.0.2.15:5001/clientes/{id}") 
       return [peticion.json()] if peticion.ok else[]
 
@@ -63,9 +63,9 @@ def FuncionDeConeccionAUnaId(id):
 
 
 # DELETE DATO
-def deletearProduct(id):
+def deletearProduct(code):
 
-    data=getcli.getAllcode(id)
+    data=getcli.getAllcode(code)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5001/clientes/{id}")
@@ -298,7 +298,7 @@ def agregarDatosClientes():
 
 
 #UPDATE DATO
-def actualizarCodigoDelCliente(id):
+def actualizarCodigoDelCliente(code):
 
     while True:
         # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
@@ -322,7 +322,7 @@ def actualizarCodigoDelCliente(id):
             "codigo_cliente":int(codigo_cliente)}
 
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -337,7 +337,7 @@ def actualizarCodigoDelCliente(id):
     
     return[res]
 
-def actualizarNombreDelCliente(id):
+def actualizarNombreDelCliente(code):
     # actualizar el nombre del cliente sin que se repita con alguno ya existente
     while True:
         # actualizar el nombre del cliente/empresa
@@ -358,7 +358,7 @@ def actualizarNombreDelCliente(id):
     cliente = {"nombre_cliente":(nombre_cliente),}
 
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -373,7 +373,7 @@ def actualizarNombreDelCliente(id):
     
     return[res]
 
-def actualizarNombreDelContacto(id):
+def actualizarNombreDelContacto(code):
 
     while True:
             # actualizar el nombre del contacto
@@ -414,7 +414,7 @@ def actualizarNombreDelContacto(id):
         "apellido_contacto":(apellido_contacto),}
 
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -429,7 +429,7 @@ def actualizarNombreDelContacto(id):
     
     return[res]
 
-def actualizarTelefonoDelContacto(id):
+def actualizarTelefonoDelContacto(code):
 
 
     while True:
@@ -450,7 +450,7 @@ def actualizarTelefonoDelContacto(id):
     cliente = {"telefono":(telefono),}
 
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -465,7 +465,7 @@ def actualizarTelefonoDelContacto(id):
     
     return[res]
 
-def actualizarDirecciones1Y2DelContacto(id):
+def actualizarDirecciones1Y2DelContacto(code):
 
     while True:
             # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
@@ -502,7 +502,7 @@ def actualizarDirecciones1Y2DelContacto(id):
         "linea_direccion2":(linea_direccion2)}
     
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -517,7 +517,7 @@ def actualizarDirecciones1Y2DelContacto(id):
     
     return[res]
 
-def actualizarCiudadDelContacto(id):
+def actualizarCiudadDelContacto(code):
 
     while True:
             # actualizar la ciudad del cliente sin que se repita con alguno ya existente
@@ -536,7 +536,7 @@ def actualizarCiudadDelContacto(id):
    # PRIMERO ponemos todo el listado de información de nuestra lista
     cliente = {"ciudad":(ciudad)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -551,7 +551,7 @@ def actualizarCiudadDelContacto(id):
     
     return[res]
 
-def actualizarRegionDelContacto(id):
+def actualizarRegionDelContacto(code):
 
     while True:
             # actualizar la region del cliente sin que se repita con alguno ya existente
@@ -570,7 +570,7 @@ def actualizarRegionDelContacto(id):
    # PRIMERO ponemos todo el listado de información de nuestra lista
     cliente = {"region":(region)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -585,7 +585,7 @@ def actualizarRegionDelContacto(id):
     
     return[res]
 
-def actualizarPaisContacto(id):
+def actualizarPaisContacto(code):
 
     while True:
             # actualizar el pais del cliente sin que se repita con alguno ya existente
@@ -605,7 +605,7 @@ def actualizarPaisContacto(id):
    # PRIMERO ponemos todo el listado de información de nuestra lista
     cliente = {"pais":(pais)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -620,7 +620,7 @@ def actualizarPaisContacto(id):
     
     return[res]
 
-def actualizarCodigoPostalContacto(id):
+def actualizarCodigoPostalContacto(code):
 
     while True:
             # actualizar el codigo postal sin que se repita con alguno ya existente
@@ -638,7 +638,7 @@ def actualizarCodigoPostalContacto(id):
 
     cliente = {"codigo_postal":(codigo_postal),}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -653,7 +653,7 @@ def actualizarCodigoPostalContacto(id):
     
     return[res]
 
-def actualizarRepresentanteContacto(id):
+def actualizarRepresentanteContacto(code):
 
     while True:
             # actualizar el codigo del empleado sin que se repita con alguno ya existente
@@ -671,7 +671,7 @@ def actualizarRepresentanteContacto(id):
 
     cliente = { "codigo_empleado_rep_ventas":int(codigo_empleado_rep_ventas)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -686,7 +686,7 @@ def actualizarRepresentanteContacto(id):
     
     return[res]
 
-def actualizarLimiteCreditoContacto(id):
+def actualizarLimiteCreditoContacto(code):
 
     while True:
             # actualizar el limite_credito del empleado sin que se repita con alguno ya existente
@@ -704,7 +704,7 @@ def actualizarLimiteCreditoContacto(id):
 
     cliente = { "limite_credito":float(limite_credito)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -719,7 +719,7 @@ def actualizarLimiteCreditoContacto(id):
     
     return[res]
 
-def actualizaridContacto(id):
+def actualizaridContacto(code):
 
     while True:
          # actualizar el codigo del cliente sin que se repita con alguno ya existente
@@ -730,16 +730,16 @@ def actualizaridContacto(id):
             print("El id del cliente debe ser un número entero positivo.")
             continue
         # Validar si el código ya existe
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{idNueva}")
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{id}")
         if response.status_code == 200:
             print("El id del cliente ya existe.")
             continue
 
         break
 
-    cliente = {"id":int(idNueva)}
+    cliente = {"id":int(id)}
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
             return{"message":"Cliente no encontrado"}
         
@@ -754,7 +754,7 @@ def actualizaridContacto(id):
     
     return[res]
 
-def actualizarTodoUnDatoCliente(id):
+def actualizarTodoUnDatoCliente(code):
 
     while True:
         # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
@@ -1008,7 +1008,7 @@ def actualizarTodoUnDatoCliente(id):
             print("El id del cliente debe ser un número entero positivo.")
             continue
         # Validar si el código ya existe
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{idNueva}")
+        response = requests.get(f"http://10.0.2.15:5001/clientes/{id}")
         if response.status_code == 200:
             print("El id del cliente ya existe.")
             continue
@@ -1034,11 +1034,11 @@ def actualizarTodoUnDatoCliente(id):
         "codigo_postal":(codigo_postal),
         "codigo_empleado_rep_ventas":int(codigo_empleado_rep_ventas),
         "limite_credito":float(limite_credito),
-        "id":int(idNueva)
+        "id":int(id)
         }
 
 
-    clienteExistente=FuncionDeConeccionAUnaId(id)
+    clienteExistente=FuncionDeConeccionAUnaId(code)
     if not clienteExistente:
         return{"message":"Cliente no encontrado"}
     
@@ -1105,56 +1105,56 @@ def actualizarDatosClientes():
 
 
                         if opcion == 1:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarCodigoDelCliente(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarCodigoDelCliente(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 2:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarNombreDelCliente(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarNombreDelCliente(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 3:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarNombreDelContacto(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarNombreDelContacto(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 4:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarTelefonoDelContacto(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarTelefonoDelContacto(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 5:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarDirecciones1Y2DelContacto(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarDirecciones1Y2DelContacto(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 6:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarCiudadDelContacto(id),headers="keys",tablefmt="grid"))  
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarCiudadDelContacto(code),headers="keys",tablefmt="grid"))  
                             
                         if opcion == 7:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarRegionDelContacto(id),headers="keys",tablefmt="grid"))    
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarRegionDelContacto(code),headers="keys",tablefmt="grid"))    
 
                         if opcion == 8:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarPaisContacto(id),headers="keys",tablefmt="grid"))    
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarPaisContacto(code),headers="keys",tablefmt="grid"))    
 
                         if opcion == 9:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarCodigoPostalContacto(id),headers="keys",tablefmt="grid"))    
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarCodigoPostalContacto(code),headers="keys",tablefmt="grid"))    
 
                         if opcion == 10:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarRepresentanteContacto(id),headers="keys",tablefmt="grid"))                                                                                                                                            
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarRepresentanteContacto(code),headers="keys",tablefmt="grid"))                                                                                                                                            
 
                         if opcion == 11:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarLimiteCreditoContacto(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarLimiteCreditoContacto(code),headers="keys",tablefmt="grid"))
                    
                         if opcion == 12:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizaridContacto(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizaridContacto(code),headers="keys",tablefmt="grid"))
 
                         if opcion == 13:
-                            id=input("Ingrese la id del cliente que desea actualizar: ")
-                            print(tabulate(actualizarTodoUnDatoCliente(id),headers="keys",tablefmt="grid"))
+                            code=input("Ingrese la id del cliente que desea actualizar: ")
+                            print(tabulate(actualizarTodoUnDatoCliente(code),headers="keys",tablefmt="grid"))
 
                         if(opcion==0):
                             break    

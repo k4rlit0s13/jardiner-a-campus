@@ -204,9 +204,9 @@ def agregarDatosProducto():
 
 
 # # opcion 2 borrar datos de la lista 
-def deletearProduct(id):
+def deletearProduct(code):
 
-    data=getPro.getAllcode(id)
+    data=getPro.getAllcode(code)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5007/productos/{id}")

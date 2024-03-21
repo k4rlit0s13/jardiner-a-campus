@@ -25,9 +25,9 @@ def FuncionDeConeccionGama():
 
 
 # opcion 2 borrar datos de la lista 
-def deletearProduct(id):
+def deletearProduct(code):
 
-    data=getgama.getAllcode(id)
+    data=getgama.getAllcode(code)
 
     if(len(data)):  
         peticion=requests.delete(f"http://10.0.2.15:5006/gama_productos/{id}")

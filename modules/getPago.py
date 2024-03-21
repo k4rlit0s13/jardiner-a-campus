@@ -34,7 +34,7 @@ def FuncionDeConeccionEmpleadoJson():
 
 
 
-def getAllIdTransactions(id):
+def getAllIdTransactions(code):
     transaction=[]
     for val in FuncionDeConeccionPagoJson():
          if val.get("id_transaccion")==id:
@@ -46,7 +46,7 @@ def getAllIdTransactions(id):
 
 
 #obtener un codigo de la lista directo(optimizado)
-def getAllcode(id):
+def getAllcode(code):
        peticion=requests.get(f"http://10.0.2.15:5008/pagos/{id}")
        return[peticion.json()] if peticion.ok else []
 
