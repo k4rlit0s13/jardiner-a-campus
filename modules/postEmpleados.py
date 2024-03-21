@@ -35,7 +35,7 @@ def FuncionDeConeccionempleadosJson():
 
 
 
-# opcion 2 borrar datos de la lista 
+# DELETE DATOS
 def deletearProduct(id):
 
     data=getEm.getAllcode(id)
@@ -57,8 +57,7 @@ def deletearProduct(id):
               "status":400,
          }
     
-
-
+# POST DATOS
 def agregarDatosempleados():
     empleados={}
     while True:
@@ -201,6 +200,333 @@ def agregarDatosempleados():
     return [res]
 
 
+# UPDATE DATOS
+
+def actualizarTodoUnDatoempleados(id):
+
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        codigo_empleado = (input("Ingresa el nuevo código del empleado: "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", codigo_empleado):
+            print("El código del empleado debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_empleado}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+
+
+
+    # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    while True:
+        # actualizar el nombre del cliente/empresa
+        nombre = (input("Ingrese el nuevo nombre de la empresa: "))
+
+        # Validar nombre
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre):
+            print("El nombre del cliente no es válido.")
+            continue
+        #  # NO SE ASIMILA
+        # response = requests.get(f"http://10.0.2.15:5003/empleados/{nombre}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+
+        break
+
+
+    # actualizar el nombre del contacto y se puede repetir
+    while True:
+        # actualizar el apellido1
+        apellido1=(input("Ingrese el nuevo primer apellido del empleado: "))
+
+        # Validar apellido1
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", apellido1):
+            print("El nombre del contacto no es válido.")
+            continue
+        #  # NO ES NECESARIO VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5003/empleados/{nombre_contacto}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+        break
+
+
+
+    # actualizar el apellido del contacto y se puede repetir
+    while True:
+        # actualizar el apellido2
+        apellido2=(input("Ingrese el nuevo segundo apellido del empleado: "))
+
+        # Validar apellido2
+        if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", apellido2):
+            print("El nombre del contacto no es válido.")
+            continue
+        #  # NO ES NECESARIO VALIDAR
+        # response = requests.get(f"http://10.0.2.15:5003/empleados/{apellido_contacto}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+        break
+
+
+
+
+    while True:
+         # actualizar el extension sin que se repita con alguno ya existente
+        extension = (input("Ingresa la extension(0000) "))
+        # Validar extension
+        if not re.match(r"^[0-9]{4}$", extension):
+            print("La extension son 4 dígitos 0000.")
+            continue
+        # Validar si el extension ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{extension}")
+        if response.status_code == 200:
+            print("La extension ya existe.")
+            continue
+        break
+
+
+
+
+    while True:
+         # actualizar el fax del cliente sin que se repita con alguno ya existente
+        email = (input("Ingresa el nuevo email: "))
+        # Validar solo 11 números
+        if not re.match(r".+",email):
+            print("El email es incorrecto.")
+            continue
+        # Validar si el fax ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{email}")
+        if response.status_code == 200:
+            print("El fax del cliente ya existe.")
+            continue
+        break
+
+
+
+    while True:
+            # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
+            codigo_oficina = (input("Ingresa la nueva dirección del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[A-Z]{3}-[A-Z]{3}$",codigo_oficina):
+                print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+                continue
+            # Validar si la direccion ya existe
+            response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_oficina}")
+            if response.status_code == 200:
+                print("La dirección del cliente ya existe.")
+                continue
+            break
+
+
+
+
+    while True:
+            # actualizar la linea_direccion2 del cliente sin que se repita con alguno ya existente
+            codigo_jefe = (input("Ingresa una nueva indicacion a la direccion del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[0-9]+$",codigo_jefe):
+                print("El código se construye por un número.")
+                continue
+            # Validar si la direccion2 ya existe
+            response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_jefe}")
+            if response.status_code == 200:
+                print("El dato de código ya existe.")
+                continue
+            break
+
+
+      
+    while True:
+            # actualizar la ciudad del cliente sin que se repita con alguno ya existente
+            puesto = (input("Ingresa una nueva puesto del empleado: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^[A-Z][a-zA-Z]*$",puesto):
+                print("El puesto que indica no cumple.")
+                continue
+            # NO NESECITA VALIDAR
+            # response = requests.get(f"http://10.0.2.15:5003/empleados/{ciudad}")
+            # if response.status_code == 200:
+            #     print("El dato de la ciudad del cliente ya existe.")
+            #     continue
+            break
+    
+
+
+    while True:
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        idNueva = (input("Ingresa el nuevo id del cliente(1,2,...): "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", idNueva):
+            print("El id del cliente debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{idNueva}")
+        if response.status_code == 200:
+            print("El id del cliente ya existe.")
+            continue
+
+        break
+
+
+
+
+    # PRIMERO ponemos todo el listado de información de nuestra lista
+    cliente = {
+        "codigo_empleado":int(codigo_empleado),
+        "nombre":(nombre),
+        "apellido1":(apellido1),
+        "apellido2":(apellido2),
+        "extension":(extension),
+        "email":(email),
+        "codigo_oficina":(codigo_oficina),
+        "codigo_jefe":int(codigo_jefe),
+        "puesto":(puesto),
+        "id":int(idNueva)
+        }
+
+
+    clienteExistente=FuncionDeConeccionempleadosJson(id)
+    if not clienteExistente:
+        return{"message":"Cliente no encontrado"}
+    
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5003/empleados/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+
+
+
+
+
+
+
+
+def actualizarPostEpleador(id):
+    while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+        # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        codigo_empleado = (input("Ingresa el nuevo código del empleado: "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", codigo_empleado):
+            print("El código del empleado debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{codigo_empleado}")
+        if response.status_code == 200:
+            print("El código del cliente ya existe.")
+            continue
+
+        break
+
+
+
+    cliente = {
+            "codigo_empleado":int(codigo_empleado),
+            }
+
+    clienteExistente=FuncionDeConeccionempleadosJson(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5003/empleados/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+def actualizaridNueva(id):
+
+    while True:
+         # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        idNueva = (input("Ingresa el nuevo id del cliente(1,2,...): "))
+
+        # Validar solo números
+        if not re.match(r"^[0-9]+$", idNueva):
+            print("El id del cliente debe ser un número entero positivo.")
+            continue
+        # Validar si el código ya existe
+        response = requests.get(f"http://10.0.2.15:5003/empleados/{idNueva}")
+        if response.status_code == 200:
+            print("El id del cliente ya existe.")
+            continue
+
+        break
+    cliente = {
+            "idNueva":int(idNueva),
+            }
+
+    clienteExistente=FuncionDeConeccionempleadosJson(id)
+    if not clienteExistente:
+            return{"message":"Cliente no encontrado"}
+        
+    clienteActualizado= {**clienteExistente[0],**cliente}
+    peticion=requests.put(f"http://10.0.2.15:5003/empleados/{id}",data=json.dumps(clienteActualizado))
+    res=peticion.json()
+
+    if peticion.status_code==200:
+        res["messaje"]="Cliente actualizado correctamente"
+    else:
+        res["message"]="Cliente no se pudo actualizar"
+    
+    return[res]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,28 +551,34 @@ def actualizarPagos():
 ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚══════╝     
                                                                                                                                                                     
                                                                                         
+        1. Actualizar código empleado
+        2. Actualizar nombre empleado
+        3. Actualizar apellidos  
+        4. Actualizar email
+        5. Actualizar código oficina
+        6. Actualizar código jefe
+        7. Actualizar puesto 
+        8. Actualizar id
 
-        1. Actualizar      
-        2. Actualizar    
-        3. Actualizar   
-        4. Actualizar 
-        5. Actualizar 
-        6. Actualizar 
+        9. Actualizar todas las anteriores     
                                    
-        0. Atras                                                                                                           
-          
-          
-          
+        0. Atras 
         
 
         """)
         opcion=input("\nEscribe el número de una de las opciones: ")
         if(re.match(r'[0-9]+$',opcion)is not None):
                 opcion= int(opcion)
-                if opcion>=0 and opcion<=6:   
-                           
-                   
-                  
+                if opcion>=0 and opcion<=9:  
+
+                    if opcion == 1:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate(actualizarPostEpleador(id),headers="keys",tablefmt="grid"))
+
+                    if opcion == 9:
+                        id=input("Ingrese la id del cliente que desea actualizar: ")
+                        print(tabulate(actualizarTodoUnDatoempleados(id),headers="keys",tablefmt="grid"))
+                                        
                     if(opcion==0):
                         break
 
