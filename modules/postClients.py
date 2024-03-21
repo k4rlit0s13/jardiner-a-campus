@@ -301,37 +301,188 @@ def agregarDatosClientes():
 
 
 def actualizarCodigoDelCliente(id):
-    while True:
 
-        codigo_cliente=(input("Ingresa el nuevo codigo del cliente: "))
-        if not re.match(r"^\d+$", codigo_cliente):
-            print("El código del cliente debe ser un número entero.")
-            continue
-        response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
-        if response.status_code == 200:
-            print("El código del cliente ya existe.")
-            continue
-        break
-                
-           
-            
+    # while True:
+        # SEGUNDO hacemos las OPERACIONES para cada una de las actualizaciones que queremos hacer:
+
+        #  # actualizar el codigo del cliente sin que se repita con alguno ya existente
+        # codigo_cliente = (input("Ingresa el nuevo código del cliente: "))
+
+        # # Validar solo números
+        # if not re.match(r"^[0-9]+$", codigo_cliente):
+        #     print("El código del cliente debe ser un número entero positivo.")
+        #     continue
+        # # Validar si el código ya existe
+        # response = requests.get(f"http://10.0.2.15:5001/clientes/{codigo_cliente}")
+        # if response.status_code == 200:
+        #     print("El código del cliente ya existe.")
+        #     continue
+
+        # break
+
+
+
+    # # actualizar el nombre del cliente sin que se repita con alguno ya existente
+    # while True:
+    #     # actualizar el nombre del cliente/empresa
+    #     nombre_cliente = (input("Ingrese el nuevo nombre de la empresa: "))
+
+    #     # Validar nombre
+    #     if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_cliente):
+    #         print("El nombre del cliente no es válido.")
+    #         continue
+    #      # Validar si el nombre ya existe
+    #     response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_cliente}")
+    #     if response.status_code == 200:
+    #         print("El código del cliente ya existe.")
+    #         continue
+
+    #     break
+
+
+
+
+
+    # # actualizar el nombre del contacto y se puede repetir
+    # while True:
+    #     # actualizar el nombre del contacto
+    #     nombre_contacto=(input("Ingrese el nuevo nombre del representante de la empresa: "))
+
+    #     # Validar nombre
+    #     if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", nombre_contacto):
+    #         print("El nombre del contacto no es válido.")
+    #         continue
+    #     #  # NO ES NECESARIO VALIDAR
+    #     # response = requests.get(f"http://10.0.2.15:5001/clientes/{nombre_contacto}")
+    #     # if response.status_code == 200:
+    #     #     print("El código del cliente ya existe.")
+    #     #     continue
+    #     break
+
+
+
+    # # actualizar el apellido del contacto y se puede repetir
+    # while True:
+    #     # actualizar el nombre del cliente/empresa
+    #     apellido_contacto=(input("Ingrese el nuevo apellido del representante de la empresa: "))
+
+    #     # Validar nombre
+    #     if not re.match(r"^([A-ZÁÉÍÓÚÑÜa-záéíóúñü]+[ _-]?)+$", apellido_contacto):
+    #         print("El nombre del contacto no es válido.")
+    #         continue
+    #     #  # NO ES NECESARIO VALIDAR
+    #     # response = requests.get(f"http://10.0.2.15:5001/clientes/{apellido_contacto}")
+    #     # if response.status_code == 200:
+    #     #     print("El código del cliente ya existe.")
+    #     #     continue
+    #     break
+
+
+
+
+    # while True:
+    #      # actualizar el teléfono del cliente sin que se repita con alguno ya existente
+    #     telefono = (input("Ingresa el nuevo teléfono del cliente: "))
+    #     # Validar solo 11 números
+    #     if not re.match(r"^[0-9]{11}$", telefono):
+    #         print("El teléfono del cliente se construye de 11 números 00000000000.")
+    #         continue
+    #     # Validar si el telefono ya existe
+    #     response = requests.get(f"http://10.0.2.15:5001/clientes/{telefono}")
+    #     if response.status_code == 200:
+    #         print("El teléfono del cliente ya existe.")
+    #         continue
+    #     break
+
+
+
+
+    # while True:
+    #      # actualizar el fax del cliente sin que se repita con alguno ya existente
+    #     fax = (input("Ingresa el nuevo fax del cliente: "))
+    #     # Validar solo 11 números
+    #     if not re.match(r"^[0-9]{10}$",fax):
+    #         print("El fax del cliente se construye de 10 números 0000000000.")
+    #         continue
+    #     # Validar si el fax ya existe
+    #     response = requests.get(f"http://10.0.2.15:5001/clientes/{fax}")
+    #     if response.status_code == 200:
+    #         print("El fax del cliente ya existe.")
+    #         continue
+    #     break
+
+
+
+    # while True:
+    #         # actualizar la linea_direccion1 del cliente sin que se repita con alguno ya existente
+    #         linea_direccion1 = (input("Ingresa la nueva dirección del cliente: "))
+    #         # Validar números,letras espacios y carácteres especiales
+    #         if not re.match(r"^[\x00-\xFF]+$",linea_direccion1):
+    #             print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+    #             continue
+    #         # Validar si la direccion ya existe
+    #         response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion1}")
+    #         if response.status_code == 200:
+    #             print("La dirección del cliente ya existe.")
+    #             continue
+    #         break
+
+
+
+
+    # while True:
+    #         # actualizar la linea_direccion2 del cliente sin que se repita con alguno ya existente
+    #         linea_direccion2 = (input("Ingresa una nueva indicacion a la direccion del cliente: "))
+    #         # Validar números,letras espacios y carácteres especiales
+    #         if not re.match(r"^[\x00-\xFF]+$",linea_direccion2):
+    #             print("La dirección del cliente se construye por números,letras y carácteres especiales como el /.")
+    #             continue
+    #         # Validar si la direccion2 ya existe
+    #         response = requests.get(f"http://10.0.2.15:5001/clientes/{linea_direccion2}")
+    #         if response.status_code == 200:
+    #             print("El dato de la dirección del cliente ya existe.")
+    #             continue
+    #         break
+
+      
+    while True:
+            # actualizar la ciudad del cliente sin que se repita con alguno ya existente
+            ciudad = (input("Ingresa una nueva ciudad del cliente: "))
+            # Validar números,letras espacios y carácteres especiales
+            if not re.match(r"^([A-Za-záéíóúñü]{2,}(?:\s?[A-Za-záéíóúñü]{2,})*)$",ciudad):
+                print("La ciudad se indica con primera en mayuscula .")
+                continue
+            # NO NESECITA VALIDAR
+            response = requests.get(f"http://10.0.2.15:5001/clientes/{ciudad}")
+            if response.status_code == 200:
+                print("El dato de la dirección del cliente ya existe.")
+                continue
+            break
+    
+
+
+    # PRIMERO ponemos todo el listado de información de nuestra lista
     cliente = {
-        "codigo_cliente": int(codigo_cliente)
-            # "nombre_cliente":
-            # "nombre_contacto":,
-            # "apellido_contacto":,
-            # "telefono":,
-            # "fax":,
-            # "linea_direccion1":,
-            # "linea_direccion2":,
-            # "ciudad":,
-            # "region":,
-            # "pais":,
-            # "codigo_postal":,
-            # "codigo_empleado_rep_ventas":,
-            # "limite_credito":,
-            # "id":
+        # "codigo_cliente": int(codigo_cliente),
+        # "nombre_cliente": (nombre_cliente),
+        # "nombre_contacto":(nombre_contacto),
+        # "apellido_contacto":(apellido_contacto),
+        # "telefono":(telefono),
+        # "fax":(fax),
+        # "linea_direccion1":(linea_direccion1),
+        # "linea_direccion2":(linea_direccion2),
+        "ciudad":(ciudad),
+        # "region":(region),
+        # "pais":(pais),
+        # "codigo_postal":(codigo_postal),
+        # "codigo_empleado_rep_ventas":(codigo_empleado_rep_ventas),
+        # "limite_credito":(limite_credito),
+        # "id":(id)
         }
+
+
+
+
 
     clienteExistente=FuncionDeConeccionAUnaId(id)
     if not clienteExistente:
@@ -347,8 +498,6 @@ def actualizarCodigoDelCliente(id):
         res["message"]="Cliente no se pudo actualizar"
     
     return[res]
-
-
 
 
 
@@ -441,7 +590,7 @@ def actualizarDatosClientes():
 
 
                         if opcion == 1:
-                            id=input("Ingrese la id del cliente que desea cambiar: ")
+                            id=input("Ingrese la id del cliente que desea actualizar: ")
                             print(tabulate(actualizarCodigoDelCliente(id),headers="keys",tablefmt="grid"))
                    
 
